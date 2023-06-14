@@ -1,15 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
+using DG.Tweening;
+using Sirenix.OdinInspector;
 
 public class Buck : MonoBehaviour
 {
     Level owner;
+    public TextMeshPro currentPercentTxt;
     public float currentPercent;
+    public Vector3 defaultLoc;
     public void Init(Level owner)
     {
         this.owner = owner;
         currentPercent = 0;
+        currentPercentTxt.text = currentPercent + "%";
+        defaultLoc = transform.position;
     }
 
 
@@ -18,11 +25,29 @@ public class Buck : MonoBehaviour
         if (other.gameObject.layer == LayerMask.NameToLayer(Helper.COLOR_BALL_LAYER))
         {
             currentPercent += owner.percentPerBall;
-        }
+            currentPercentTxt.text = Mathf.RoundToInt(currentPercent) + "%";
+            transform.DOMove(defaultLoc + Vector3.down * (currentPercent / 100f) * 2f, 1f);
+            if(Mathf.RoundToInt(currentPercent) == 100)
+                GameManager.Instance.SetGameState(GameState.Win);
 
-        if (other.gameObject.layer == LayerMask.NameToLayer(Helper.GREY_BALL_LAYER))
-        {
-            GameManager.Instance.SetGameState(GameState.Lose);
         }
+    }
+
+    [Button()]
+    public void Break()
+    {
+        transform.DOMove(GameManager.Instance.mainCam.transform.position, 1f)
+                  .SetEase(Ease.Linear);
+
+        transform.DOShakeRotation(1f)
+            .OnComplete(()=> {
+                GameManager.Instance.SetGameState(GameState.Lose);
+            });
+
+
+    }
+    private void OnDestroy()
+    {
+        transform.DOKill();
     }
 }

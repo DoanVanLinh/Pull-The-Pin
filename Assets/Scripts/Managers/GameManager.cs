@@ -9,6 +9,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
+using UnityEngine.SceneManagement;
 
 public class GameManager : SerializedMonoBehaviour
 {
@@ -30,41 +32,19 @@ public class GameManager : SerializedMonoBehaviour
     public GameState gameState;
     public Action OnPlayNewLevel;
 
-    #region Upgrade Attribute
-    [FoldoutGroup("Upgrade Attribute")]
-    public float percentDamePerLevel;
-    [FoldoutGroup("Upgrade Attribute")]
-    public float percentCoinsUpgradeDamePerLevel;
-    [FoldoutGroup("Upgrade Attribute")]
-    public float baseCoinsUpgradeDamePerLevel;
-    [FoldoutGroup("Upgrade Attribute")]
-    public float percentHpPerLevel;
-    [FoldoutGroup("Upgrade Attribute")]
-    public float percentCoinsUpgradeHpPerLevel;
-    [FoldoutGroup("Upgrade Attribute")]
-    public float baseCoinsUpgradeHpPerLevel;
-    [FoldoutGroup("Upgrade Attribute")]
-    public float percentCoinsPerLevel;
-    [FoldoutGroup("Upgrade Attribute")]
-    public float percentCoinsUpgradeCoinsPerLevel;
-    [FoldoutGroup("Upgrade Attribute")]
-    public float baseCoinsUpgradeCoinsPerLevel;
-    [FoldoutGroup("Upgrade Attribute")]
-    public float percentDameGunPerLevel;
-    [FoldoutGroup("Upgrade Attribute")]
-    public float percentCoinsUpgradeDameGunPerLevel;
-    #endregion
 
     #region ExtraReward
     [FoldoutGroup("ExtraReward")]
     public int extraReward;
     #endregion
 
-
-
+    public Camera mainCam;
+    public LayerMask pinLayer;
+    public List<Level> level;
     private void Start()
     {
-        SetGameState(GameState.MainUi);
+        SetGameState(GameState.Gameplay);
+        Instantiate(level[Random.Range(0, level.Count)], Vector3.zero, Quaternion.identity);
     }
     public ScriptableObject GetDataByName(string name)
     {
@@ -72,28 +52,43 @@ public class GameManager : SerializedMonoBehaviour
     }
     public void SetGameState(GameState state)
     {
+        if (gameState == state) return;
         gameState = state;
 
         switch (gameState)
         {
             case GameState.MainUi:
-                
+
                 break;
             case GameState.Gameplay:
-                
+
                 break;
             case GameState.Win:
-                
+                UIManager.Instance.winPanel.Open();
+                StartCoroutine(IEDelay(1f, delegate
+                {
+                    Replay();
+                }));
+
                 break;
             case GameState.Lose:
-                
-                break;
+                UIManager.Instance.losePanel.Open();
+
+                StartCoroutine(IEDelay(1f, delegate
+                {
+                    Replay();
+
+                })); break;
             case GameState.Null:
                 Time.timeScale = 0;
                 break;
             default:
                 break;
         }
+    }
+    public void Replay()
+    {
+        SceneManager.LoadScene(0);
     }
     IEnumerator IEDelay(float time, Action action)
     {
@@ -105,9 +100,9 @@ public class GameManager : SerializedMonoBehaviour
     {
         //AdStatus adStatus = SDKDGManager.Instance.AdsManager.ShowRewardedAdsStatus(() =>
         //{
-            actionClose?.Invoke();
-            //Analytics.LogRewardedVideoShow(DataManager.Instance.CurrentZone, splacenment);
-            DontDestroy.Instance.curentAdsCapping = 0;
+        actionClose?.Invoke();
+        //Analytics.LogRewardedVideoShow(DataManager.Instance.CurrentZone, splacenment);
+        DontDestroy.Instance.curentAdsCapping = 0;
         //}, splacenment);
         //switch (adStatus)
         //{
@@ -127,9 +122,9 @@ public class GameManager : SerializedMonoBehaviour
     {
         //AdStatus adStatus = SDKDGManager.Instance.AdsManager.ShowInterAdsStatus(() =>
         //{
-            actionClose?.Invoke();
-            //DebugCustom.Log("Show Inter");
-            //Analytics.LogInterstitialShow(DataManager.Instance.CurrentZone, Helper.Int_Capping_Placement);
+        actionClose?.Invoke();
+        //DebugCustom.Log("Show Inter");
+        //Analytics.LogInterstitialShow(DataManager.Instance.CurrentZone, Helper.Int_Capping_Placement);
         //}, splacenment);
 
         //switch (adStatus)
@@ -145,8 +140,19 @@ public class GameManager : SerializedMonoBehaviour
     {
         //SDKDGManager.Instance.IAPManager.Purchase(idPack, () =>
         //{
-            actionClose?.Invoke();
-            //Analytics.LogInappPurcahse(idPack,"1");
+        actionClose?.Invoke();
+        //Analytics.LogInappPurcahse(idPack,"1");
         //});
+    }
+
+    public Pin DetectPin()
+    {
+        Ray ray = mainCam.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hit;
+        if (Physics.Raycast(ray, out hit, 100, pinLayer))
+        {
+            return hit.collider.GetComponent<Pin>();
+        }
+        return null;
     }
 }

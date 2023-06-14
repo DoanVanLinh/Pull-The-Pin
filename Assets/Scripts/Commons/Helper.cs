@@ -11,12 +11,7 @@ using Random = UnityEngine.Random;
 
 public static class Helper
 {
-    public const string PLAYER_TAG = "Player";
-    public const string ENEMY_TAG = "Enemy";
-    public const string PLAYER_BULLET_TAG = "PlayerBullet";
-    public const string ENEMY_BULLET_TAG = "EnemyBullet";
-    public const string WALL_TAG = "Wall";
-
+    public const string BALL_TAG = "Ball";
 
     public const string COLOR_BALL_LAYER = "ColorBall";
     public const string GREY_BALL_LAYER = "GreyBall";
