@@ -140,6 +140,11 @@
     <Compile Include="Assets\Scripts\CodeStage\AntiCheatToolkit\Examples\Scripts\InfiniteRotator.cs" />
     <Compile Include="Assets\PathCreator\Examples\Scripts\RoadMeshCreator.cs" />
     <Compile Include="Assets\Scripts\Commons\TestScript.cs" />
+    <Compile Include="Assets\Scripts\UI\Lose\LosePanel.cs" />
+    <Compile Include="Assets\Scripts\UI\Shop\ShopPanel.cs" />
+    <Compile Include="Assets\Scripts\UI\Play\PlayPanel.cs" />
+    <Compile Include="Assets\Scripts\UI\DailyMission\DailyMissionPanel.cs" />
+    <Compile Include="Assets\Scripts\UI\Home\HomePanel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
