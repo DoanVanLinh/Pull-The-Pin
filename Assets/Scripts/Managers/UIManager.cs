@@ -16,6 +16,11 @@ public class UIManager : MonoBehaviour
     }
     #endregion
 
+    public void Init()
+    {
+
+    }
+
     public BaseUI gamePlayPanel;
     public BaseUI losePanel;
     public BaseUI winPanel;

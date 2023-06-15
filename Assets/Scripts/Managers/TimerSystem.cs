@@ -4,12 +4,10 @@ using UnityEngine;
 
 public class TimerSystem : MonoBehaviour
 {
-
-    private void FixedUpdate()
+    private void Start()
     {
-        if (GameManager.Instance.gameState != GameState.Gameplay) return;
-
-        //EnemyController.Instance?.OnUpdate(Time.fixedDeltaTime);
-        //BasePlayer.Instance?.OnUpdate(Time.fixedDeltaTime);
+        DataManager.Instance.Init();
+        GameManager.Instance.Init();
+        UIManager.Instance.Init();
     }
 }

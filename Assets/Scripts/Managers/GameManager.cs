@@ -40,35 +40,37 @@ public class GameManager : SerializedMonoBehaviour
 
     public Camera mainCam;
     public LayerMask pinLayer;
-    public List<Level> level;
-    private void Start()
+    public List<State> state;
+
+    private State currentState;
+    public void Init()
     {
+        currentState = state[DataManager.Instance.CurrentState];
         SetGameState(GameState.Gameplay);
-        Instantiate(level[Random.Range(0, level.Count)], Vector3.zero, Quaternion.identity);
+        
     }
     public ScriptableObject GetDataByName(string name)
     {
         return Resources.LoadAll<ScriptableObject>("Prefabs/Data/" + name)[0];
     }
-    public void SetGameState(GameState state)
+    public void SetGameState(GameState gameState)
     {
-        if (gameState == state) return;
-        gameState = state;
+        this.gameState = gameState;
 
-        switch (gameState)
+        switch (this.gameState)
         {
             case GameState.MainUi:
 
                 break;
             case GameState.Gameplay:
-
+                currentState.StartState(DataManager.Instance.CurrentLevel);
                 break;
             case GameState.Win:
-                UIManager.Instance.winPanel.Open();
-                StartCoroutine(IEDelay(1f, delegate
-                {
-                    Replay();
-                }));
+                if (!this.currentState.NextLevel())
+                    StartCoroutine(IEDelay(1f, delegate
+                    {
+                        UIManager.Instance.winPanel.Open();
+                    }));
 
                 break;
             case GameState.Lose:
@@ -77,6 +79,7 @@ public class GameManager : SerializedMonoBehaviour
                 StartCoroutine(IEDelay(1f, delegate
                 {
                     Replay();
+                    UIManager.Instance.losePanel.Close();
 
                 })); break;
             case GameState.Null:
@@ -88,7 +91,7 @@ public class GameManager : SerializedMonoBehaviour
     }
     public void Replay()
     {
-        SceneManager.LoadScene(0);
+        currentState.ResumeLevel();
     }
     IEnumerator IEDelay(float time, Action action)
     {

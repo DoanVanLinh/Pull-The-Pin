@@ -12,8 +12,8 @@ public class Pin : MonoBehaviour
     private bool canTouch;
     private void Awake()
     {
-        defaultLoc = transform.position;
-        targetLoc = transform.position + transform.up * 50;
+        defaultLoc = transform.localPosition;
+        targetLoc = transform.localPosition + transform.up * 50;
     }
     private void Update()
     {
@@ -24,15 +24,22 @@ public class Pin : MonoBehaviour
     public void Init()
     {
         canTouch = true;
-        transform.position = defaultLoc;
+        transform.localPosition = defaultLoc;
     }
     private void OnPlayerTouchOn()
     {
         canTouch = false;
-
-        transform.DOMove(targetLoc, timeMove)
+        SoundManager.Instance.Play("Pin");
+        transform.DOLocalMove(targetLoc, timeMove)
                  .SetEase(Ease.Linear)
-                 .SetSpeedBased(true);
+                 .SetSpeedBased(true)
+                 .OnUpdate(()=> { 
+                    if(GameManager.Instance.gameState!=GameState.Gameplay)
+                         gameObject.SetActive(false);
+                 })
+                 .OnComplete(()=>{
+                     gameObject.SetActive(false);
+                 });
     }
 
     private void OnDestroy()

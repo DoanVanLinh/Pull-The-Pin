@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace Assets.Scripts.Commons
 {
+    [RequireComponent(typeof(AudioSource))]
     public class CommonSound : PoolingObject
     {
         public AudioSource sourceAudio;

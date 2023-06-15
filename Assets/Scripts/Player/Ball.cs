@@ -56,7 +56,15 @@ public class Ball : MonoBehaviour
         SetColor();
         gameObject.layer = LayerMask.NameToLayer(Helper.COLOR_BALL_LAYER);
         fxColor.Play();
+
+        PlaySound();
     }
+    private void PlaySound()
+    {
+        string[] nameSounds = new string[3] { "Bubble", "Bubble2", "Bubble3" };
+        SoundManager.Instance.Play(nameSounds[Random.Range(0, 3)]);
+    }
+
     private void OnTriggerStay(Collider other)
     {
         if (type == BallType.Grey) return;
@@ -76,6 +84,8 @@ public class Ball : MonoBehaviour
                 {
                     rb.constraints = RigidbodyConstraints.None;
                     fxColor.Play();
+                    PlaySound();
+
                 }
                 break;
             case BallType.Grey:
@@ -83,6 +93,8 @@ public class Ball : MonoBehaviour
                 {
                     meshRender.enabled = false;
                     fxGrey.Play();
+                    PlaySound();
+
                     GameManager.Instance.SetGameState(GameState.Lose);
                 }
                 break;

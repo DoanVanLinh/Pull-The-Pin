@@ -21,8 +21,8 @@ TagManager:
   - BorderLevel
   - BallCollider
   - BomCollider
-  - 
-  - 
+  - DeadZone
+  - PinTouch
   - 
   - 
   - 
