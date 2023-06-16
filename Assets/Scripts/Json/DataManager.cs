@@ -58,11 +58,14 @@ public class DataManager : MonoBehaviour
     public bool isTest;
     public int level;
 
-    //public List<ShopItem> shopItems = new List<ShopItem>();
-    public Dictionary<string, bool> currentItems = new Dictionary<string, bool>();
-
     public int Coins { get; set; }
     public int Key { get; set; }
+    public string CurrentBall { get; set; }
+    public string CurrentThemeVisual { get; set; }
+    public string CurrentPin { get; set; }
+    public string CurrentTrail { get; set; }
+    public string CurrentWall { get; set; }
+
     public int CurrentNoadsReward { get; set; }
     public int CurrentSoundThemeState { get; set; }
     public int CurrentSoundEffectState { get; set; }
@@ -76,6 +79,13 @@ public class DataManager : MonoBehaviour
     {
         Coins = CPlayerPrefs.GetInt(Helper.Current_Coins_Key, 0);
         Key = CPlayerPrefs.GetInt(Helper.Current_Key_Key, 0);
+
+        CurrentBall = CPlayerPrefs.GetString(Helper.Current_Ball_Key, "Ball1");
+        CurrentThemeVisual = CPlayerPrefs.GetString(Helper.Current_Theme_Visual_Key, "Theme1");
+        CurrentPin = CPlayerPrefs.GetString(Helper.Current_Pin_Key, "Pin1");
+        CurrentTrail = CPlayerPrefs.GetString(Helper.Current_Trail_Key, "Trail1");
+        CurrentWall = CPlayerPrefs.GetString(Helper.Current_Wall_Key, "Wall1");
+
         CurrentNoadsReward = CPlayerPrefs.GetInt(Helper.Current_Noads_Reward_Key, 0);
         CurrentTheme = CPlayerPrefs.GetInt(Helper.Current_Theme_Key, 1);
         CurrentSoundThemeState = CPlayerPrefs.GetInt(Helper.Current_Sound_Theme_State_Key,1);
@@ -87,6 +97,72 @@ public class DataManager : MonoBehaviour
         IsNoads = CPlayerPrefs.GetBool(Helper.Is_No_Ads_Key, false);
     }
 
+    public string GetCurrentItemByType(EItemType type)
+    {
+        switch (type)
+        {
+            case EItemType.Ball:
+                return CurrentBall;
+            case EItemType.Theme:
+                return CurrentThemeVisual;
+            case EItemType.Pin:
+                return CurrentPin;
+            case EItemType.Trail:
+                return CurrentTrail;
+            case EItemType.Wall:
+                return CurrentWall;
+            default:
+                return "";
+        }
+    }
+    public void SetCurrentItemByType(EItemType type,string id)
+    {
+        switch (type)
+        {
+            case EItemType.Ball:
+                SetCurrentBall(id);
+                break;
+            case EItemType.Theme:
+                SetCurrentThemeVisual(id);
+                break;
+            case EItemType.Pin:
+                SetCurrentPin(id);
+                break;
+            case EItemType.Trail:
+                SetCurrentTrail(id);
+                break;
+            case EItemType.Wall:
+                SetCurrentWall(id);
+                break;
+            default:
+                break;
+        }
+    }
+    public void SetCurrentBall(string id)
+    {
+        CurrentBall = id;
+        CPlayerPrefs.SetString(Helper.Current_Ball_Key, CurrentBall);
+    }
+    public void SetCurrentThemeVisual(string id)
+    {
+        CurrentThemeVisual = id;
+        CPlayerPrefs.SetString(Helper.Current_Theme_Visual_Key, CurrentThemeVisual);
+    }
+    public void SetCurrentPin(string id)
+    {
+        CurrentPin = id;
+        CPlayerPrefs.SetString(Helper.Current_Pin_Key, CurrentPin);
+    }
+    public void SetCurrentTrail(string id)
+    {
+        CurrentTrail = id;
+        CPlayerPrefs.SetString(Helper.Current_Trail_Key, CurrentTrail);
+    }
+    public void SetCurrentWall(string id)
+    {
+        CurrentWall = id;
+        CPlayerPrefs.SetString(Helper.Current_Wall_Key, CurrentWall);
+    }
     public void AddCountPlay()
     {
         CountPlay++;

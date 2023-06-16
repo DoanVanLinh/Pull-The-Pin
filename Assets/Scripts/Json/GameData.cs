@@ -9,21 +9,49 @@ using Assets.Scripts.Data;
 public class GameData
 {
 
-    public List<string> playerSkillPooling;
-    
+    public List<DailyMissions> dailyMissions;
+    public List<string> currentItems = new List<string>();
+
     public GameData()
     {
-        
-    }
-
-    public GameData(Dictionary<string, int> listCurrentGun)
-    {
+        dailyMissions = new List<DailyMissions>();
     }
     public void Init()
     {
+        InitDailyMission();
+        InitShop();
 
+        void InitDailyMission()
+        {
+            for (int i = 1; i <= 5; i++)
+            {
+                if (i < 3)
+                    dailyMissions.Add(new DailyMissions(i, 1));
+                else if (i < 5)
+                    dailyMissions.Add(new DailyMissions(i, 2));
+                else
+                    dailyMissions.Add(new DailyMissions(i, 3));
+            }
+        }
+        void InitShop()
+        {
+            AddItem("Ball1");
+            AddItem("Theme1");
+            AddItem("Pin1");
+            AddItem("Trail1");
+            AddItem("Wall1");
+        }
     }
 
+    public void AddItem(string id)
+    {
+        if (!HasItem(id))
+            currentItems.Add(id);
+    }
+    public bool HasItem(string id)
+    {
+        return currentItems.Contains(id);
+    }
 }
 
 [Serializable]

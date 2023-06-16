@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 using UnityEngine.SceneManagement;
+using System.Linq;
 
 public class GameManager : SerializedMonoBehaviour
 {
@@ -38,6 +39,16 @@ public class GameManager : SerializedMonoBehaviour
     public int extraReward;
     #endregion
 
+    #region Data
+    public Dictionary<int, DailyMissionData> dailyMissionsData;
+    public Dictionary<string, Item> itemsData;
+    public Dictionary<string, Item> ballData;
+    public Dictionary<string, Item> themeData;
+    public Dictionary<string, Item> pinData;
+    public Dictionary<string, Item> trailData;
+    public Dictionary<string, Item> wallData;
+    #endregion
+
     public Camera mainCam;
     public LayerMask pinLayer;
     public List<State> state;
@@ -46,9 +57,25 @@ public class GameManager : SerializedMonoBehaviour
     public void Init()
     {
         currentState = state[DataManager.Instance.CurrentState];
-        SetGameState(GameState.Gameplay);
-        
+        GetDailyMissionData();
+        GetItemsData();
     }
+    private void GetItemsData()
+    {
+        itemsData = Resources.LoadAll<Item>("ScriptableObject/Items/").ToDictionary(m => m.id, m => m);
+
+        ballData = Resources.LoadAll<Item>("ScriptableObject/Items/Balls/").ToDictionary(m => m.id, m => m);
+        themeData = Resources.LoadAll<Item>("ScriptableObject/Items/Themes/").ToDictionary(m => m.id, m => m);
+        pinData = Resources.LoadAll<Item>("ScriptableObject/Items/Pins/").ToDictionary(m => m.id, m => m);
+        trailData = Resources.LoadAll<Item>("ScriptableObject/Items/Trails/").ToDictionary(m => m.id, m => m);
+        wallData = Resources.LoadAll<Item>("ScriptableObject/Items/Walls/").ToDictionary(m => m.id, m => m);
+
+    }
+    private void GetDailyMissionData()
+    {
+        dailyMissionsData = Resources.LoadAll<DailyMissionData>("ScriptableObject/DailyMission/").ToDictionary(m => m.id, m => m);
+    }
+
     public ScriptableObject GetDataByName(string name)
     {
         return Resources.LoadAll<ScriptableObject>("Prefabs/Data/" + name)[0];

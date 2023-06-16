@@ -37,6 +37,11 @@ public static class Helper
     #region DataKey
     public static string Current_Coins_Key = "CurrentCoins1";
     public static string Current_Key_Key = "CurrentKey1";
+    public static string Current_Ball_Key = "CurrentBall1";
+    public static string Current_Theme_Visual_Key = "CurrentKThemeVisual1";
+    public static string Current_Pin_Key = "CurrentPin1";
+    public static string Current_Trail_Key = "CurrentTrail1";
+    public static string Current_Wall_Key = "CurrentWall1";
     public static string Current_Level_Key = "CurrentLevel1";
     public static string Current_Noads_Reward_Key = "CurrentNoadsReward1";
     public static string Current_Theme_Key = "CurrentTheme1";

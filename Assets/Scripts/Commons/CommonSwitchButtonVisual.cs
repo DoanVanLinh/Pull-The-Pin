@@ -16,11 +16,11 @@ namespace Assets.Scripts.Commons
 
         public Action OnClickDone;
 
-        private void OnEnable()
+        protected virtual void OnEnable()
         {
             button.onClick.AddListener(delegate { OnClick(); });
         }
-        public void OnClick()
+        protected virtual void OnClick()
         {
             status = !status;
 
@@ -29,7 +29,7 @@ namespace Assets.Scripts.Commons
             OnClickDone?.Invoke();
         }
 
-        public void SetStatus(bool status)
+        public virtual void SetStatus(bool status)
         {
             this.status = status;
             onVisual?.SetActive(status);

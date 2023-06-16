@@ -234,8 +234,31 @@ public enum ShopElementType
     AncientItem,
     Coins
 }
-public enum BallType
+public enum EBallType
 {
     Color,
     Grey
+}
+public enum EMissionStatus
+{
+    Skip,
+    Collect,
+    Collected
+}
+public enum EItemType
+{
+   Ball,
+   Theme,
+   Pin,
+   Trail,
+   Wall
+}
+public enum EItemUnlockType
+{
+    Coins,
+    LevelComplete,
+    LuckyWheel,
+    DailyMission,
+    GiftBox,
+    Streak
 }

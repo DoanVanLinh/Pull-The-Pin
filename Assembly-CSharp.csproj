@@ -70,6 +70,7 @@
     <Compile Include="Assets\Scripts\Managers\UIManager.cs" />
     <Compile Include="Assets\Scripts\Data\EnemyData.cs" />
     <Compile Include="Assets\Scripts\CodeStage\AntiCheatToolkit\Runtime\Scripts\ObscuredTypes\ObscuredLong.cs" />
+    <Compile Include="Assets\Scripts\Commons\TestScript.cs" />
     <Compile Include="Assets\Scripts\Managers\DontDestroy.cs" />
     <Compile Include="Assets\Scripts\Player\Ball.cs" />
     <Compile Include="Assets\Scripts\Player\Pin.cs" />
@@ -82,15 +83,19 @@
     <Compile Include="Assets\Scripts\Player\State.cs" />
     <Compile Include="Assets\Scripts\CodeStage\AntiCheatToolkit\Runtime\Scripts\Common\ACTkByte16.cs" />
     <Compile Include="Assets\Scripts\CodeStage\AntiCheatToolkit\Runtime\Scripts\ObscuredTypes\ObscuredUInt.cs" />
+    <Compile Include="Assets\Scripts\UI\Play\PlayPanel.cs" />
     <Compile Include="Assets\Scripts\Player\Bom.cs" />
     <Compile Include="Assets\Scripts\CodeStage\AntiCheatToolkit\Runtime\Scripts\ObscuredTypes\ObscuredPrefs.cs" />
     <Compile Include="Assets\Scripts\CodeStage\AntiCheatToolkit\Examples\Scripts\UsageExamples\DetectorsExamples.cs" />
     <Compile Include="Assets\Scripts\Commons\CommonSwitchButtonVisual.cs" />
     <Compile Include="Assets\Scripts\Managers\Pooling\PoolingObject.cs" />
+    <Compile Include="Assets\Scripts\Data\DailyMissionData.cs" />
     <Compile Include="Assets\Scripts\CodeStage\AntiCheatToolkit\Runtime\Scripts\Detectors\WallHackDetector.cs" />
     <Compile Include="Assets\Scripts\Commons\CommonSound.cs" />
     <Compile Include="Assets\Scripts\Commons\SafeArea.cs" />
+    <Compile Include="Assets\Scripts\UI\DailyMission\DailyMissions.cs" />
     <Compile Include="Assets\Scripts\CodeStage\AntiCheatToolkit\Runtime\Scripts\ObscuredTypes\ObscuredString.cs" />
+    <Compile Include="Assets\Scripts\UI\DailyMission\DailyMissionElement.cs" />
     <Compile Include="Assets\Scripts\CodeStage\AntiCheatToolkit\Runtime\Scripts\ObscuredTypes\ObscuredVector2Int.cs" />
     <Compile Include="Assets\Scripts\CodeStage\AntiCheatToolkit\Runtime\Scripts\ObscuredTypes\ObscuredVector3.cs" />
     <Compile Include="Assets\Scripts\CodeStage\AntiCheatToolkit\Examples\Scripts\ExamplesGUI.cs" />
@@ -98,12 +103,15 @@
     <Compile Include="Assets\Scripts\UI\BaseUI.cs" />
     <Compile Include="Assets\Scripts\CodeStage\AntiCheatToolkit\Runtime\Scripts\Common\ACTkByte4.cs" />
     <Compile Include="Assets\Scripts\Commons\CommonTextPopup.cs" />
+    <Compile Include="Assets\Scripts\UI\Lose\LosePanel.cs" />
+    <Compile Include="Assets\Scripts\UI\DailyMission\DailyMissionPanel.cs" />
     <Compile Include="Assets\Scripts\CodeStage\AntiCheatToolkit\Runtime\Scripts\ObscuredTypes\ObscuredByte.cs" />
     <Compile Include="Assets\Scripts\Commons\EnumCatalog.cs" />
     <Compile Include="Assets\Scripts\CodeStage\AntiCheatToolkit\Runtime\Scripts\Detectors\Abstract\ACTkDetectorBase.cs" />
     <Compile Include="Assets\Scripts\CodeStage\AntiCheatToolkit\Runtime\Scripts\Common\ACTkConstants.cs" />
     <Compile Include="Assets\Scripts\CodeStage\AntiCheatToolkit\Runtime\Scripts\ObscuredTypes\ObscuredShort.cs" />
     <Compile Include="Assets\Scripts\Managers\GameManager.cs" />
+    <Compile Include="Assets\Scripts\UI\Shop\ShopPanel.cs" />
     <Compile Include="Assets\PathCreator\Examples\Scripts\GeneratePathExample.cs" />
     <Compile Include="Assets\Scripts\Managers\SoundManager.cs" />
     <Compile Include="Assets\Scripts\Managers\TimerSystem.cs" />
@@ -123,6 +131,7 @@
     <Compile Include="Assets\Scripts\CodeStage\AntiCheatToolkit\Runtime\Scripts\Utils\ThreadSafeRandom.cs" />
     <Compile Include="Assets\Scripts\CodeStage\AntiCheatToolkit\Examples\Scripts\UsageExamples\ObscuredTypesExamples.cs" />
     <Compile Include="Assets\Scripts\CodeStage\AntiCheatToolkit\Runtime\Scripts\Detectors\Abstract\ActDetectorBase.cs" />
+    <Compile Include="Assets\Scripts\Data\Item.cs" />
     <Compile Include="Assets\Scripts\CodeStage\AntiCheatToolkit\Runtime\Scripts\Utils\xxHash.cs" />
     <Compile Include="Assets\Scripts\UI\BasePopupUI.cs" />
     <Compile Include="Assets\Scripts\CodeStage\AntiCheatToolkit\Runtime\Scripts\ObscuredTypes\ObscuredVector3Int.cs" />
@@ -132,6 +141,7 @@
     <Compile Include="Assets\Scripts\CodeStage\AntiCheatToolkit\Runtime\Scripts\ObscuredTypes\ObscuredChar.cs" />
     <Compile Include="Assets\PathCreator\Examples\Scripts\PathFollower.cs" />
     <Compile Include="Assets\Scripts\CodeStage\AntiCheatToolkit\Runtime\Scripts\ObscuredTypes\ObscuredFloat.cs" />
+    <Compile Include="Assets\Scripts\UI\Home\HomePanel.cs" />
     <Compile Include="Assets\Scripts\Player\DeadZone.cs" />
     <Compile Include="Assets\Scripts\Json\SaveLoadJson.cs" />
     <Compile Include="Assets\Scripts\CodeStage\AntiCheatToolkit\Runtime\Scripts\ObscuredTypes\ObscuredVector2.cs" />
@@ -139,12 +149,9 @@
     <Compile Include="Assets\Scripts\CodeStage\AntiCheatToolkit\Runtime\Scripts\Detectors\InjectionDetector.cs" />
     <Compile Include="Assets\Scripts\CodeStage\AntiCheatToolkit\Examples\Scripts\InfiniteRotator.cs" />
     <Compile Include="Assets\PathCreator\Examples\Scripts\RoadMeshCreator.cs" />
-    <Compile Include="Assets\Scripts\Commons\TestScript.cs" />
-    <Compile Include="Assets\Scripts\UI\Lose\LosePanel.cs" />
-    <Compile Include="Assets\Scripts\UI\Shop\ShopPanel.cs" />
-    <Compile Include="Assets\Scripts\UI\Play\PlayPanel.cs" />
-    <Compile Include="Assets\Scripts\UI\DailyMission\DailyMissionPanel.cs" />
-    <Compile Include="Assets\Scripts\UI\Home\HomePanel.cs" />
+    <Compile Include="Assets\Scripts\Commons\CommonTabSwitchButton.cs" />
+    <Compile Include="Assets\Scripts\UI\Shop\ShopElement.cs" />
+    <Compile Include="Assets\Scripts\UI\Shop\GroupShopElement.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

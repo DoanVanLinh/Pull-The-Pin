@@ -18,28 +18,20 @@ public class UIManager : MonoBehaviour
 
     public void Init()
     {
-
+        homePanel.Open();
+        gamePlayPanel.Open();
     }
 
     public BaseUI gamePlayPanel;
+    public BaseUI dailyMissionPanel;
+    public BaseUI collectionPanel;
+    public BaseUI challegentPanel;
     public BaseUI losePanel;
     public BaseUI winPanel;
     public BaseUI chessPanel;
     public BaseUI homePanel;
     public BaseUI shopPanel;
-    public BaseUI levelUpPanel;
-    public BaseUI revivePanel;
-    public BaseUI pausePanel;
     public BaseUI settingPanel;
-    public BaseUI weaponPanel;
-    public BaseUI receviedSkillPanel;
-    public BaseUI warningPanel;
-    public BaseUI giftPanel;
     public BaseUI ratePanel;
-    public BaseUI inventoryPanel;
-    public BaseUI roomSkillPanel;
-    public BaseUI itemShowPanel;
-    public BaseUI itemInforPanel;
-    public BaseUI circleFireTutPanel;
     public UINotification notification;
 }

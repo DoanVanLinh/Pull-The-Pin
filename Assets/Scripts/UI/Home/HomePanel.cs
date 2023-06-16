@@ -9,6 +9,9 @@ namespace Assets.Scripts.UI.Home
 {
     public class HomePanel : BaseUI
     {
+        [FoldoutGroup("Ani"), SerializeField]
+        private Animator ani;
+
         [FoldoutGroup("Button"), SerializeField]
         private Button settingBtn;
 
@@ -18,30 +21,41 @@ namespace Assets.Scripts.UI.Home
         [FoldoutGroup("Button"), SerializeField]
         private Button rateBtn;
 
+        [FoldoutGroup("Button"), SerializeField]
+        private Button playBtn;
+
         public override void LoadData()
         {
             settingBtn.onClick.AddListener(delegate { SettingButton(); });
             noAdsBtn.onClick.AddListener(delegate { NoAdsButton(); });
             rateBtn.onClick.AddListener(delegate { RateButton(); });
+            playBtn.onClick.AddListener(delegate { PlayButton(); });
+        }
+
+        private void PlayButton()
+        {
+            ani.Play("Close");
         }
 
         private void RateButton()
         {
-            throw new NotImplementedException();
+            UIManager.Instance.ratePanel.Open();
+
         }
 
         private void NoAdsButton()
         {
-            throw new NotImplementedException();
+            //ads
         }
 
         private void SettingButton()
         {
-            throw new NotImplementedException();
+            UIManager.Instance.settingPanel.Open();
         }
 
         public override void SaveData()
         {
+
         }
     }
 }

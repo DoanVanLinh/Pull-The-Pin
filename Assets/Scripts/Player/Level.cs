@@ -37,7 +37,7 @@ public class Level : MonoBehaviour
     private Vector2 size;
 
     [Button()]
-    public void SpawnBall(int amount, BallType type)
+    public void SpawnBall(int amount, EBallType type)
     {
         amountBall += amount;
         for (int i = 0; i < amount; i++)

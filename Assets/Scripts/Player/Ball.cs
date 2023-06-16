@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class Ball : MonoBehaviour
 {
-    public BallType type;
+    public EBallType type;
     public Texture greyTexture;
     public List<Texture> colorTexture;
     public Material material;
@@ -25,10 +25,10 @@ public class Ball : MonoBehaviour
     }
 
     [Button()]
-    public virtual void Init(BallType type, float size = 1)
+    public virtual void Init(EBallType type, float size = 1)
     {
         this.type = type;
-        gameObject.layer = LayerMask.NameToLayer(type == BallType.Color ? Helper.COLOR_BALL_LAYER : Helper.GREY_BALL_LAYER);
+        gameObject.layer = LayerMask.NameToLayer(type == EBallType.Color ? Helper.COLOR_BALL_LAYER : Helper.GREY_BALL_LAYER);
         transform.localScale = Vector3.one * size;
     }
 
@@ -37,10 +37,10 @@ public class Ball : MonoBehaviour
         material = meshRender.material;
         switch (type)
         {
-            case BallType.Color:
+            case EBallType.Color:
                 material.SetTexture("_MainTex", colorTexture[Random.Range(0, colorTexture.Count)]);
                 break;
-            case BallType.Grey:
+            case EBallType.Grey:
                 material.SetTexture("_MainTex", greyTexture);
                 break;
         }
@@ -52,7 +52,7 @@ public class Ball : MonoBehaviour
     IEnumerator IEToColor()
     {
         yield return null;
-        type = BallType.Color;
+        type = EBallType.Color;
         SetColor();
         gameObject.layer = LayerMask.NameToLayer(Helper.COLOR_BALL_LAYER);
         fxColor.Play();
@@ -67,7 +67,7 @@ public class Ball : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if (type == BallType.Grey) return;
+        if (type == EBallType.Grey) return;
 
         if (other.gameObject.layer == LayerMask.NameToLayer(Helper.GREY_BALL_LAYER))
         {
@@ -79,7 +79,7 @@ public class Ball : MonoBehaviour
     {
         switch (type)
         {
-            case BallType.Color:
+            case EBallType.Color:
                 if (other.gameObject.layer == LayerMask.NameToLayer(Helper.BUCK_LAYER))
                 {
                     rb.constraints = RigidbodyConstraints.None;
@@ -88,7 +88,7 @@ public class Ball : MonoBehaviour
 
                 }
                 break;
-            case BallType.Grey:
+            case EBallType.Grey:
                 if (other.gameObject.layer == LayerMask.NameToLayer(Helper.BUCK_LAYER))
                 {
                     meshRender.enabled = false;
