@@ -17,7 +17,7 @@ public class Pin : MonoBehaviour
     }
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0)&&!Helper.IsOverUI())
             if (GameManager.Instance.DetectPin() == this)
                 OnPlayerTouchOn();
     }

@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Assets.Scripts.Data;
+using DG.Tweening;
 
 namespace Assets.Scripts.UI.Shop
 {
@@ -42,11 +43,21 @@ namespace Assets.Scripts.UI.Shop
         [FoldoutGroup("Prefabs"), SerializeField]
         private GroupShopElement groupElement;
 
+        [FoldoutGroup("Camera"), SerializeField]
+        private Camera mainCam;
+
         private List<GroupShopElement> ballGroups = new List<GroupShopElement>();
         private List<GroupShopElement> themeGroups = new List<GroupShopElement>();
         private List<GroupShopElement> pinGroups = new List<GroupShopElement>();
         private List<GroupShopElement> trailGroups = new List<GroupShopElement>();
         private List<GroupShopElement> wallGroups = new List<GroupShopElement>();
+
+        private Vector3 left;
+        private Vector3 right;
+        private Vector3 center;
+
+        private Transform currentTab;
+        private int index;
 
         private void Awake()
         {
@@ -56,11 +67,24 @@ namespace Assets.Scripts.UI.Shop
             LoadTrail();
             LoadWall();
 
+            center = luckyWheelParent.parent.parent.position;
+            center = new Vector3(center.x, center.y, 0);
+            left = mainCam.ViewportToWorldPoint(new Vector3(-0.5f,0.5f, 0));
+            left = new Vector3(left.x, center.y,0);
+            right = mainCam.ViewportToWorldPoint(new Vector3(1.5f, 0.5f, 0));
+            right = new Vector3(right.x, center.y,0);
+            index = 0;
+            luckyWheelParent.parent.parent.position = center;
+            ballParent.parent.parent.position = right;
+            themeParent.parent.parent.position = right;
+            pinParent.parent.parent.position = right;
+            trailParent.parent.parent.position = right;
+            wallParent.parent.parent.position = right;
         }
 
         public override void LoadData()
         {
-            CommonTabSwitchButton.OnSelectDone += OnTabSelected;
+            //CommonTabSwitchButton.OnSelectDone += OnTabSelected;
             luckyWheelBtn.OnClickDone += LuckyWhellButton;
             ballBtn.OnClickDone += BallButton;
             themeBtn.OnClickDone += ThemeButton;
@@ -74,7 +98,8 @@ namespace Assets.Scripts.UI.Shop
             pinBtn.SetStatus(false);
             trailBtn.SetStatus(false);
             wallBtn.SetStatus(false);
-            OnTabSelected();
+            currentTab = luckyWheelParent.parent.parent;
+            //OnTabSelected();
         }
 
         private void OnTabSelected()
@@ -89,7 +114,13 @@ namespace Assets.Scripts.UI.Shop
 
         private void WallButton()
         {
+            if (index == 5) return;
+            currentTab.DOMove(index <5  ? left : right,1f);
             UpdateWall();
+            wallParent.parent.parent.position = index < 5 ? right : left;
+            wallParent.parent.parent.DOMove(center, 1);
+            currentTab = wallParent.parent.parent;
+            index = 5;
         }
         private void LoadWall()
         {
@@ -116,7 +147,14 @@ namespace Assets.Scripts.UI.Shop
         }
         private void TrailButton()
         {
+            if (index == 4) return;
+            currentTab.DOMove(index < 4 ? left : right, 1f);
+
             UpdateTrail();
+            trailParent.parent.parent.position = index <4 ? right : left;
+            trailParent.parent.parent.DOMove(center, 1);
+            currentTab = trailParent.parent.parent;
+            index = 4;
 
         }
         private void LoadTrail()
@@ -145,7 +183,13 @@ namespace Assets.Scripts.UI.Shop
         }
         private void PinButton()
         {
+            if (index == 3) return;
+            currentTab.DOMove(index < 3 ? left : right, 1f);
             UpdatePin();
+            pinParent.parent.parent.position = index > 3 ? left : right;
+            pinParent.parent.parent.DOMove(center, 1);
+            currentTab = pinParent.parent.parent;
+            index = 3;
 
         }
         private void LoadPin()
@@ -174,7 +218,13 @@ namespace Assets.Scripts.UI.Shop
         }
         private void ThemeButton()
         {
+            if (index == 2) return;
+            currentTab.DOMove(index < 2? left : right, 1f);
             UpdateTheme();
+            themeParent.parent.parent.position = index > 2 ? left : right;
+            themeParent.parent.parent.DOMove(center, 1);
+            currentTab = themeParent.parent.parent;
+            index = 2;
 
         }
         private void LoadTheme()
@@ -204,7 +254,14 @@ namespace Assets.Scripts.UI.Shop
         }
         private void BallButton()
         {
+            if (index == 1) return;
+            currentTab.DOMove(index < 1 ? left : right, 1f);
             UpdateBall();
+            ballParent.parent.parent.position = index > 1 ? left : right;
+            ballParent.parent.parent.DOMove(center, 1);
+            currentTab = ballParent.parent.parent;
+            index = 1;
+
         }
         private void LoadBall()
         {
@@ -234,6 +291,14 @@ namespace Assets.Scripts.UI.Shop
 
         private void LuckyWhellButton()
         {
+            if (index == 0) return;
+            currentTab.DOMove(index < 0 ? left : right, 1f);
+            
+            luckyWheelParent.parent.parent.position = index > 0 ? left : right;
+            luckyWheelParent.parent.parent.DOMove(center, 1);
+            currentTab = luckyWheelParent.parent.parent;
+            index = 0;
+
         }
 
         public override void SaveData()
