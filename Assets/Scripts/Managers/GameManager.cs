@@ -53,11 +53,11 @@ public class GameManager : SerializedMonoBehaviour
     public LayerMask pinLayer;
     public List<State> stage;
 
-    private State currentStage;
+    public State currentStage;
     private int countStageTutorial;
     private int stageIndex => DataManager.Instance.CurrentStage < stage.Count ?
                                 DataManager.Instance.CurrentStage :
-                                DataManager.Instance.CurrentStage - (stage.Count - countStageTutorial) * (DataManager.Instance.CurrentStage + countStageTutorial) / stage.Count;
+                                DataManager.Instance.CurrentStage - (stage.Count - countStageTutorial) * Math.DivRem((DataManager.Instance.CurrentStage - countStageTutorial), (stage.Count - countStageTutorial), out int a);
     public void Init()
     {
         countStageTutorial = 2;
@@ -85,8 +85,13 @@ public class GameManager : SerializedMonoBehaviour
     {
         return Resources.LoadAll<ScriptableObject>("Prefabs/Data/" + name)[0];
     }
+
+    [Button()]
     public void SetGameState(GameState gameState)
     {
+        if (this.gameState == gameState)
+            return;
+        
         this.gameState = gameState;
 
         switch (this.gameState)
@@ -98,23 +103,21 @@ public class GameManager : SerializedMonoBehaviour
                 currentStage.StartState(DataManager.Instance.CurrentLevel);
                 break;
             case GameState.Win:
-                if (!this.currentStage.NextLevel())
-                    StartCoroutine(IEDelay(1f, delegate
-                    {
+                StartCoroutine(IEDelay(1f, delegate
+                {
+                    if (!this.currentStage.NextLevel())
                         UIManager.Instance.winPanel.Open();
-                        this.currentStage.ClearStage();
-                    }));
+                    else
+                        this.gameState = GameState.Gameplay;
+                }));
 
                 break;
             case GameState.Lose:
-                UIManager.Instance.losePanel.Open();
-
                 StartCoroutine(IEDelay(1f, delegate
                 {
-                    ReplayStage();
-                    UIManager.Instance.losePanel.Close();
-
-                })); break;
+                    UIManager.Instance.losePanel.Open();
+                }));
+                break;
             case GameState.Null:
                 Time.timeScale = 0;
                 break;
@@ -122,22 +125,32 @@ public class GameManager : SerializedMonoBehaviour
                 break;
         }
     }
+    [Button()]
     public void NextStage()
     {
+        currentStage.ClearStage();
         DataManager.Instance.AddCurrentStage(1);
         currentStage = stage[stageIndex];
+        Debug.Log(stageIndex);
         SetGameState(GameState.Gameplay);
+    }
+    public void NextLevel()
+    {
+        if (!this.currentStage.NextLevel(false))
+        {
+            gameState = GameState.Null;
+            NextStage();
+        }
     }
     public void ReplayStage()
     {
-        currentStage.ResumeStage();
+        DataManager.Instance.SetCurrentLevel(0);
+        SetGameState(GameState.Gameplay);
     }
     public void ReplayLevel()
     {
-        if (gameState != GameState.Gameplay)
-            return;
-
-        currentStage.ResumeLevel();
+        gameState = GameState.Null;
+        SetGameState(GameState.Gameplay);
     }
     IEnumerator IEDelay(float time, Action action)
     {

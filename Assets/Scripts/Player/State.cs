@@ -15,48 +15,44 @@ public class State : MonoBehaviour
     [Button()]
     public void StartState(int level = 0)
     {
+        ClearStage();
         currentIndexLevel = level;
         currentLevel = Instantiate(levels[currentIndexLevel], Vector3.zero, Quaternion.identity);
         ((PlayPanel)UIManager.Instance.gamePlayPanel).stagePanel.Init(levels.Count);
     }
     [Button()]
-    public bool NextLevel()
+    public bool NextLevel(bool animation = true)
     {
         if (++currentIndexLevel >= levels.Count)
             return false;
 
         ((PlayPanel)UIManager.Instance.gamePlayPanel).stagePanel.NextLevel();
 
-        currentLevel.transform.DOMove(new Vector3(-50, 0, 0f), 1.5f)
-                               .SetEase(Ease.OutQuart);
-
         Level clone = Instantiate(levels[currentIndexLevel], new Vector3(50, 0, 0f), Quaternion.identity);
 
-        clone.transform.DOMove(Vector3.zero, 1.5f)
-                              .SetEase(Ease.OutQuart)
-                              .OnComplete(() =>
-                              {
-                                  Destroy(currentLevel.gameObject);
-                                  currentLevel = clone;
-                              });
+        if (animation)
+        {
+            currentLevel.transform.DOMove(new Vector3(-50, 0, 0f), 1.5f)
+                                   .SetEase(Ease.OutQuart);
+
+
+            clone.transform.DOMove(Vector3.zero, 1.5f)
+                                  .SetEase(Ease.OutQuart)
+                                  .OnComplete(() =>
+                                  {
+                                      Destroy(currentLevel.gameObject);
+                                      currentLevel = clone;
+                                  });
+        }
+        else
+        {
+            Destroy(currentLevel.gameObject);
+            clone.transform.position = Vector3.zero;
+            currentLevel = clone;
+        }
 
         DataManager.Instance.SetCurrentLevel(currentIndexLevel);
         return true;
-    }
-    public void ResumeStage()
-    {
-        Destroy(currentLevel.gameObject);
-
-        currentIndexLevel = 0;
-        currentLevel = Instantiate(levels[currentIndexLevel], Vector3.zero, Quaternion.identity);
-
-        ((PlayPanel)UIManager.Instance.gamePlayPanel).stagePanel.ResetStage();
-    }
-    public void ResumeLevel()
-    {
-        Destroy(currentLevel.gameObject);
-
-        currentLevel = Instantiate(levels[currentIndexLevel], Vector3.zero, Quaternion.identity);
     }
     public void ClearStage()
     {

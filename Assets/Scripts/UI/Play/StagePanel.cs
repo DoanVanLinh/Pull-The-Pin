@@ -19,9 +19,11 @@ namespace Assets.Scripts.UI.Play
                 gameObject.SetActive(false);
                 return;
             }
+            else
+                gameObject.SetActive(true);
 
             this.countLevel = countLevel;
-            currentLevel = 0;
+            currentLevel = DataManager.Instance.CurrentLevel;
             UpdateStage();
         }
 

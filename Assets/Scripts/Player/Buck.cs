@@ -23,6 +23,11 @@ public class Buck : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if (GameManager.Instance.gameState != GameState.Gameplay)
+        {
+            return;
+        }
+
         if (other.gameObject.layer == LayerMask.NameToLayer(Helper.COLOR_BALL_LAYER))
         {
             currentPercent += owner.percentPerBall;
