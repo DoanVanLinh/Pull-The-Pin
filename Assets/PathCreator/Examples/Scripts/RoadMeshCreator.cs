@@ -243,6 +243,7 @@ namespace PathCreation.Examples
             meshCornerHolder1.transform.rotation = Quaternion.identity;
             meshCornerHolder1.transform.position = Vector3.zero;
             meshCornerHolder1.transform.localScale = Vector3.one;
+            meshCornerHolder1.transform.parent = transform.parent;
 
             // Ensure mesh renderer and filter components are assigned
             if (!meshCornerHolder1.gameObject.GetComponent<MeshFilter>())
@@ -276,6 +277,8 @@ namespace PathCreation.Examples
             meshCornerHolder2.transform.rotation = Quaternion.identity;
             meshCornerHolder2.transform.position = Vector3.zero;
             meshCornerHolder2.transform.localScale = Vector3.one;
+            meshCornerHolder2.transform.parent = transform.parent;
+
 
             // Ensure mesh renderer and filter components are assigned
             if (!meshCornerHolder2.gameObject.GetComponent<MeshFilter>())

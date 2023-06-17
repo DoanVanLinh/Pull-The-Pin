@@ -58,9 +58,10 @@ namespace Assets.Scripts.UI.Shop
 
         private Transform currentTab;
         private int index;
-
+        private float timeAni;
         private void Awake()
         {
+            timeAni = 0.25f;
             LoadBall();
             LoadPin();
             LoadTheme();
@@ -68,11 +69,10 @@ namespace Assets.Scripts.UI.Shop
             LoadWall();
 
             center = luckyWheelParent.parent.parent.position;
-            center = new Vector3(center.x, center.y, 0);
             left = mainCam.ViewportToWorldPoint(new Vector3(-0.5f,0.5f, 0));
-            left = new Vector3(left.x, center.y,0);
-            right = mainCam.ViewportToWorldPoint(new Vector3(1.5f, 0.5f, 0));
-            right = new Vector3(right.x, center.y,0);
+            left = new Vector3(left.x, center.y, center.z);
+            right = mainCam.ViewportToWorldPoint(new Vector3(1.5f, 0.5f,center.z));
+            right = new Vector3(right.x, center.y, center.z);
             index = 0;
             luckyWheelParent.parent.parent.position = center;
             ballParent.parent.parent.position = right;
@@ -115,10 +115,10 @@ namespace Assets.Scripts.UI.Shop
         private void WallButton()
         {
             if (index == 5) return;
-            currentTab.DOMove(index <5  ? left : right,1f);
+            currentTab.DOMove(index <5  ? left : right, timeAni);
             UpdateWall();
             wallParent.parent.parent.position = index < 5 ? right : left;
-            wallParent.parent.parent.DOMove(center, 1);
+            wallParent.parent.parent.DOMove(center, timeAni);
             currentTab = wallParent.parent.parent;
             index = 5;
         }
@@ -148,11 +148,11 @@ namespace Assets.Scripts.UI.Shop
         private void TrailButton()
         {
             if (index == 4) return;
-            currentTab.DOMove(index < 4 ? left : right, 1f);
+            currentTab.DOMove(index < 4 ? left : right, timeAni);
 
             UpdateTrail();
             trailParent.parent.parent.position = index <4 ? right : left;
-            trailParent.parent.parent.DOMove(center, 1);
+            trailParent.parent.parent.DOMove(center, timeAni);
             currentTab = trailParent.parent.parent;
             index = 4;
 
@@ -184,10 +184,10 @@ namespace Assets.Scripts.UI.Shop
         private void PinButton()
         {
             if (index == 3) return;
-            currentTab.DOMove(index < 3 ? left : right, 1f);
+            currentTab.DOMove(index < 3 ? left : right, timeAni);
             UpdatePin();
             pinParent.parent.parent.position = index > 3 ? left : right;
-            pinParent.parent.parent.DOMove(center, 1);
+            pinParent.parent.parent.DOMove(center, timeAni);
             currentTab = pinParent.parent.parent;
             index = 3;
 
@@ -219,10 +219,10 @@ namespace Assets.Scripts.UI.Shop
         private void ThemeButton()
         {
             if (index == 2) return;
-            currentTab.DOMove(index < 2? left : right, 1f);
+            currentTab.DOMove(index < 2? left : right, timeAni);
             UpdateTheme();
             themeParent.parent.parent.position = index > 2 ? left : right;
-            themeParent.parent.parent.DOMove(center, 1);
+            themeParent.parent.parent.DOMove(center, timeAni);
             currentTab = themeParent.parent.parent;
             index = 2;
 
@@ -255,10 +255,10 @@ namespace Assets.Scripts.UI.Shop
         private void BallButton()
         {
             if (index == 1) return;
-            currentTab.DOMove(index < 1 ? left : right, 1f);
+            currentTab.DOMove(index < 1 ? left : right, timeAni);
             UpdateBall();
             ballParent.parent.parent.position = index > 1 ? left : right;
-            ballParent.parent.parent.DOMove(center, 1);
+            ballParent.parent.parent.DOMove(center, timeAni);
             currentTab = ballParent.parent.parent;
             index = 1;
 
@@ -292,10 +292,10 @@ namespace Assets.Scripts.UI.Shop
         private void LuckyWhellButton()
         {
             if (index == 0) return;
-            currentTab.DOMove(index < 0 ? left : right, 1f);
+            currentTab.DOMove(index < 0 ? left : right, timeAni);
             
             luckyWheelParent.parent.parent.position = index > 0 ? left : right;
-            luckyWheelParent.parent.parent.DOMove(center, 1);
+            luckyWheelParent.parent.parent.DOMove(center, timeAni);
             currentTab = luckyWheelParent.parent.parent;
             index = 0;
 

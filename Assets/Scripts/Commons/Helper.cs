@@ -48,7 +48,7 @@ public static class Helper
     public static string Current_Sound_Theme_State_Key = "CurrentSoundThemeState1";
     public static string Current_Sound_Effect_State_Key = "CurrentSoundEffectState1";
     public static string Current_Vibrate_State_Key = "CurrentVibrateState1";
-    public static string Current_State_Key = "CurrentState1";
+    public static string Current_Stage_Key = "CurrentState1";
     public static string Max_Zone_Key = "MaxZone1";
     public static string Current_Count_Play_Key = "CurrentCountPlay1";
     public static string Is_No_Ads_Key = "NoAds1";

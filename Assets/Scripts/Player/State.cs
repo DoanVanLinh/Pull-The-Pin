@@ -1,4 +1,5 @@
-﻿using DG.Tweening;
+﻿using Assets.Scripts.UI.Play;
+using DG.Tweening;
 using Sirenix.OdinInspector;
 using System.Collections;
 using System.Collections.Generic;
@@ -16,6 +17,7 @@ public class State : MonoBehaviour
     {
         currentIndexLevel = level;
         currentLevel = Instantiate(levels[currentIndexLevel], Vector3.zero, Quaternion.identity);
+        ((PlayPanel)UIManager.Instance.gamePlayPanel).stagePanel.Init(levels.Count);
     }
     [Button()]
     public bool NextLevel()
@@ -23,10 +25,12 @@ public class State : MonoBehaviour
         if (++currentIndexLevel >= levels.Count)
             return false;
 
+        ((PlayPanel)UIManager.Instance.gamePlayPanel).stagePanel.NextLevel();
+
         currentLevel.transform.DOMove(new Vector3(-50, 0, 0f), 1.5f)
                                .SetEase(Ease.OutQuart);
 
-        Level clone = Instantiate(levels[currentIndexLevel], new Vector3(50,0, 0f), Quaternion.identity);
+        Level clone = Instantiate(levels[currentIndexLevel], new Vector3(50, 0, 0f), Quaternion.identity);
 
         clone.transform.DOMove(Vector3.zero, 1.5f)
                               .SetEase(Ease.OutQuart)
@@ -39,11 +43,24 @@ public class State : MonoBehaviour
         DataManager.Instance.SetCurrentLevel(currentIndexLevel);
         return true;
     }
-    [Button()]
+    public void ResumeStage()
+    {
+        Destroy(currentLevel.gameObject);
+
+        currentIndexLevel = 0;
+        currentLevel = Instantiate(levels[currentIndexLevel], Vector3.zero, Quaternion.identity);
+
+        ((PlayPanel)UIManager.Instance.gamePlayPanel).stagePanel.ResetStage();
+    }
     public void ResumeLevel()
     {
         Destroy(currentLevel.gameObject);
 
         currentLevel = Instantiate(levels[currentIndexLevel], Vector3.zero, Quaternion.identity);
+    }
+    public void ClearStage()
+    {
+        if (currentLevel != null)
+            Destroy(currentLevel.gameObject);
     }
 }

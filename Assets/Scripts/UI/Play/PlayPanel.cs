@@ -9,6 +9,8 @@ namespace Assets.Scripts.UI.Play
 {
     public class PlayPanel : BaseUI
     {
+        [FoldoutGroup("Component")]
+        public StagePanel stagePanel;
 
         [FoldoutGroup("Button"), SerializeField]
         private Button replayBtn;
@@ -25,6 +27,8 @@ namespace Assets.Scripts.UI.Play
         [FoldoutGroup("Button"), SerializeField]
         private Button noadstBtn;
 
+        [FoldoutGroup("Text"), SerializeField]
+        private TextMeshProUGUI stageTxt;
         public override void LoadData()
         {
             replayBtn.onClick.AddListener(delegate { ReplayButton(); });
@@ -32,11 +36,23 @@ namespace Assets.Scripts.UI.Play
             collectionBtn.onClick.AddListener(delegate { CollectionButton(); });
             challegentBtn.onClick.AddListener(delegate { ChallegentButton(); });
             shoptBtn.onClick.AddListener(delegate { ShopButton(); });
+            hometBtn.onClick.AddListener(delegate { HomeButton(); });
             noadstBtn.onClick.AddListener(delegate { NoadsButton(); });
+
 
             GameManager.Instance.SetGameState(GameState.Gameplay);
         }
 
+        private void HomeButton()
+        {
+            UIManager.Instance.homePanel.Open();
+        }
+
+        public void UpdateStageText()
+        {
+            stageTxt.text = DataManager.Instance.CurrentStage.ToString();
+
+        }
         private void NoadsButton()
         {
             //ads
@@ -65,7 +81,7 @@ namespace Assets.Scripts.UI.Play
 
         private void ReplayButton()
         {
-            GameManager.Instance.Replay();
+            GameManager.Instance.ReplayLevel();
         }
 
         public override void SaveData()
@@ -75,6 +91,7 @@ namespace Assets.Scripts.UI.Play
             collectionBtn.onClick.RemoveAllListeners();
             challegentBtn.onClick.RemoveAllListeners();
             shoptBtn.onClick.RemoveAllListeners();
+            hometBtn.onClick.RemoveAllListeners();
             noadstBtn.onClick.RemoveAllListeners();
         }
     }

@@ -51,12 +51,17 @@ public class GameManager : SerializedMonoBehaviour
 
     public Camera mainCam;
     public LayerMask pinLayer;
-    public List<State> state;
+    public List<State> stage;
 
-    private State currentState;
+    private State currentStage;
+    private int countStageTutorial;
+    private int stageIndex => DataManager.Instance.CurrentStage < stage.Count ?
+                                DataManager.Instance.CurrentStage :
+                                DataManager.Instance.CurrentStage - (stage.Count - countStageTutorial) * (DataManager.Instance.CurrentStage + countStageTutorial) / stage.Count;
     public void Init()
     {
-        currentState = state[DataManager.Instance.CurrentState];
+        countStageTutorial = 2;
+        currentStage = stage[stageIndex];
         GetDailyMissionData();
         GetItemsData();
     }
@@ -90,13 +95,14 @@ public class GameManager : SerializedMonoBehaviour
 
                 break;
             case GameState.Gameplay:
-                currentState.StartState(DataManager.Instance.CurrentLevel);
+                currentStage.StartState(DataManager.Instance.CurrentLevel);
                 break;
             case GameState.Win:
-                if (!this.currentState.NextLevel())
+                if (!this.currentStage.NextLevel())
                     StartCoroutine(IEDelay(1f, delegate
                     {
                         UIManager.Instance.winPanel.Open();
+                        this.currentStage.ClearStage();
                     }));
 
                 break;
@@ -105,7 +111,7 @@ public class GameManager : SerializedMonoBehaviour
 
                 StartCoroutine(IEDelay(1f, delegate
                 {
-                    Replay();
+                    ReplayStage();
                     UIManager.Instance.losePanel.Close();
 
                 })); break;
@@ -116,9 +122,22 @@ public class GameManager : SerializedMonoBehaviour
                 break;
         }
     }
-    public void Replay()
+    public void NextStage()
     {
-        currentState.ResumeLevel();
+        DataManager.Instance.AddCurrentStage(1);
+        currentStage = stage[stageIndex];
+        SetGameState(GameState.Gameplay);
+    }
+    public void ReplayStage()
+    {
+        currentStage.ResumeStage();
+    }
+    public void ReplayLevel()
+    {
+        if (gameState != GameState.Gameplay)
+            return;
+
+        currentStage.ResumeLevel();
     }
     IEnumerator IEDelay(float time, Action action)
     {

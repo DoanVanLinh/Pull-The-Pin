@@ -262,3 +262,10 @@ public enum EItemUnlockType
     GiftBox,
     Streak
 }
+
+public enum EStageType
+{
+    Lock,
+    Playing,
+    Complete
+}

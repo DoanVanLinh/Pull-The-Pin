@@ -71,7 +71,7 @@ public class DataManager : MonoBehaviour
     public int CurrentSoundEffectState { get; set; }
     public int CurrentVibrateState { get; set; }
     public int CurrentTheme { get; set; }
-    public int CurrentState { get; set; }
+    public int CurrentStage { get; set; }
     public int CurrentLevel { get; set; }
     public int CountPlay { get; set; }
     public bool IsNoads { get; set; }
@@ -88,10 +88,10 @@ public class DataManager : MonoBehaviour
 
         CurrentNoadsReward = CPlayerPrefs.GetInt(Helper.Current_Noads_Reward_Key, 0);
         CurrentTheme = CPlayerPrefs.GetInt(Helper.Current_Theme_Key, 1);
-        CurrentSoundThemeState = CPlayerPrefs.GetInt(Helper.Current_Sound_Theme_State_Key,1);
+        CurrentSoundThemeState = CPlayerPrefs.GetInt(Helper.Current_Sound_Theme_State_Key, 1);
         CurrentSoundEffectState = CPlayerPrefs.GetInt(Helper.Current_Sound_Effect_State_Key, 1);
         CurrentVibrateState = CPlayerPrefs.GetInt(Helper.Current_Vibrate_State_Key, 1);
-        CurrentState = CPlayerPrefs.GetInt(Helper.Current_State_Key, 0);
+        CurrentStage = CPlayerPrefs.GetInt(Helper.Current_Stage_Key, 0);
         CurrentLevel = CPlayerPrefs.GetInt(Helper.Current_Level_Key, 0);
         CountPlay = CPlayerPrefs.GetInt(Helper.Current_Count_Play_Key, 0);
         IsNoads = CPlayerPrefs.GetBool(Helper.Is_No_Ads_Key, false);
@@ -115,7 +115,7 @@ public class DataManager : MonoBehaviour
                 return "";
         }
     }
-    public void SetCurrentItemByType(EItemType type,string id)
+    public void SetCurrentItemByType(EItemType type, string id)
     {
         switch (type)
         {
@@ -180,13 +180,14 @@ public class DataManager : MonoBehaviour
     }
     public void SetCurrentState(int id)
     {
-        CurrentState = id;
-        CPlayerPrefs.SetInt(Helper.Current_State_Key, id);
+        CurrentStage = id;
+        CPlayerPrefs.SetInt(Helper.Current_Stage_Key, id);
     }
-    public void AddCurrentState(int id)
+    public void AddCurrentStage(int id)
     {
-        CurrentState += id;
-        CPlayerPrefs.SetInt(Helper.Current_State_Key, CurrentState);
+        CurrentStage += id;
+        SetCurrentLevel(0);
+        CPlayerPrefs.SetInt(Helper.Current_Stage_Key, CurrentStage);
     }
     public void SetCurrentLevel(int id)
     {

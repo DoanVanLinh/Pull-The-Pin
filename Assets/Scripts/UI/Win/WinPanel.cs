@@ -7,7 +7,7 @@ using System;
 
 namespace Assets.Scripts.UI.Win
 {
-    public class WinPopup : BaseUI
+    public class WinPanel : BaseUI
     {
         [FoldoutGroup("Button"), SerializeField]
         private Button continuesBtn;
@@ -19,9 +19,8 @@ namespace Assets.Scripts.UI.Win
 
         private void ContinuesButton()
         {
-            DataManager.Instance.AddCurrentState(1);
-            DataManager.Instance.SetCurrentLevel(1);
-
+            GameManager.Instance.NextStage();
+            Close();
 
         }
 

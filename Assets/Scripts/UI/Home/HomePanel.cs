@@ -4,14 +4,12 @@ using UnityEngine.UI;
 using TMPro;
 using Sirenix.OdinInspector;
 using System;
+using DG.Tweening;
 
 namespace Assets.Scripts.UI.Home
 {
     public class HomePanel : BaseUI
     {
-        [FoldoutGroup("Ani"), SerializeField]
-        private Animator ani;
-
         [FoldoutGroup("Button"), SerializeField]
         private Button settingBtn;
 
@@ -34,18 +32,24 @@ namespace Assets.Scripts.UI.Home
 
         private void PlayButton()
         {
-            ani.Play("Close");
+            Close();
         }
 
         private void RateButton()
         {
             UIManager.Instance.ratePanel.Open();
-
         }
-
+        public override void Open()
+        {
+            base.Open();
+            transform.DOMove(UIManager.Instance.center, 0.5f);
+        }
+        public override void Close()
+        {
+            transform.DOMove(UIManager.Instance.right, 0.5f);
+        }
         private void NoAdsButton()
         {
-            //ads
         }
 
         private void SettingButton()
