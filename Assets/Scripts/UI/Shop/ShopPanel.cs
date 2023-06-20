@@ -99,6 +99,8 @@ namespace Assets.Scripts.UI.Shop
             trailBtn.SetStatus(false);
             wallBtn.SetStatus(false);
             currentTab = luckyWheelParent.parent.parent;
+            UIManager.Instance.currentcyPanel.Open();
+
             //OnTabSelected();
         }
 
@@ -303,6 +305,8 @@ namespace Assets.Scripts.UI.Shop
 
         public override void SaveData()
         {
+            UIManager.Instance.currentcyPanel.Close();
+
             CommonTabSwitchButton.OnSelectDone -= OnTabSelected;
             luckyWheelBtn.OnClickDone -= LuckyWhellButton;
             ballBtn.OnClickDone -= BallButton;

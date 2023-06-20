@@ -28,6 +28,15 @@ namespace Assets.Scripts.UI.Home
             noAdsBtn.onClick.AddListener(delegate { NoAdsButton(); });
             rateBtn.onClick.AddListener(delegate { RateButton(); });
             playBtn.onClick.AddListener(delegate { PlayButton(); });
+
+            CheckDailyReward();
+        }
+        private void CheckDailyReward()
+        {
+            if (CPlayerPrefs.GetBool(DateTime.Now.ToString("d"), false))
+                return;
+
+            UIManager.Instance.dailyRewardPanel.Open();
         }
 
         private void PlayButton()
@@ -55,6 +64,7 @@ namespace Assets.Scripts.UI.Home
         private void SettingButton()
         {
             UIManager.Instance.settingPanel.Open();
+            transform.DOMove(UIManager.Instance.left, 0.25f);
         }
 
         public override void SaveData()

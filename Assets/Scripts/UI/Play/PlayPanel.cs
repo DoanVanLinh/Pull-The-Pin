@@ -71,7 +71,7 @@ namespace Assets.Scripts.UI.Play
 
         private void CollectionButton()
         {
-            UIManager.Instance.collectionPanel.Open();
+            UIManager.Instance.puzzleGroupPanel.Open();
         }
 
         private void DailyMissionButton()

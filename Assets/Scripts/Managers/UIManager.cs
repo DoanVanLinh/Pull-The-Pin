@@ -31,6 +31,7 @@ public class UIManager : MonoBehaviour
 
         homePanel.Open();
         gamePlayPanel.Open();
+        resorceRecivePanel.Open();
     }
 
     [HideInInspector]
@@ -50,7 +51,10 @@ public class UIManager : MonoBehaviour
 
     public BaseUI gamePlayPanel;
     public BaseUI dailyMissionPanel;
-    public BaseUI collectionPanel;
+    public BaseUI dailyRewardPanel;
+    public BaseUI puzzleGroupPanel;
+    public BaseUI puzzlePanel;
+    public BaseUI puzzleInforPanel;
     public BaseUI challegentPanel;
     public BaseUI losePanel;
     public BaseUI winPanel;
@@ -59,5 +63,7 @@ public class UIManager : MonoBehaviour
     public BaseUI shopPanel;
     public BaseUI settingPanel;
     public BaseUI ratePanel;
+    public BaseUI resorceRecivePanel;
+    public BaseUI currentcyPanel;
     public UINotification notification;
 }

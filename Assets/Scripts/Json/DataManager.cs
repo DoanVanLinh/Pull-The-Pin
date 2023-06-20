@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using Sirenix.OdinInspector;
 using Assets.Scripts.UI;
 using System;
+using Assets.Scripts.UI.Currency;
 
 public class DataManager : MonoBehaviour
 {
@@ -65,7 +66,6 @@ public class DataManager : MonoBehaviour
     public string CurrentPin { get; set; }
     public string CurrentTrail { get; set; }
     public string CurrentWall { get; set; }
-
     public int CurrentNoadsReward { get; set; }
     public int CurrentSoundThemeState { get; set; }
     public int CurrentSoundEffectState { get; set; }
@@ -74,6 +74,7 @@ public class DataManager : MonoBehaviour
     public int CurrentStage { get; set; }
     public int CurrentLevel { get; set; }
     public int CountPlay { get; set; }
+    public int CountDailyReward { get; set; }
     public bool IsNoads { get; set; }
     void SetupKey()
     {
@@ -94,9 +95,14 @@ public class DataManager : MonoBehaviour
         CurrentStage = CPlayerPrefs.GetInt(Helper.Current_Stage_Key, 0);
         CurrentLevel = CPlayerPrefs.GetInt(Helper.Current_Level_Key, 0);
         CountPlay = CPlayerPrefs.GetInt(Helper.Current_Count_Play_Key, 0);
+        CountDailyReward = CPlayerPrefs.GetInt(Helper.Current_Count_Daily_Reward_Key, 0);
         IsNoads = CPlayerPrefs.GetBool(Helper.Is_No_Ads_Key, false);
     }
-
+    public void AddCountDailyReward()
+    {
+        CountDailyReward++;
+        CPlayerPrefs.SetInt(Helper.Current_Count_Daily_Reward_Key, CountDailyReward);
+    }
     public string GetCurrentItemByType(EItemType type)
     {
         switch (type)
@@ -219,7 +225,7 @@ public class DataManager : MonoBehaviour
         Coins += coins;
 
         CPlayerPrefs.SetInt(Helper.Current_Coins_Key, Coins);
-        //((HomePanel)UIManager.Instance.homePanel).UpdateCoin();
+        ((CurrencyPanel)UIManager.Instance.currentcyPanel).UpdateCoins();
     }
 
     public void AddKey(int key)
@@ -240,8 +246,12 @@ public class DataManager : MonoBehaviour
         CPlayerPrefs.SetInt(Helper.Current_Noads_Reward_Key, CurrentNoadsReward);
         return this.CurrentNoadsReward;
     }
-    #endregion
 
+    #endregion
+    public bool HasKey(string key)
+    {
+        return CPlayerPrefs.HasKey(key);
+    }
 #if UNITY_EDITOR
     [Button("Delete Data")]
     void DeleteFileDataJson()

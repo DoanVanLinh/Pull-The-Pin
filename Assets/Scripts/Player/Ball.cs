@@ -1,3 +1,4 @@
+using Assets.Scripts.UI.Lose;
 using DG.Tweening;
 using Sirenix.OdinInspector;
 using System.Collections;
@@ -95,6 +96,7 @@ public class Ball : MonoBehaviour
                     fxGrey.Play();
                     PlaySound();
 
+                    ((LosePanel)UIManager.Instance.losePanel).loseType = ELoseType.CollectGreyBall;
                     GameManager.Instance.SetGameState(GameState.Lose);
                 }
                 break;
@@ -112,6 +114,7 @@ public class Ball : MonoBehaviour
         {
             rb.constraints = RigidbodyConstraints.None;
             rb.AddForce(((GameManager.Instance.mainCam.transform.position + Random.insideUnitSphere.normalized * 3f) - transform.position).normalized * 40f, ForceMode.Impulse);
+            ((LosePanel)UIManager.Instance.losePanel).loseType = ELoseType.BomBall;
             GameManager.Instance.SetGameState(GameState.Lose);
         }
 

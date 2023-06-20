@@ -17,6 +17,8 @@ namespace Assets.Scripts.UI.DailyMission
         public override void LoadData()
         {
             LoadElement();
+            UIManager.Instance.currentcyPanel.Open();
+
         }
         private void LoadElement()
         {
@@ -34,6 +36,8 @@ namespace Assets.Scripts.UI.DailyMission
 
         public override void SaveData()
         {
+            UIManager.Instance.currentcyPanel.Close();
+
         }
     }
 }

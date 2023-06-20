@@ -51,6 +51,7 @@ public static class Helper
     public static string Current_Stage_Key = "CurrentState1";
     public static string Max_Zone_Key = "MaxZone1";
     public static string Current_Count_Play_Key = "CurrentCountPlay1";
+    public static string Current_Count_Daily_Reward_Key = "CurrentCountDailyReward1";
     public static string Is_No_Ads_Key = "NoAds1";
 
     public static string Gift_Placement = "Gift";
@@ -134,39 +135,6 @@ public static class Helper
     public static bool RandomPiority(float minRange, float totalRange)
     {
         return Random.Range(0, totalRange) < minRange;
-    }
-    public static EItemInGame RandomDropItemInGame()
-    {
-        #region random
-        float randomValue = Random.Range(0f, 100f);
-
-        if (randomValue == 0) return EItemInGame.Null;
-
-        float currentPercentage = 0f;
-
-        float[] percent = new float[4] { 70, 29, 0.005f, 0.005f };
-
-        for (int i = 0; i < 4; i++)
-        {
-            currentPercentage += percent[i];
-
-            if (randomValue > currentPercentage - percent[i] && randomValue <= currentPercentage)
-            {
-                switch (i)
-                {
-                    case 2:
-                        return EItemInGame.Heal;
-                    case 3:
-                        return EItemInGame.Bomb;
-                    default:
-                        return EItemInGame.Normal_Coin;
-                }
-            }
-        }
-        #endregion
-
-
-        return EItemInGame.Normal_Coin;
     }
 
     public static DateTime StringToDateTime(string time)

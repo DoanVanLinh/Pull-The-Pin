@@ -4,6 +4,7 @@ using UnityEngine;
 using TMPro;
 using DG.Tweening;
 using Sirenix.OdinInspector;
+using Assets.Scripts.UI.Lose;
 
 public class Buck : MonoBehaviour
 {
@@ -51,6 +52,8 @@ public class Buck : MonoBehaviour
 
         transform.DOShakeRotation(1f)
             .OnComplete(()=> {
+                ((LosePanel)UIManager.Instance.losePanel).loseType = ELoseType.BomBuck;
+
                 GameManager.Instance.SetGameState(GameState.Lose);
             });
 

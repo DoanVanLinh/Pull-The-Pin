@@ -47,6 +47,7 @@ public class GameManager : SerializedMonoBehaviour
     public Dictionary<string, Item> pinData;
     public Dictionary<string, Item> trailData;
     public Dictionary<string, Item> wallData;
+    public List<PuzzleGroupData> puzzleGroupData;
     #endregion
 
     public Camera mainCam;
@@ -64,6 +65,7 @@ public class GameManager : SerializedMonoBehaviour
         currentStage = stage[stageIndex];
         GetDailyMissionData();
         GetItemsData();
+        GetPuzzleData();
     }
     private void GetItemsData()
     {
@@ -80,7 +82,10 @@ public class GameManager : SerializedMonoBehaviour
     {
         dailyMissionsData = Resources.LoadAll<DailyMissionData>("ScriptableObject/DailyMission/").ToDictionary(m => m.id, m => m);
     }
-
+    private void GetPuzzleData()
+    {
+        puzzleGroupData = Resources.LoadAll<PuzzleGroupData>("ScriptableObject/Puzzle/").ToList();
+    }
     public ScriptableObject GetDataByName(string name)
     {
         return Resources.LoadAll<ScriptableObject>("Prefabs/Data/" + name)[0];
@@ -136,6 +141,7 @@ public class GameManager : SerializedMonoBehaviour
     }
     public void NextLevel()
     {
+        gameState = GameState.Gameplay;
         if (!this.currentStage.NextLevel(false))
         {
             gameState = GameState.Null;

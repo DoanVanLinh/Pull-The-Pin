@@ -12,18 +12,20 @@ public class State : MonoBehaviour
 
     protected Level currentLevel;
     protected int currentIndexLevel;
+
+    public int maxLevel => levels.Count;
     [Button()]
     public void StartState(int level = 0)
     {
         ClearStage();
         currentIndexLevel = level;
         currentLevel = Instantiate(levels[currentIndexLevel], Vector3.zero, Quaternion.identity);
-        ((PlayPanel)UIManager.Instance.gamePlayPanel).stagePanel.Init(levels.Count);
+        ((PlayPanel)UIManager.Instance.gamePlayPanel).stagePanel.Init(maxLevel);
     }
     [Button()]
     public bool NextLevel(bool animation = true)
     {
-        if (++currentIndexLevel >= levels.Count)
+        if (++currentIndexLevel >= maxLevel)
             return false;
 
         ((PlayPanel)UIManager.Instance.gamePlayPanel).stagePanel.NextLevel();
