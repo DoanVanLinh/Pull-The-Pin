@@ -11,7 +11,7 @@ namespace Assets.Scripts.UI.DailyReward
     public class DailyRewardElement : MonoBehaviour
     {
         public int id = 0;
-        public EDailyRewardType type;
+        public ERewardType type;
         public int amount;
 
         public Button claimBtn;
@@ -22,8 +22,8 @@ namespace Assets.Scripts.UI.DailyReward
         public TextMeshProUGUI amountTxt;
         void OnEnable()
         {
-            amountTxt.gameObject.SetActive(type == EDailyRewardType.Coins);
-            coinsImg.gameObject.SetActive(type == EDailyRewardType.Coins);
+            amountTxt.gameObject.SetActive(type == ERewardType.Coins);
+            coinsImg.gameObject.SetActive(type == ERewardType.Coins);
 
             claimBtn.onClick.AddListener(delegate { ClaimButton(); });
 
@@ -37,20 +37,21 @@ namespace Assets.Scripts.UI.DailyReward
         private void ClaimButton()
         {
             claimBtn.interactable = false;
+
             switch (type)
             {
-                case EDailyRewardType.Coins:
+                case ERewardType.Coins:
                     DataManager.Instance.AddCoins(amount);
                     ((ResourceRecivePanel)UIManager.Instance.resorceRecivePanel).CoinsRecive(transform.position,
                                    delegate
                                    {
-                                       UIManager.Instance.dailyRewardPanel.Close();
+                                       ((DailyRewardPanel)UIManager.Instance.dailyRewardPanel).CloseButton();
                                        UIManager.Instance.currentcyPanel.Close();
                                    });
                     break;
-                case EDailyRewardType.Item:
+                case ERewardType.Item:
                     break;
-                case EDailyRewardType.Random:
+                case ERewardType.Random:
                     break;
                 default:
                     break;

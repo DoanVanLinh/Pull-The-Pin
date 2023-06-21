@@ -120,6 +120,7 @@
     <Compile Include="Assets\Scripts\CodeStage\AntiCheatToolkit\Runtime\Scripts\Common\ACTkConstants.cs" />
     <Compile Include="Assets\Scripts\CodeStage\AntiCheatToolkit\Runtime\Scripts\ObscuredTypes\ObscuredShort.cs" />
     <Compile Include="Assets\Scripts\UI\Setting\SettingPanel.cs" />
+    <Compile Include="Assets\Scripts\UI\Puzzle\NewPuzzlePiecePanel.cs" />
     <Compile Include="Assets\Scripts\Managers\GameManager.cs" />
     <Compile Include="Assets\Scripts\UI\Shop\ShopPanel.cs" />
     <Compile Include="Assets\PathCreator\Examples\Scripts\GeneratePathExample.cs" />
@@ -168,7 +169,10 @@
     <Compile Include="Assets\Scripts\CodeStage\AntiCheatToolkit\Runtime\Scripts\Detectors\InjectionDetector.cs" />
     <Compile Include="Assets\Scripts\CodeStage\AntiCheatToolkit\Examples\Scripts\InfiniteRotator.cs" />
     <Compile Include="Assets\PathCreator\Examples\Scripts\RoadMeshCreator.cs" />
-    <Compile Include="Assets\Scripts\UI\Puzzle\NewPuzzlePiecePanel.cs" />
+    <Compile Include="Assets\Scripts\UI\Win\Gift.cs" />
+    <Compile Include="Assets\Scripts\UI\Gift\GiftPanel.cs" />
+    <Compile Include="Assets\Scripts\UI\Win\Extra.cs" />
+    <Compile Include="Assets\Scripts\UI\Win\ExtraElement.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

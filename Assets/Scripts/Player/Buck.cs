@@ -52,7 +52,7 @@ public class Buck : MonoBehaviour
     }
     private void CollectPiece()
     {
-        if (hasPiece&&GameManager.Instance.AnyPiecePuzzle())
+        if (hasPiece && GameManager.Instance.AnyPiecePuzzle())
         {
             piece.DOScale(Vector3.one * 1.5f, 0.25f)
                    .OnComplete(() =>
@@ -61,9 +61,9 @@ public class Buck : MonoBehaviour
                        .SetEase(Ease.Linear)
                             .OnComplete(() =>
                             {
-
-                                UIManager.Instance.newPuzzlePiecePanel.Open();
-                                GameManager.Instance.SetGameState(GameState.Win,0);
+                                if (GameManager.Instance.gameState == GameState.Gameplay)
+                                    UIManager.Instance.newPuzzlePiecePanel.Open();
+                                GameManager.Instance.SetGameState(GameState.Win, 0);
 
                             });
                    });

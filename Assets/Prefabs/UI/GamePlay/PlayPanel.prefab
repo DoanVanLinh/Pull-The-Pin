@@ -1200,7 +1200,7 @@ MonoBehaviour:
   shoptBtn: {fileID: 1334704281411184651}
   hometBtn: {fileID: 1334704280438929029}
   noadstBtn: {fileID: 1334704280084109188}
-  stageTxt: {fileID: 0}
+  stageTxt: {fileID: 1520293937096022615}
 --- !u!1 &1334704281300513791
 GameObject:
   m_ObjectHideFlags: 0

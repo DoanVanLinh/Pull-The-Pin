@@ -76,6 +76,8 @@ public class DataManager : MonoBehaviour
     public int CountPlay { get; set; }
     public int CountDailyReward { get; set; }
     public bool IsNoads { get; set; }
+    public int GiftPercent { get; set; }
+
     void SetupKey()
     {
         Coins = CPlayerPrefs.GetInt(Helper.Current_Coins_Key, 0);
@@ -97,11 +99,18 @@ public class DataManager : MonoBehaviour
         CountPlay = CPlayerPrefs.GetInt(Helper.Current_Count_Play_Key, 0);
         CountDailyReward = CPlayerPrefs.GetInt(Helper.Current_Count_Daily_Reward_Key, 0);
         IsNoads = CPlayerPrefs.GetBool(Helper.Is_No_Ads_Key, false);
+        GiftPercent = CPlayerPrefs.GetInt(Helper.Gift_Percent_Key, 0);
     }
     public void AddCountDailyReward()
     {
         CountDailyReward++;
         CPlayerPrefs.SetInt(Helper.Current_Count_Daily_Reward_Key, CountDailyReward);
+    }
+    public void AddGiftPercent(int percent)
+    {
+        GiftPercent += percent;
+
+        CPlayerPrefs.SetInt(Helper.Gift_Percent_Key, GiftPercent);
     }
     public string GetCurrentItemByType(EItemType type)
     {

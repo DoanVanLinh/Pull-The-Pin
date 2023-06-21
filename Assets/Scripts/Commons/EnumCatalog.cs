@@ -102,7 +102,7 @@ public enum ELoseType
     CollectGreyBall
 }
 
-public enum EDailyRewardType
+public enum ERewardType
 {
     Coins,
     Item,

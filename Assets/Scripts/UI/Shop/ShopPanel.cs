@@ -15,6 +15,8 @@ namespace Assets.Scripts.UI.Shop
     public class ShopPanel : BaseUI
     {
         [FoldoutGroup("Button"), SerializeField]
+        private Button closeBtn;
+        [FoldoutGroup("Button"), SerializeField]
         private CommonTabSwitchButton luckyWheelBtn;
         [FoldoutGroup("Button"), SerializeField]
         private CommonTabSwitchButton ballBtn;
@@ -39,6 +41,9 @@ namespace Assets.Scripts.UI.Shop
         private Transform trailParent;
         [FoldoutGroup("Parent"), SerializeField]
         private Transform wallParent;
+
+        [FoldoutGroup("Text"), SerializeField]
+        private TextMeshProUGUI label;
 
         [FoldoutGroup("Prefabs"), SerializeField]
         private GroupShopElement groupElement;
@@ -84,6 +89,7 @@ namespace Assets.Scripts.UI.Shop
 
         public override void LoadData()
         {
+            closeBtn.onClick.AddListener(() => CloseButton());
             //CommonTabSwitchButton.OnSelectDone += OnTabSelected;
             luckyWheelBtn.OnClickDone += LuckyWhellButton;
             ballBtn.OnClickDone += BallButton;
@@ -104,6 +110,11 @@ namespace Assets.Scripts.UI.Shop
             //OnTabSelected();
         }
 
+        private void CloseButton()
+        {
+            Close();
+        }
+
         private void OnTabSelected()
         {
             luckyWheelParent.gameObject.SetActive(luckyWheelBtn.status);
@@ -112,11 +123,14 @@ namespace Assets.Scripts.UI.Shop
             pinParent.gameObject.SetActive(pinBtn.status);
             trailParent.gameObject.SetActive(trailBtn.status);
             wallParent.gameObject.SetActive(wallBtn.status);
+
+            
         }
 
         private void WallButton()
         {
             if (index == 5) return;
+            label.text = "Wall";
             currentTab.DOMove(index <5  ? left : right, timeAni);
             UpdateWall();
             wallParent.parent.parent.position = index < 5 ? right : left;
@@ -150,6 +164,7 @@ namespace Assets.Scripts.UI.Shop
         private void TrailButton()
         {
             if (index == 4) return;
+            label.text = "Trail";
             currentTab.DOMove(index < 4 ? left : right, timeAni);
 
             UpdateTrail();
@@ -186,6 +201,7 @@ namespace Assets.Scripts.UI.Shop
         private void PinButton()
         {
             if (index == 3) return;
+            label.text = "Pin";
             currentTab.DOMove(index < 3 ? left : right, timeAni);
             UpdatePin();
             pinParent.parent.parent.position = index > 3 ? left : right;
@@ -221,6 +237,7 @@ namespace Assets.Scripts.UI.Shop
         private void ThemeButton()
         {
             if (index == 2) return;
+            label.text = "Theme";
             currentTab.DOMove(index < 2? left : right, timeAni);
             UpdateTheme();
             themeParent.parent.parent.position = index > 2 ? left : right;
@@ -257,6 +274,7 @@ namespace Assets.Scripts.UI.Shop
         private void BallButton()
         {
             if (index == 1) return;
+            label.text = "Ball";
             currentTab.DOMove(index < 1 ? left : right, timeAni);
             UpdateBall();
             ballParent.parent.parent.position = index > 1 ? left : right;
@@ -294,6 +312,7 @@ namespace Assets.Scripts.UI.Shop
         private void LuckyWhellButton()
         {
             if (index == 0) return;
+            label.text = "Lucky Wheel";
             currentTab.DOMove(index < 0 ? left : right, timeAni);
             
             luckyWheelParent.parent.parent.position = index > 0 ? left : right;

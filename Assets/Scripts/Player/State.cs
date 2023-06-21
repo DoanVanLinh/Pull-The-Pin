@@ -11,7 +11,7 @@ public class State : MonoBehaviour
     protected List<Level> levels = new List<Level>();
 
     protected Level currentLevel;
-    protected int currentIndexLevel;
+    protected int currentIndexLevel = 0;
 
     public int maxLevel => levels.Count;
     [Button()]
@@ -33,7 +33,7 @@ public class State : MonoBehaviour
 
         Level clone = Instantiate(levels[currentIndexLevel], new Vector3(50, 0, 0f), Quaternion.identity);
 
-        clone.Init(currentIndexLevel == maxLevel-1);
+        clone.Init(currentIndexLevel == maxLevel - 1);
 
         if (animation)
         {

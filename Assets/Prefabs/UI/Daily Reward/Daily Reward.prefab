@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 9046161478173515306}
   - component: {fileID: 9046161478173515307}
   - component: {fileID: 6112302212486468480}
+  - component: {fileID: 2333226829195813735}
+  - component: {fileID: 8340945515838422409}
   m_Layer: 5
   m_Name: Daily Reward
   m_TagString: Untagged
@@ -93,6 +95,39 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 223853bd4163e0a40a5bae76902cddc9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ani: {fileID: 2333226829195813735}
+--- !u!95 &2333226829195813735
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9046161478173515305}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: bc287f884c542ed4685ba38d71ab2810, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 2
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!225 &8340945515838422409
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9046161478173515305}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &9046161478775821202
 GameObject:
   m_ObjectHideFlags: 0
@@ -393,6 +428,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 9046161478775821197}
     m_Modifications:
+    - target: {fileID: 2550994028509994326, guid: a3a0d99ae171fed4481500e08f9a743e, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 22.400002
+      objectReference: {fileID: 0}
     - target: {fileID: 2550994028771906754, guid: a3a0d99ae171fed4481500e08f9a743e, type: 3}
       propertyPath: m_text
       value: Day 3
@@ -511,6 +550,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 9046161478775821197}
     m_Modifications:
+    - target: {fileID: 2550994028509994326, guid: a3a0d99ae171fed4481500e08f9a743e, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 22.400002
+      objectReference: {fileID: 0}
     - target: {fileID: 2550994028771906754, guid: a3a0d99ae171fed4481500e08f9a743e, type: 3}
       propertyPath: m_text
       value: Day 5
@@ -641,6 +684,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2550994028927895495, guid: a3a0d99ae171fed4481500e08f9a743e, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 31.800003
+      objectReference: {fileID: 0}
     - target: {fileID: 2550994029205787388, guid: a3a0d99ae171fed4481500e08f9a743e, type: 3}
       propertyPath: m_Name
       value: Element (5)
@@ -767,6 +814,10 @@ PrefabInstance:
       propertyPath: m_text
       value: Day 6
       objectReference: {fileID: 0}
+    - target: {fileID: 2550994028927895495, guid: a3a0d99ae171fed4481500e08f9a743e, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 31.800003
+      objectReference: {fileID: 0}
     - target: {fileID: 2550994029205787388, guid: a3a0d99ae171fed4481500e08f9a743e, type: 3}
       propertyPath: m_Name
       value: Element (5)
@@ -885,6 +936,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 9046161478775821197}
     m_Modifications:
+    - target: {fileID: 2550994028509994326, guid: a3a0d99ae171fed4481500e08f9a743e, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 22.400002
+      objectReference: {fileID: 0}
     - target: {fileID: 2550994029205787388, guid: a3a0d99ae171fed4481500e08f9a743e, type: 3}
       propertyPath: m_Name
       value: Element
@@ -991,6 +1046,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 9046161478775821197}
     m_Modifications:
+    - target: {fileID: 2550994028509994326, guid: a3a0d99ae171fed4481500e08f9a743e, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 22.400002
+      objectReference: {fileID: 0}
     - target: {fileID: 2550994028771906754, guid: a3a0d99ae171fed4481500e08f9a743e, type: 3}
       propertyPath: m_text
       value: Day 4
@@ -1109,6 +1168,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 9046161478775821197}
     m_Modifications:
+    - target: {fileID: 2550994028509994326, guid: a3a0d99ae171fed4481500e08f9a743e, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 22.400002
+      objectReference: {fileID: 0}
     - target: {fileID: 2550994028771906754, guid: a3a0d99ae171fed4481500e08f9a743e, type: 3}
       propertyPath: m_text
       value: Day 2

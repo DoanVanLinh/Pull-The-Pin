@@ -12,7 +12,7 @@ public class Level : MonoBehaviour
 
     public virtual void Init(bool hasPiece)
     {
-        buck.Init(this,hasPiece);
+        buck.Init(this,hasPiece && DataManager.Instance.CurrentStage % 6 == 0);
 
         int length = pins.Count;
         for (int i = 0; i < length; i++)

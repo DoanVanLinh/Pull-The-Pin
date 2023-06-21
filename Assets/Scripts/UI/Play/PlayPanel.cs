@@ -38,7 +38,7 @@ namespace Assets.Scripts.UI.Play
             shoptBtn.onClick.AddListener(delegate { ShopButton(); });
             hometBtn.onClick.AddListener(delegate { HomeButton(); });
             noadstBtn.onClick.AddListener(delegate { NoadsButton(); });
-
+            UpdateStageText();
 
             GameManager.Instance.SetGameState(GameState.Gameplay);
         }
@@ -50,7 +50,7 @@ namespace Assets.Scripts.UI.Play
 
         public void UpdateStageText()
         {
-            stageTxt.text = DataManager.Instance.CurrentStage.ToString();
+            stageTxt.text = (DataManager.Instance.CurrentStage+1).ToString();
 
         }
         private void NoadsButton()

@@ -2334,6 +2334,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7bee092b7c6bdf245bd514c20b63ae11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  closeBtn: {fileID: 1175806745799699667}
   luckyWheelBtn: {fileID: 796293233227800409}
   ballBtn: {fileID: 835064809604970096}
   themeBtn: {fileID: 9152206452777127465}
@@ -2346,7 +2347,9 @@ MonoBehaviour:
   pinParent: {fileID: 5005451545607643068}
   trailParent: {fileID: 7019712053047487579}
   wallParent: {fileID: 5517613558661944748}
+  label: {fileID: 1175806745210239668}
   groupElement: {fileID: 4694303711582646093, guid: e358c0c6edc56114f91d306d8434d84f, type: 3}
+  mainCam: {fileID: 0}
 --- !u!1 &1653626003170040575
 GameObject:
   m_ObjectHideFlags: 0
