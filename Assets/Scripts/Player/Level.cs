@@ -9,13 +9,10 @@ public class Level : MonoBehaviour
     public float percentPerBall;
     public Buck buck;
     public List<Pin> pins;
-    private void Start()
+
+    public virtual void Init(bool hasPiece)
     {
-        Init();
-    }
-    public virtual void Init()
-    {
-        buck.Init(this);
+        buck.Init(this,hasPiece);
 
         int length = pins.Count;
         for (int i = 0; i < length; i++)

@@ -48,6 +48,7 @@ public class GameManager : SerializedMonoBehaviour
     public Dictionary<string, Item> trailData;
     public Dictionary<string, Item> wallData;
     public List<PuzzleGroupData> puzzleGroupData;
+    public List<PuzzleData> puzzleData;
     #endregion
 
     public Camera mainCam;
@@ -65,6 +66,7 @@ public class GameManager : SerializedMonoBehaviour
         currentStage = stage[stageIndex];
         GetDailyMissionData();
         GetItemsData();
+        GetPuzzleGroupData();
         GetPuzzleData();
     }
     private void GetItemsData()
@@ -82,17 +84,22 @@ public class GameManager : SerializedMonoBehaviour
     {
         dailyMissionsData = Resources.LoadAll<DailyMissionData>("ScriptableObject/DailyMission/").ToDictionary(m => m.id, m => m);
     }
+    private void GetPuzzleGroupData()
+    {
+        puzzleGroupData = Resources.LoadAll<PuzzleGroupData>("ScriptableObject/Puzzle/Group/").ToList();
+    }
     private void GetPuzzleData()
     {
-        puzzleGroupData = Resources.LoadAll<PuzzleGroupData>("ScriptableObject/Puzzle/").ToList();
+        puzzleData = Resources.LoadAll<PuzzleData>("ScriptableObject/Puzzle/").ToList();
     }
+
     public ScriptableObject GetDataByName(string name)
     {
         return Resources.LoadAll<ScriptableObject>("Prefabs/Data/" + name)[0];
     }
 
     [Button()]
-    public void SetGameState(GameState gameState)
+    public void SetGameState(GameState gameState,float delay = 1)
     {
         if (this.gameState == gameState)
             return;
@@ -108,7 +115,7 @@ public class GameManager : SerializedMonoBehaviour
                 currentStage.StartState(DataManager.Instance.CurrentLevel);
                 break;
             case GameState.Win:
-                StartCoroutine(IEDelay(1f, delegate
+                StartCoroutine(IEDelay(delay, delegate
                 {
                     if (!this.currentStage.NextLevel())
                         UIManager.Instance.winPanel.Open();
@@ -118,7 +125,7 @@ public class GameManager : SerializedMonoBehaviour
 
                 break;
             case GameState.Lose:
-                StartCoroutine(IEDelay(1f, delegate
+                StartCoroutine(IEDelay(delay, delegate
                 {
                     UIManager.Instance.losePanel.Open();
                 }));
@@ -163,7 +170,20 @@ public class GameManager : SerializedMonoBehaviour
         yield return new WaitForSeconds(time);
         action?.Invoke();
     }
+    public bool AnyPiecePuzzle()
+    {
+        int length = puzzleData.Count;
 
+        for (int i = 0; i < length; i++)
+        {
+            int currentAmount = DataManager.Instance.GetInt(puzzleData[i].id);
+            if (currentAmount < 9)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
     public void ShowAdsReward(string splacenment, Action actionClose)
     {
         //AdStatus adStatus = SDKDGManager.Instance.AdsManager.ShowRewardedAdsStatus(() =>

@@ -310,7 +310,7 @@ GameObject:
   - component: {fileID: 1334704279596246562}
   - component: {fileID: 1334704279596246573}
   m_Layer: 5
-  m_Name: Collection_btn
+  m_Name: Puzzle_btn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1195,7 +1195,7 @@ MonoBehaviour:
   stagePanel: {fileID: 4215980525796021118}
   replayBtn: {fileID: 1334704280427490203}
   dailyMissionBtn: {fileID: 1334704281128740448}
-  collectionBtn: {fileID: 1334704279596246573}
+  puzzleBtn: {fileID: 1334704279596246573}
   challegentBtn: {fileID: 1334704281300513789}
   shoptBtn: {fileID: 1334704281411184651}
   hometBtn: {fileID: 1334704280438929029}

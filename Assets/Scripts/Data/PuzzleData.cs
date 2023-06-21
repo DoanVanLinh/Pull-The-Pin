@@ -10,7 +10,7 @@ namespace Assets.Scripts.Data
     public class PuzzleData : ScriptableObject
     {
         public string id;
-        public int reward;
+        public int amountReward;
         public List<Sprite> sprites = new List<Sprite>();
 
 #if UNITY_EDITOR

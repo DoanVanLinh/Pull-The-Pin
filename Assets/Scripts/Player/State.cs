@@ -20,6 +20,7 @@ public class State : MonoBehaviour
         ClearStage();
         currentIndexLevel = level;
         currentLevel = Instantiate(levels[currentIndexLevel], Vector3.zero, Quaternion.identity);
+        currentLevel.Init(currentIndexLevel == maxLevel - 1);
         ((PlayPanel)UIManager.Instance.gamePlayPanel).stagePanel.Init(maxLevel);
     }
     [Button()]
@@ -31,6 +32,8 @@ public class State : MonoBehaviour
         ((PlayPanel)UIManager.Instance.gamePlayPanel).stagePanel.NextLevel();
 
         Level clone = Instantiate(levels[currentIndexLevel], new Vector3(50, 0, 0f), Quaternion.identity);
+
+        clone.Init(currentIndexLevel == maxLevel-1);
 
         if (animation)
         {

@@ -7,7 +7,7 @@ using System;
 
 namespace Assets.Scripts.UI.Win
 {
-    public class WinPanel : BaseUI
+    public class WinPanel : BasePopupUI
     {
         [FoldoutGroup("Button"), SerializeField]
         private Button continuesBtn;

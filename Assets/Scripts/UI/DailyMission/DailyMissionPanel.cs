@@ -4,11 +4,14 @@ using UnityEngine.UI;
 using TMPro;
 using Sirenix.OdinInspector;
 using System.Collections.Generic;
+using System;
 
 namespace Assets.Scripts.UI.DailyMission
 {
     public class DailyMissionPanel : BaseUI
     {
+        [SerializeField]
+        private Button backBtn;
         [SerializeField]
         private List<DailyMissionElement> elements;
 
@@ -16,10 +19,17 @@ namespace Assets.Scripts.UI.DailyMission
 
         public override void LoadData()
         {
+            backBtn.onClick.AddListener(delegate { BackButton(); });
             LoadElement();
             UIManager.Instance.currentcyPanel.Open();
 
         }
+
+        private void BackButton()
+        {
+            Close();
+        }
+
         private void LoadElement()
         {
             int length = elements.Count;

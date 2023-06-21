@@ -39,6 +39,7 @@ namespace Assets.Scripts.UI.Puzzle
             {
                 Destroy(elements[i].gameObject);
             }
+            elements.Clear();
         }
         private void UpdateElement()
         {
@@ -57,11 +58,16 @@ namespace Assets.Scripts.UI.Puzzle
             transform.position = UIManager.Instance.right;
             transform.DOKill();
             transform.DOMove(UIManager.Instance.center, 0.5f)
-                .SetEase(Ease.Linear);
+                .SetEase(Ease.Linear)
+                .OnComplete(()=> {
+                    UIManager.Instance.puzzleGroupPanel.Close();
+                });
         }
         public override void Close()
         {
             transform.DOKill();
+            UIManager.Instance.puzzleGroupPanel.Open();
+
             transform.DOMove(UIManager.Instance.right, 0.5f)
                 .SetEase(Ease.Linear);
         }

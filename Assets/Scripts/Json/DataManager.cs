@@ -248,6 +248,14 @@ public class DataManager : MonoBehaviour
     }
 
     #endregion
+    public int GetInt(string key,int defaulValue = 0)
+    {
+        return CPlayerPrefs.GetInt(key, defaulValue);
+    }
+    public void SetInt(string key, int defaulValue)
+    {
+        CPlayerPrefs.SetInt(key, defaulValue);
+    }
     public bool HasKey(string key)
     {
         return CPlayerPrefs.HasKey(key);

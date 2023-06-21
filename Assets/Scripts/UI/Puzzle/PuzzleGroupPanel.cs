@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Assets.Scripts.Data;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -19,12 +20,11 @@ namespace Assets.Scripts.UI.Puzzle
         }
         public override void LoadData()
         {
-            
+            closeBtn.onClick.AddListener(() => Close());
         }
-
         public override void SaveData()
         {
-
+            closeBtn.onClick.RemoveAllListeners();
         }
 
     }

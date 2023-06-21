@@ -14,14 +14,18 @@ namespace Assets.Scripts.UI.Puzzle
 
         public Button closeBtn;
         public TextMeshProUGUI label;
+        public TextMeshProUGUI amountReward;
         public List<PuzzlePiece> pieces;
-
+        public GameObject bg;
+        public Image completePuzzle;
         public PuzzleData data;
 
         public void Init(PuzzleData data)
         {
             this.data = data;
             label.text = this.data.id;
+            amountReward.text = this.data.amountReward.ToString() ;
+            completePuzzle.sprite = data.sprites[9];
             UpdateData();
         }
 
@@ -30,6 +34,14 @@ namespace Assets.Scripts.UI.Puzzle
             for (int i = 0; i < 9; i++)
             {
                 pieces[i].UpdateData(data.id + "_" + i);
+            }
+            if (DataManager.Instance.GetInt(data.id) == 9)
+            {
+                for (int i = 0; i < 9; i++)
+                {
+                    pieces[i].gameObject.SetActive(false);
+                }
+                bg.SetActive(false);
             }
         }
         public override void LoadData()

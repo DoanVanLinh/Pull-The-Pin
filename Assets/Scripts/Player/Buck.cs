@@ -5,6 +5,8 @@ using TMPro;
 using DG.Tweening;
 using Sirenix.OdinInspector;
 using Assets.Scripts.UI.Lose;
+using Assets.Scripts.UI.Play;
+using Assets.Scripts.UI.Puzzle;
 
 public class Buck : MonoBehaviour
 {
@@ -12,13 +14,19 @@ public class Buck : MonoBehaviour
     public TextMeshPro currentPercentTxt;
     public float currentPercent;
     public Vector3 defaultLoc;
-    public void Init(Level owner)
+    public Transform piece;
+    public Transform visual;
+    private bool hasPiece;
+    public void Init(Level owner, bool hasPiece)
     {
         this.owner = owner;
         currentPercent = 0;
         currentPercentTxt.text = currentPercent + "%";
 
-        defaultLoc = transform.localPosition;
+        defaultLoc = visual.transform.localPosition;
+
+        this.hasPiece = hasPiece;
+        piece.gameObject.SetActive(hasPiece);
     }
 
 
@@ -33,25 +41,51 @@ public class Buck : MonoBehaviour
         {
             currentPercent += owner.percentPerBall;
             currentPercentTxt.text = Mathf.RoundToInt(currentPercent) + "%";
-            transform.DOLocalMove(defaultLoc + Vector3.down * (currentPercent / 100f) * 2f, 1f);
+            visual.transform.DOLocalMove(defaultLoc + Vector3.down * (currentPercent / 100f) * 2f, 1f);
             if (Mathf.RoundToInt(currentPercent) == 100)
             {
-                transform.DOKill();
-                GameManager.Instance.SetGameState(GameState.Win);
+                visual.transform.DOKill();
+
+                CollectPiece();
             }
         }
+    }
+    private void CollectPiece()
+    {
+        if (hasPiece&&GameManager.Instance.AnyPiecePuzzle())
+        {
+            piece.DOScale(Vector3.one * 1.5f, 0.25f)
+                   .OnComplete(() =>
+                   {
+                       piece.DOMove(((PlayPanel)UIManager.Instance.gamePlayPanel).puzzleBtn.transform.position, 1f)
+                       .SetEase(Ease.Linear)
+                            .OnComplete(() =>
+                            {
+
+                                UIManager.Instance.newPuzzlePiecePanel.Open();
+                                GameManager.Instance.SetGameState(GameState.Win,0);
+
+                            });
+                   });
+        }
+        else
+            GameManager.Instance.SetGameState(GameState.Win);
+
     }
 
     [Button()]
     public void Break()
     {
-        transform.DOKill();
+        currentPercentTxt.gameObject.SetActive(false);
+        piece.gameObject.SetActive(false);
+        visual.transform.DOKill();
 
-        transform.DOMove(GameManager.Instance.mainCam.transform.position, 1f)
+        visual.transform.DOMove(GameManager.Instance.mainCam.transform.position, 1f)
                   .SetEase(Ease.Linear);
 
-        transform.DOShakeRotation(1f)
-            .OnComplete(()=> {
+        visual.transform.DOShakeRotation(1f)
+            .OnComplete(() =>
+            {
                 ((LosePanel)UIManager.Instance.losePanel).loseType = ELoseType.BomBuck;
 
                 GameManager.Instance.SetGameState(GameState.Lose);
@@ -61,6 +95,6 @@ public class Buck : MonoBehaviour
     }
     private void OnDestroy()
     {
-        transform.DOKill();
+        visual.transform.DOKill();
     }
 }

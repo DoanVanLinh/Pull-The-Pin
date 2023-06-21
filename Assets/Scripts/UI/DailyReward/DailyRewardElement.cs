@@ -46,8 +46,7 @@ namespace Assets.Scripts.UI.DailyReward
                                    {
                                        UIManager.Instance.dailyRewardPanel.Close();
                                        UIManager.Instance.currentcyPanel.Close();
-
-                                   }, 5);
+                                   });
                     break;
                 case EDailyRewardType.Item:
                     break;

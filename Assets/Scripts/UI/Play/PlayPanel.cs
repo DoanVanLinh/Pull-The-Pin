@@ -16,8 +16,8 @@ namespace Assets.Scripts.UI.Play
         private Button replayBtn;
         [FoldoutGroup("Button"), SerializeField]
         private Button dailyMissionBtn;
-        [FoldoutGroup("Button"), SerializeField]
-        private Button collectionBtn;
+        [FoldoutGroup("Button")]
+        public Button puzzleBtn;
         [FoldoutGroup("Button"), SerializeField]
         private Button challegentBtn;
         [FoldoutGroup("Button"), SerializeField]
@@ -33,7 +33,7 @@ namespace Assets.Scripts.UI.Play
         {
             replayBtn.onClick.AddListener(delegate { ReplayButton(); });
             dailyMissionBtn.onClick.AddListener(delegate { DailyMissionButton(); });
-            collectionBtn.onClick.AddListener(delegate { CollectionButton(); });
+            puzzleBtn.onClick.AddListener(delegate { CollectionButton(); });
             challegentBtn.onClick.AddListener(delegate { ChallegentButton(); });
             shoptBtn.onClick.AddListener(delegate { ShopButton(); });
             hometBtn.onClick.AddListener(delegate { HomeButton(); });
@@ -88,7 +88,7 @@ namespace Assets.Scripts.UI.Play
         {
             replayBtn.onClick.RemoveAllListeners();
             dailyMissionBtn.onClick.RemoveAllListeners();
-            collectionBtn.onClick.RemoveAllListeners();
+            puzzleBtn.onClick.RemoveAllListeners();
             challegentBtn.onClick.RemoveAllListeners();
             shoptBtn.onClick.RemoveAllListeners();
             hometBtn.onClick.RemoveAllListeners();

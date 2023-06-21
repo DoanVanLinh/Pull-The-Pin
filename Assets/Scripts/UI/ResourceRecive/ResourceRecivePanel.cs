@@ -19,13 +19,13 @@ namespace Assets.Scripts.UI.ResourceRecive
         public override void LoadData()
         {
             int length = iconCoins.Count;
-            
+
             for (int i = 0; i < length; i++)
             {
                 iconCoins[i].gameObject.SetActive(false);
             }
 
-            
+
         }
         private Image GetImagePooling(List<Image> lists)
         {
@@ -38,7 +38,7 @@ namespace Assets.Scripts.UI.ResourceRecive
 
             return null;
         }
-        private void AnimationTransform(Transform obj, Vector3 initPosition, Vector3 position, Vector3 targetPosition,Action onAniDone)
+        private void AnimationTransform(Transform obj, Vector3 initPosition, Vector3 position, Vector3 targetPosition, Action onAniDone)
         {
             obj.gameObject.SetActive(true);
             obj.position = initPosition;
@@ -63,13 +63,13 @@ namespace Assets.Scripts.UI.ResourceRecive
                 }).SetUpdate(true);
 
         }
-        public void CoinsRecive(Vector3 position,Action onActionDone, int amount = 1)
+        public void CoinsRecive(Vector3 position, Action onActionDone, int amount = 10)
         {
             for (int i = 0; i < amount; i++)
             {
                 Image img = GetImagePooling(iconCoins);
                 if (img != null)
-                    AnimationTransform(img.transform, position, i == 0 ? position : (Vector2)position + (Random.insideUnitCircle * 3f), coinsPanelTransform.position, onActionDone);
+                    AnimationTransform(img.transform, position, i == 0 ? position : (Vector2)position + (Random.insideUnitCircle * 3f), coinsPanelTransform.position, i == 0 ? onActionDone : null);
             }
         }
 

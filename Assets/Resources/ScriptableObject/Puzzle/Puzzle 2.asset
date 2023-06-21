@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Puzzle 2
   m_EditorClassIdentifier: 
   id: Puzzle 2
+  amountReward: 500
   sprites:
   - {fileID: -7950524391972321465, guid: ed801ff48410a0942b389d15a0dcd8a1, type: 3}
   - {fileID: 8653009552218553962, guid: ed801ff48410a0942b389d15a0dcd8a1, type: 3}
