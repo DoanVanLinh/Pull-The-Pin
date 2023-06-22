@@ -1,7 +1,6 @@
 ﻿using Sirenix.OdinInspector;
 using System.Collections.Generic;
 using UnityEditor;
-using UnityEditor.U2D.PSD;
 using UnityEngine;
 
 namespace Assets.Scripts.Data

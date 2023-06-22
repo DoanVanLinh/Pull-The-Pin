@@ -3,22 +3,45 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using DG.Tweening;
 
 public class Level : MonoBehaviour
 {
+    public bool hasTut;
+
     public float percentPerBall;
     public Buck buck;
     public List<Pin> pins;
     public int amountBall;
 
+    [SerializeField]
+    private GameObject handTut;
+    [ShowIf("hasTut"), SerializeField]
+    private List<Pin> pinsTut;
     public virtual void Init(bool hasPiece)
     {
-        buck.Init(this,hasPiece && DataManager.Instance.CurrentStage % 6 == 0);
+        buck.Init(this, hasPiece && DataManager.Instance.CurrentStage != 0 && DataManager.Instance.CurrentStage % 6 == 0);
 
         int length = pins.Count;
         for (int i = 0; i < length; i++)
         {
             pins[i].Init();
+        }
+        if (hasTut && DataManager.Instance.CurrentStage < 4)
+            StartCoroutine(IETut());
+    }
+    IEnumerator IETut()
+    {
+        int length = pinsTut.Count;
+        for (int i = 0; i < length; i++)
+        {
+            handTut.SetActive(true);
+            handTut.transform.position = pinsTut[i].transform.position - pinsTut[i].transform.up * 5;
+            handTut.transform.DOMove(pinsTut[i].transform.position, 1f)
+                            .SetLoops(-1, LoopType.Restart);
+            yield return new WaitUntil(() => !pinsTut[i].canTouch);
+            handTut.transform.DOKill();
+            handTut.SetActive(false);
         }
     }
 
@@ -29,7 +52,7 @@ public class Level : MonoBehaviour
     private BoxCollider2D spawnLoc;
     [SerializeField]
     private Transform ballParent;
-    [SerializeField,MinMaxSlider(0.5f, 1f)]
+    [SerializeField, MinMaxSlider(0.5f, 1f)]
     private Vector2 size;
 
     [Button()]

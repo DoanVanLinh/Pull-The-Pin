@@ -1,4 +1,5 @@
 using DG.Tweening;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,7 +10,7 @@ public class Pin : MonoBehaviour
     private Vector3 targetLoc;
     public float timeMove;
 
-    private bool canTouch;
+    public bool canTouch;
     private void Awake()
     {
         defaultLoc = transform.localPosition;

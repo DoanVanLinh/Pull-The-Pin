@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 1
   description: Defuse Bombs
-  level: 1
+  level: 3
   initaAountStar: 10
   initValue: 1

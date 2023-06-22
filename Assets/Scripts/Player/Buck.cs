@@ -36,7 +36,7 @@ public class Buck : MonoBehaviour
         if (complete)
         {
             return;
-        } 
+        }
 
         if (other.gameObject.layer == LayerMask.NameToLayer(Helper.COLOR_BALL_LAYER))
         {
@@ -93,7 +93,8 @@ public class Buck : MonoBehaviour
             {
                 ((LosePanel)UIManager.Instance.losePanel).loseType = ELoseType.BomBuck;
 
-                GameManager.Instance.SetGameState(GameState.Lose);
+                if (GameManager.Instance.gameState == GameState.Gameplay)
+                    GameManager.Instance.SetGameState(GameState.Lose);
             });
 
 

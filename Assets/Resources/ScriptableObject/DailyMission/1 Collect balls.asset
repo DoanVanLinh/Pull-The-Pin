@@ -16,4 +16,4 @@ MonoBehaviour:
   description: Collect balls
   level: 2
   initaAountStar: 10
-  initValue: 50
+  initValue: 150
