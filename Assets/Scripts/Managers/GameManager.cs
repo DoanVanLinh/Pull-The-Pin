@@ -40,7 +40,7 @@ public class GameManager : SerializedMonoBehaviour
     #endregion
 
     #region Data
-    public Dictionary<int, DailyMissionData> dailyMissionsData;
+    public Dictionary<EDailyMissionID, DailyMissionData> dailyMissionsData;
     public Dictionary<string, Item> itemsData;
     public Dictionary<string, Item> ballData;
     public Dictionary<string, Item> themeData;
@@ -68,6 +68,16 @@ public class GameManager : SerializedMonoBehaviour
         GetItemsData();
         GetPuzzleGroupData();
         GetPuzzleData();
+        ReloadDailyMisson();
+    }
+    private void ReloadDailyMisson()
+    {
+        if (!CPlayerPrefs.GetBool(DateTime.Now.ToString("d"), false))
+        {
+            EDailyMissionID[] ids = dailyMissionsData.Keys.OrderBy(o => Random.Range(-1f, 1f)).Take(5).ToArray();
+            DataManager.Instance.GetData().RandomDailyMisson(ids);
+            DataManager.Instance.GetData().ResetDailyMissionGift();
+        }
     }
     private void GetItemsData()
     {
@@ -99,11 +109,11 @@ public class GameManager : SerializedMonoBehaviour
     }
 
     [Button()]
-    public void SetGameState(GameState gameState,float delay = 1)
+    public void SetGameState(GameState gameState, float delay = 1)
     {
         if (this.gameState == gameState)
             return;
-        
+
         this.gameState = gameState;
 
         switch (this.gameState)
@@ -242,5 +252,11 @@ public class GameManager : SerializedMonoBehaviour
             return hit.collider.GetComponent<Pin>();
         }
         return null;
+    }
+    public string GetRandomItemByType(EItemUnlockType typeUnlock)
+    {
+        List<Item> items = itemsData.Values.Where(i => i.itemUnlockType == typeUnlock && !DataManager.Instance.GetData().HasItem(i.id)).OrderBy(o => Random.Range(-1f, 1f)).ToList();
+
+        return items.Count != 0 ? items[0].id : "";
     }
 }

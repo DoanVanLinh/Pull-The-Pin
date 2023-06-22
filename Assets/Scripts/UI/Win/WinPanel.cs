@@ -81,6 +81,7 @@ namespace Assets.Scripts.UI.Win
 
 
             continuesBtn.onClick.RemoveAllListeners();
+            extraCoinsBtn.onClick.RemoveAllListeners();
         }
     }
 }

@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48331cac40b7ed048a62fd9e2ad013bb, type: 3}
   m_Name: 4 Idle coins
   m_EditorClassIdentifier: 
-  id: 4
-  description: Get idle coins
+  id: 5
+  description: Earn coins
   level: 1
   initaAountStar: 10
-  initValue: 100
+  initValue: 200

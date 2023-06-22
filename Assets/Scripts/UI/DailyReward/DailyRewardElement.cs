@@ -56,7 +56,8 @@ namespace Assets.Scripts.UI.DailyReward
                 default:
                     break;
             }
-
+            claimedImg.SetActive(true);
+            notifi.SetActive(false);
             CPlayerPrefs.SetBool(DateTime.Now.ToString("d"), true);
             DataManager.Instance.AddCountDailyReward();
 

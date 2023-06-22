@@ -1723,7 +1723,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 0, y: -16.4}
-  m_SizeDelta: {x: 200, y: 50}
+  m_SizeDelta: {x: 368.184, y: 50}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!222 &1175806745210239669
 CanvasRenderer:
@@ -1753,9 +1753,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Ball
-
-'
+  m_text: Lucky Wheel
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8e0a8644808a743449fb98c1331a0900, type: 2}
   m_sharedMaterial: {fileID: -3040038555836245752, guid: 8e0a8644808a743449fb98c1331a0900, type: 2}

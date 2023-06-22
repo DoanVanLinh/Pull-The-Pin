@@ -108,3 +108,13 @@ public enum ERewardType
     Item,
     Random
 }
+
+public enum EDailyMissionID
+{
+    CollectBalls,
+    DefuseBomb,
+    ColorBalls,
+    CompleteLevel,
+    CompleteChallenge,
+    EarnCoins,
+}

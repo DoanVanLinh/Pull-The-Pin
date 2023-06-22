@@ -27,6 +27,9 @@ namespace Assets.Scripts.UI.Play
         [FoldoutGroup("Button"), SerializeField]
         private Button noadstBtn;
 
+        [FoldoutGroup("Noti")]
+        public GameObject dailyMissionNoti;
+
         [FoldoutGroup("Text"), SerializeField]
         private TextMeshProUGUI stageTxt;
         public override void LoadData()

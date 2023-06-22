@@ -4,35 +4,27 @@ using UnityEngine;
 using System.Linq;
 using Sirenix.OdinInspector;
 using Assets.Scripts.Data;
+using Assets.Scripts.UI.DailyMission;
+using Assets.Scripts.UI.Play;
 
 [Serializable]
 public class GameData
 {
 
     public List<DailyMissions> dailyMissions;
+    public List<MainDailyMissionGiftData> dailyMissionsgift;
     public List<string> currentItems = new List<string>();
 
     public GameData()
     {
         dailyMissions = new List<DailyMissions>();
+        dailyMissionsgift = new List<MainDailyMissionGiftData>();
     }
     public void Init()
     {
-        InitDailyMission();
         InitShop();
+        InitDailyMissionGift();
 
-        void InitDailyMission()
-        {
-            for (int i = 1; i <= 5; i++)
-            {
-                if (i < 3)
-                    dailyMissions.Add(new DailyMissions(i, 1));
-                else if (i < 5)
-                    dailyMissions.Add(new DailyMissions(i, 2));
-                else
-                    dailyMissions.Add(new DailyMissions(i, 3));
-            }
-        }
         void InitShop()
         {
             AddItem("Ball1");
@@ -40,6 +32,10 @@ public class GameData
             AddItem("Pin1");
             AddItem("Trail1");
             AddItem("Wall1");
+        }
+        void InitDailyMissionGift()
+        {
+            ResetDailyMissionGift();
         }
     }
 
@@ -51,6 +47,65 @@ public class GameData
     public bool HasItem(string id)
     {
         return currentItems.Contains(id);
+    }
+
+    public void AddDailyMissionValue(EDailyMissionID id, int value)
+    {
+        int length = dailyMissions.Count;
+        for (int i = 0; i < length; i++)
+        {
+            if (dailyMissions[i].id == id)
+            {
+                dailyMissions[i].currentValue += value;
+                if (CanCollected(dailyMissions[i]))
+                    ((PlayPanel)UIManager.Instance.gamePlayPanel).dailyMissionNoti.SetActive(true);
+            }
+        }
+    }
+    private bool CanCollected(DailyMissions currentDailyMission)
+    {
+        DailyMissionData data = GameManager.Instance.dailyMissionsData[currentDailyMission.id];
+        return (currentDailyMission.currentStatus == EMissionStatus.Skip && currentDailyMission.currentValue >= data.value);
+    }
+    public void UpdateDailyMission(DailyMissions mission)
+    {
+        int length = dailyMissions.Count;
+        for (int i = 0; i < length; i++)
+        {
+            if (dailyMissions[i].id == mission.id)
+                dailyMissions[i] = mission;
+        }
+    }
+    public void RandomDailyMisson(EDailyMissionID[] id)
+    {
+        dailyMissions.Clear();
+        for (int i = 0; i < 5; i++)
+        {
+            if (i < 1)
+                dailyMissions.Add(new DailyMissions(id[i], 1));
+            else if (i < 4)
+                dailyMissions.Add(new DailyMissions(id[i], 2));
+            else
+                dailyMissions.Add(new DailyMissions(id[i], 3));
+        }
+        DataManager.Instance.SaveData();
+    }
+
+    public void ResetDailyMissionGift()
+    {
+        dailyMissionsgift.Clear();
+        for (int i = 0; i < 3; i++)
+        {
+            dailyMissionsgift.Add(new MainDailyMissionGiftData(i, EMissionStatus.Skip));
+        }
+    }
+    public void UpdateDailyMissionGift(int id, EMissionStatus status)
+    {
+        for (int i = 0; i < 3; i++)
+        {
+            if (i == id)
+                dailyMissionsgift[i].status = status;
+        }
     }
 }
 

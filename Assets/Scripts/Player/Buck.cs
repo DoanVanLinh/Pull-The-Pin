@@ -17,6 +17,7 @@ public class Buck : MonoBehaviour
     public Transform piece;
     public Transform visual;
     private bool hasPiece;
+    private bool complete;
     public void Init(Level owner, bool hasPiece)
     {
         this.owner = owner;
@@ -24,7 +25,7 @@ public class Buck : MonoBehaviour
         currentPercentTxt.text = currentPercent + "%";
 
         defaultLoc = visual.transform.localPosition;
-
+        complete = false;
         this.hasPiece = hasPiece;
         piece.gameObject.SetActive(hasPiece);
     }
@@ -32,10 +33,10 @@ public class Buck : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (GameManager.Instance.gameState != GameState.Gameplay)
+        if (complete)
         {
             return;
-        }
+        } 
 
         if (other.gameObject.layer == LayerMask.NameToLayer(Helper.COLOR_BALL_LAYER))
         {
@@ -71,6 +72,10 @@ public class Buck : MonoBehaviour
         else
             GameManager.Instance.SetGameState(GameState.Win);
 
+        DataManager.Instance.GetData().AddDailyMissionValue(EDailyMissionID.CollectBalls, owner.amountBall);
+        DataManager.Instance.GetData().AddDailyMissionValue(EDailyMissionID.CompleteLevel, 1);
+
+        complete = true;
     }
 
     [Button()]

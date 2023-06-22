@@ -53,6 +53,9 @@ public class Ball : MonoBehaviour
     IEnumerator IEToColor()
     {
         yield return null;
+        if (type == EBallType.Color) yield break;
+
+        DataManager.Instance.GetData().AddDailyMissionValue(EDailyMissionID.ColorBalls, 1);
         type = EBallType.Color;
         SetColor();
         gameObject.layer = LayerMask.NameToLayer(Helper.COLOR_BALL_LAYER);

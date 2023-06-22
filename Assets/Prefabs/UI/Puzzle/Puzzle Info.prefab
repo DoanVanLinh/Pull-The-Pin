@@ -140,6 +140,7 @@ GameObject:
   - component: {fileID: 5049569923402206457}
   - component: {fileID: 3054655020345396639}
   - component: {fileID: 2461939457989768612}
+  - component: {fileID: 966700957065469383}
   m_Layer: 5
   m_Name: Puzzle Info
   m_TagString: Untagged
@@ -255,6 +256,18 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!225 &966700957065469383
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 894975948523206593}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &973149590982257103
 GameObject:
   m_ObjectHideFlags: 0

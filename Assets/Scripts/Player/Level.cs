@@ -9,6 +9,7 @@ public class Level : MonoBehaviour
     public float percentPerBall;
     public Buck buck;
     public List<Pin> pins;
+    public int amountBall;
 
     public virtual void Init(bool hasPiece)
     {
@@ -26,8 +27,6 @@ public class Level : MonoBehaviour
     private Ball ballPrefabs;
     [SerializeField]
     private BoxCollider2D spawnLoc;
-    [SerializeField]
-    private int amountBall;
     [SerializeField]
     private Transform ballParent;
     [SerializeField,MinMaxSlider(0.5f, 1f)]

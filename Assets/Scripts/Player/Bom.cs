@@ -76,6 +76,8 @@ public class Bom : MonoBehaviour
         if (isExplosion) return;
 
         isExplosion = true;
+        DataManager.Instance.GetData().AddDailyMissionValue(EDailyMissionID.DefuseBomb, 1);
+
 
         transform.DOScale(Vector3.one * 1.5f, 1f)
             .SetEase(Ease.Linear)

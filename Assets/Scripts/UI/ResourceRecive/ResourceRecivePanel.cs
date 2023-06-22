@@ -16,6 +16,11 @@ namespace Assets.Scripts.UI.ResourceRecive
         [FoldoutGroup("Coins Recive"), SerializeField]
         private Transform coinsPanelTransform;
 
+        [FoldoutGroup("Coins Recive"), SerializeField]
+        private List<Image> iconStars;
+        [FoldoutGroup("Coins Recive"), SerializeField]
+        private Transform starsPanelTransform;
+
         public override void LoadData()
         {
             int length = iconCoins.Count;
@@ -25,7 +30,12 @@ namespace Assets.Scripts.UI.ResourceRecive
                 iconCoins[i].gameObject.SetActive(false);
             }
 
+            length = iconStars.Count;
 
+            for (int i = 0; i < length; i++)
+            {
+                iconStars[i].gameObject.SetActive(false);
+            }
         }
         private Image GetImagePooling(List<Image> lists)
         {
@@ -72,7 +82,15 @@ namespace Assets.Scripts.UI.ResourceRecive
                     AnimationTransform(img.transform, position, i == 0 ? position : (Vector2)position + (Random.insideUnitCircle * 3f), coinsPanelTransform.position, i == 0 ? onActionDone : null);
             }
         }
-
+        public void StarsRecive(Vector3 position, Action onActionDone, int amount = 5)
+        {
+            for (int i = 0; i < amount; i++)
+            {
+                Image img = GetImagePooling(iconStars);
+                if (img != null)
+                    AnimationTransform(img.transform, position, i == 0 ? position : (Vector2)position + (Random.insideUnitCircle * 3f), starsPanelTransform.position, i == 0 ? onActionDone : null);
+            }
+        }
 
         public override void SaveData()
         {

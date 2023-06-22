@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48331cac40b7ed048a62fd9e2ad013bb, type: 3}
   m_Name: 1 Collect balls
   m_EditorClassIdentifier: 
-  id: 1
+  id: 0
   description: Collect balls
-  level: 1
+  level: 2
   initaAountStar: 10
   initValue: 50

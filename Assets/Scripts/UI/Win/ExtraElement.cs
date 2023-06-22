@@ -28,10 +28,5 @@ namespace Assets.Scripts.UI.Win
             if (currentId == id)
                 currentElement = this;
         }
-        private void OnDisable()
-        {
-            onIndexChange -= OnIndexChange;
-
-        }
     }
 }

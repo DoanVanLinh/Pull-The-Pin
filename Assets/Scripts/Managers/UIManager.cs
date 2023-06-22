@@ -67,5 +67,6 @@ public class UIManager : MonoBehaviour
     public BaseUI currentcyPanel;
     public BaseUI newPuzzlePiecePanel;
     public BaseUI giftPanel;
+    public BaseUI rewardRecivePanel;
     public UINotification notification;
 }

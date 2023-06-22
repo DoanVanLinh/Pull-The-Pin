@@ -51,6 +51,16 @@ public class DataManager : MonoBehaviour
         return gameData;
     }
 
+
+    private void OnApplicationPause(bool pause)
+    {
+        if (pause)
+            SaveData();
+    }
+    private void OnApplicationQuit()
+    {
+        SaveData();
+    }
     #endregion
 
 
@@ -232,6 +242,7 @@ public class DataManager : MonoBehaviour
     public void AddCoins(int coins)
     {
         Coins += coins;
+        GetData().AddDailyMissionValue(EDailyMissionID.EarnCoins, coins);
 
         CPlayerPrefs.SetInt(Helper.Current_Coins_Key, Coins);
         ((CurrencyPanel)UIManager.Instance.currentcyPanel).UpdateCoins();

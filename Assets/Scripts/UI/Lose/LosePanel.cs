@@ -24,6 +24,7 @@ namespace Assets.Scripts.UI.Lose
         public ELoseType loseType;
         public override void LoadData()
         {
+            Time.timeScale = 0;
             resumeBtn.onClick.AddListener(delegate { ResumeButton(); });
             skipBtn.onClick.AddListener(delegate { SkipButton(); });
             continuesBtn.onClick.AddListener(delegate { ContinuesButton(); });
@@ -77,6 +78,8 @@ namespace Assets.Scripts.UI.Lose
 
         public override void SaveData()
         {
+            Time.timeScale = 1;
+
             resumeBtn.onClick.RemoveAllListeners();
             skipBtn.onClick.RemoveAllListeners();
             continuesBtn.onClick.RemoveAllListeners();

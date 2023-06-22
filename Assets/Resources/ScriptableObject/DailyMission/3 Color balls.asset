@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48331cac40b7ed048a62fd9e2ad013bb, type: 3}
   m_Name: 3 Color balls
   m_EditorClassIdentifier: 
-  id: 3
+  id: 2
   description: Color balls
-  level: 1
+  level: 3
   initaAountStar: 10
   initValue: 15

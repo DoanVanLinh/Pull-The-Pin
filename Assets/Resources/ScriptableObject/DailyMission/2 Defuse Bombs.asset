@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48331cac40b7ed048a62fd9e2ad013bb, type: 3}
   m_Name: 2 Defuse Bombs
   m_EditorClassIdentifier: 
-  id: 2
+  id: 1
   description: Defuse Bombs
   level: 1
   initaAountStar: 10

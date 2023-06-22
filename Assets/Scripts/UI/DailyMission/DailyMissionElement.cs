@@ -5,6 +5,7 @@ using TMPro;
 using Sirenix.OdinInspector;
 using System;
 using Assets.Scripts.Data;
+using Assets.Scripts.UI.ResourceRecive;
 
 namespace Assets.Scripts.UI.DailyMission
 {
@@ -52,6 +53,13 @@ namespace Assets.Scripts.UI.DailyMission
         {
             this.currentDailyMission = currentDailyMission;
             data = GameManager.Instance.dailyMissionsData[currentDailyMission.id];
+
+            if (currentDailyMission.currentStatus == EMissionStatus.Collected)
+                owner.currentStar += data.amountStar;
+
+                if (currentDailyMission.currentStatus == EMissionStatus.Skip && currentDailyMission.currentValue >= data.value)
+                currentDailyMission.currentStatus = EMissionStatus.Collect;
+
             data.level = currentDailyMission.currentLevel;
             stars.text = data.amountStar.ToString();
             description.text = data.description;
@@ -73,7 +81,13 @@ namespace Assets.Scripts.UI.DailyMission
 
                     break;
                 case EMissionStatus.Collect:
-                    owner.CollectMission(data.amountStar);
+
+                    ((ResourceRecivePanel)UIManager.Instance.resorceRecivePanel).StarsRecive(starCollect.transform.position,
+                                   delegate
+                                   {
+                                       owner.CollectMission(data.amountStar);
+                                   });
+
                     currentDailyMission.currentStatus = EMissionStatus.Collected;
 
                     break;
@@ -114,7 +128,7 @@ namespace Assets.Scripts.UI.DailyMission
         private void OnDisable()
         {
             actionBtn.onClick.RemoveAllListeners();
-
+            DataManager.Instance.GetData().UpdateDailyMission(currentDailyMission);
         }
     }
 }
