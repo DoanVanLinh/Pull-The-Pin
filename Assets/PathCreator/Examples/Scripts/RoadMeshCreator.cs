@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using PathCreation.Utility;
 using UnityEngine;
+using UnityEngine.U2D;
 
 namespace PathCreation.Examples
 {
@@ -20,6 +21,8 @@ namespace PathCreation.Examples
         //
         [SerializeField, HideInInspector]
         GameObject meshHolder;
+
+        public SpriteShapeController wallTextureHolder;
 
         MeshFilter meshFilter;
         MeshRenderer meshRenderer;
@@ -57,6 +60,8 @@ namespace PathCreation.Examples
 
         void CreateRoadMesh()
         {
+            wallTextureHolder.spline.Clear();
+
             Vector3[] verts = new Vector3[path.NumPoints * 8];
             Vector2[] uvs = new Vector2[verts.Length];
             Vector3[] normals = new Vector3[verts.Length];
@@ -82,6 +87,9 @@ namespace PathCreation.Examples
             {
                 Vector3 localUp = (usePathNormals) ? Vector3.Cross(path.GetTangent(i), path.GetNormal(i)) : path.up;
                 Vector3 localRight = (usePathNormals) ? path.GetNormal(i) : Vector3.Cross(localUp, path.GetTangent(i));
+
+               
+
 
                 // Find position to left and right of current path vertex
                 Vector3 vertSideA = path.GetPoint(i) - localRight * Mathf.Abs(roadWidth);
@@ -136,6 +144,41 @@ namespace PathCreation.Examples
                 triIndex += 6;
             }
 
+            for (int i = 0; i < pathCreator.EditorData.bezierPath.NumPoints; i++)
+            {
+                //just for pull the pin game
+                //wall texture
+                if (path.isClosedLoop)
+                {
+                    wallTextureHolder.spline.isOpenEnded = true;
+                    Vector3[] points = pathCreator.EditorData.bezierPath.GetPointsInSegment(i);
+                    wallTextureHolder.spline.InsertPointAt(i, points[0]);
+                    wallTextureHolder.spline.SetTangentMode(i, ShapeTangentMode.Continuous);
+
+                    wallTextureHolder.spline.SetRightTangent(i, points[1]);
+
+                    wallTextureHolder.spline.InsertPointAt(i + 1, points[3]);
+                    wallTextureHolder.spline.SetLeftTangent(i, points[2]);
+                }
+                else
+                {
+                    wallTextureHolder.spline.isOpenEnded = false;
+
+                    if (i == path.NumPoints)
+                        return;
+
+                    Vector3[] points = pathCreator.EditorData.bezierPath.GetPointsInSegment(i);
+                    if (i == 0)
+                        wallTextureHolder.spline.InsertPointAt(i, points[0]);
+                    wallTextureHolder.spline.SetTangentMode(i, ShapeTangentMode.Continuous);
+
+                    wallTextureHolder.spline.SetRightTangent(i, points[1]-points[0]);
+
+                    wallTextureHolder.spline.InsertPointAt(i + 1, points[3]);
+                    wallTextureHolder.spline.SetLeftTangent(i, points[2]-points[3]);
+                }
+            }
+
             //
             mesh.Clear();
             mesh.vertices = verts;
@@ -158,7 +201,7 @@ namespace PathCreation.Examples
 
             //coner 2
             meshCornerFilter2.sharedMesh = GenerateCircleMesh();
-            meshCornerHolder2.transform.position = path.GetPoint(path.NumPoints-1);
+            meshCornerHolder2.transform.position = path.GetPoint(path.NumPoints - 1);
             //meshCornerHolder2.transform.up = -path.GetTangent(path.NumPoints - 1);
             meshCorner2.RecalculateBounds();
 
@@ -170,7 +213,7 @@ namespace PathCreation.Examples
 
             var circle = new Mesh();
             var vertices = new List<Vector3>(CircleVertexCount);
-            Vector3[] normals = new Vector3[CircleVertexCount+1];
+            Vector3[] normals = new Vector3[CircleVertexCount + 1];
 
             var indices = new int[CircleIndexCount];
             var segmentWidth = Mathf.PI * 2f / CircleSegmentCount;

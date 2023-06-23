@@ -177,6 +177,7 @@ public class DataManager : MonoBehaviour
     public void SetCurrentPin(string id)
     {
         CurrentPin = id;
+        Pin.OnVisualUpdate?.Invoke();
         CPlayerPrefs.SetString(Helper.Current_Pin_Key, CurrentPin);
     }
     public void SetCurrentTrail(string id)

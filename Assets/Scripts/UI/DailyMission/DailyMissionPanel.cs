@@ -8,6 +8,7 @@ using System;
 using DG.Tweening;
 using Assets.Scripts.UI.DailyReward;
 using Assets.Scripts.UI.Play;
+using System.Linq;
 
 namespace Assets.Scripts.UI.DailyMission
 {
@@ -43,6 +44,7 @@ namespace Assets.Scripts.UI.DailyMission
 
         private void LoadElement()
         {
+            DataManager.Instance.GetData().dailyMissions = DataManager.Instance.GetData().dailyMissions.OrderBy(o => o.currentStatus).ToList();
             int length = elements.Count;
             for (int i = 0; i < length; i++)
             {
@@ -59,36 +61,38 @@ namespace Assets.Scripts.UI.DailyMission
         }
         public void CollectMission(int star)
         {
-            int targetStar = currentStar + star;
+            currentStar += star;
 
-            DOTween.To(() => currentStar, x => currentStar = x, targetStar, 0.25f)
+            int initStar = currentStar - star;
+
+            DOTween.To(() => initStar, x => initStar = x, currentStar, 0.25f)
                     .SetUpdate(true)
                     .OnUpdate(() =>
                     {
-                        UpdateVisual();
+                        UpdateVisual(initStar);
                     });
 
 
         }
-        private void UpdateVisual()
+        private void UpdateVisual(int process)
         {
-            mainProcess.fillAmount = currentStar / 100f;
+            mainProcess.fillAmount = process / 100f;
 
-            if (currentStar >= 30&& giftElements[0].currentData.status == EMissionStatus.Skip)
+            if (process >= 30 && giftElements[0].currentData.status == EMissionStatus.Skip)
             {
                 giftElements[0].currentData.status = EMissionStatus.Collect;
                 giftElements[0].UpdateVisual();
                 DataManager.Instance.GetData().UpdateDailyMissionGift(0, EMissionStatus.Collect);
             }
 
-            if (currentStar >= 60 && giftElements[1].currentData.status == EMissionStatus.Skip)
+            if (process >= 60 && giftElements[1].currentData.status == EMissionStatus.Skip)
             {
                 giftElements[1].currentData.status = EMissionStatus.Collect;
                 giftElements[1].UpdateVisual();
                 DataManager.Instance.GetData().UpdateDailyMissionGift(1, EMissionStatus.Collect);
             }
 
-            if (currentStar >= 100 && giftElements[2].currentData.status == EMissionStatus.Skip)
+            if (process >= 100 && giftElements[2].currentData.status == EMissionStatus.Skip)
             {
                 giftElements[2].currentData.status = EMissionStatus.Collect;
                 giftElements[2].UpdateVisual();
@@ -97,7 +101,7 @@ namespace Assets.Scripts.UI.DailyMission
         }
         public override void SaveData()
         {
-            Time.timeScale =1;
+            Time.timeScale = 1;
 
             UIManager.Instance.currentcyPanel.Close();
 

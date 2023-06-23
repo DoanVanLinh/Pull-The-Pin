@@ -89,7 +89,7 @@ namespace Assets.Scripts.UI.DailyMission
                                    delegate
                                    {
                                        owner.CollectMission(data.amountStar);
-                                   });
+                                   },1);
 
                     currentDailyMission.currentStatus = EMissionStatus.Collected;
 

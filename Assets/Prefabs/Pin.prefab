@@ -47,6 +47,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeMove: 30
+  canTouch: 0
+  headMesh: {fileID: 8012674130371094055}
+  bodyMesh: {fileID: 8040697507444519271}
+  headMaterial: {fileID: 2100000, guid: 049027e2cecfa404c99f552fa4286555, type: 2}
+  bodyMaterial: {fileID: 2100000, guid: ffce0a721d4c6f74385ccce505ca07fe, type: 2}
 --- !u!65 &4756723634241816992
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -162,5 +167,15 @@ BoxCollider:
 --- !u!4 &2478280680771841737 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 8a89cea34fcf2e74ea2d8bdc40e19044, type: 3}
+  m_PrefabInstance: {fileID: 2733164198050859298}
+  m_PrefabAsset: {fileID: 0}
+--- !u!33 &8012674130371094055 stripped
+MeshFilter:
+  m_CorrespondingSourceObject: {fileID: 5394356810743820037, guid: 8a89cea34fcf2e74ea2d8bdc40e19044, type: 3}
+  m_PrefabInstance: {fileID: 2733164198050859298}
+  m_PrefabAsset: {fileID: 0}
+--- !u!33 &8040697507444519271 stripped
+MeshFilter:
+  m_CorrespondingSourceObject: {fileID: -3857212601033656251, guid: 8a89cea34fcf2e74ea2d8bdc40e19044, type: 3}
   m_PrefabInstance: {fileID: 2733164198050859298}
   m_PrefabAsset: {fileID: 0}

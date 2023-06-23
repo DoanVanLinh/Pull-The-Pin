@@ -26,6 +26,8 @@ namespace Assets.Scripts.Data
         public Texture headPinTexture;
         [ShowIf("itemType", EItemType.Pin)]
         public Mesh bodyPin;
+        [ShowIf("itemType", EItemType.Pin)]
+        public Texture bodyPinTexture;
 
         [ShowIf("itemType", EItemType.Theme)]
         public Texture themeTexture;
