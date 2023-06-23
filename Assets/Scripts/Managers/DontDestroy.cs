@@ -40,11 +40,11 @@ public class DontDestroy : MonoBehaviour
     {
         if (curentAdsCapping >= intAdsCapping)
         {
-            GameManager.Instance.ShowAdsInter(Helper.Upg_Level_Placement, delegate
-            {
-                curentAdsCapping = 0;
-                action?.Invoke();
-            });
+            //GameManager.Instance.ShowAdsInter(Helper.Upg_Level_Placement, delegate
+            //{
+            //    curentAdsCapping = 0;
+            //    action?.Invoke();
+            //});
 
         }
     }

@@ -75,9 +75,12 @@ namespace Assets.Scripts.UI.DailyMission
             switch (currentDailyMission.currentStatus)
             {
                 case EMissionStatus.Skip:
-                    //add
-                    currentDailyMission.currentValue = data.value;
-                    currentDailyMission.currentStatus = EMissionStatus.Collect;
+
+                    GameManager.Instance.ShowAdsReward(Helper.Skip_Daily_Mission_Placement, () =>
+                    {
+                        currentDailyMission.currentValue = data.value;
+                        currentDailyMission.currentStatus = EMissionStatus.Collect;
+                    });
 
                     break;
                 case EMissionStatus.Collect:

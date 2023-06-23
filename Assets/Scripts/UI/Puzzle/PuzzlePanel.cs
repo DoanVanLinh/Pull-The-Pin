@@ -59,6 +59,7 @@ namespace Assets.Scripts.UI.Puzzle
             transform.DOKill();
             transform.DOMove(UIManager.Instance.center, 0.5f)
                 .SetEase(Ease.Linear)
+                .SetUpdate(true)
                 .OnComplete(()=> {
                     UIManager.Instance.puzzleGroupPanel.Close();
                 });
@@ -69,6 +70,7 @@ namespace Assets.Scripts.UI.Puzzle
             UIManager.Instance.puzzleGroupPanel.Open();
 
             transform.DOMove(UIManager.Instance.right, 0.5f)
+                .SetUpdate(true)
                 .SetEase(Ease.Linear);
         }
 

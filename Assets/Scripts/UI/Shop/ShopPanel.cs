@@ -89,6 +89,7 @@ namespace Assets.Scripts.UI.Shop
 
         public override void LoadData()
         {
+            Time.timeScale = 0;
             closeBtn.onClick.AddListener(() => CloseButton());
             //CommonTabSwitchButton.OnSelectDone += OnTabSelected;
             luckyWheelBtn.OnClickDone += LuckyWhellButton;
@@ -104,6 +105,8 @@ namespace Assets.Scripts.UI.Shop
             pinBtn.SetStatus(false);
             trailBtn.SetStatus(false);
             wallBtn.SetStatus(false);
+
+            LuckyWhellButton();
             currentTab = luckyWheelParent.parent.parent;
             UIManager.Instance.currentcyPanel.Open();
 
@@ -131,10 +134,10 @@ namespace Assets.Scripts.UI.Shop
         {
             if (index == 5) return;
             label.text = "Wall";
-            currentTab.DOMove(index <5  ? left : right, timeAni);
+            currentTab.DOMove(index <5  ? left : right, timeAni).SetUpdate(true);
             UpdateWall();
             wallParent.parent.parent.position = index < 5 ? right : left;
-            wallParent.parent.parent.DOMove(center, timeAni);
+            wallParent.parent.parent.DOMove(center, timeAni).SetUpdate(true);
             currentTab = wallParent.parent.parent;
             index = 5;
         }
@@ -165,11 +168,11 @@ namespace Assets.Scripts.UI.Shop
         {
             if (index == 4) return;
             label.text = "Trail";
-            currentTab.DOMove(index < 4 ? left : right, timeAni);
+            currentTab.DOMove(index < 4 ? left : right, timeAni).SetUpdate(true);
 
             UpdateTrail();
             trailParent.parent.parent.position = index <4 ? right : left;
-            trailParent.parent.parent.DOMove(center, timeAni);
+            trailParent.parent.parent.DOMove(center, timeAni).SetUpdate(true);
             currentTab = trailParent.parent.parent;
             index = 4;
 
@@ -202,10 +205,10 @@ namespace Assets.Scripts.UI.Shop
         {
             if (index == 3) return;
             label.text = "Pin";
-            currentTab.DOMove(index < 3 ? left : right, timeAni);
+            currentTab.DOMove(index < 3 ? left : right, timeAni).SetUpdate(true);
             UpdatePin();
             pinParent.parent.parent.position = index > 3 ? left : right;
-            pinParent.parent.parent.DOMove(center, timeAni);
+            pinParent.parent.parent.DOMove(center, timeAni).SetUpdate(true);
             currentTab = pinParent.parent.parent;
             index = 3;
 
@@ -238,10 +241,10 @@ namespace Assets.Scripts.UI.Shop
         {
             if (index == 2) return;
             label.text = "Theme";
-            currentTab.DOMove(index < 2? left : right, timeAni);
+            currentTab.DOMove(index < 2? left : right, timeAni).SetUpdate(true);
             UpdateTheme();
             themeParent.parent.parent.position = index > 2 ? left : right;
-            themeParent.parent.parent.DOMove(center, timeAni);
+            themeParent.parent.parent.DOMove(center, timeAni).SetUpdate(true);
             currentTab = themeParent.parent.parent;
             index = 2;
 
@@ -275,10 +278,10 @@ namespace Assets.Scripts.UI.Shop
         {
             if (index == 1) return;
             label.text = "Ball";
-            currentTab.DOMove(index < 1 ? left : right, timeAni);
+            currentTab.DOMove(index < 1 ? left : right, timeAni).SetUpdate(true);
             UpdateBall();
             ballParent.parent.parent.position = index > 1 ? left : right;
-            ballParent.parent.parent.DOMove(center, timeAni);
+            ballParent.parent.parent.DOMove(center, timeAni).SetUpdate(true);
             currentTab = ballParent.parent.parent;
             index = 1;
 
@@ -313,10 +316,10 @@ namespace Assets.Scripts.UI.Shop
         {
             if (index == 0) return;
             label.text = "Lucky Wheel";
-            currentTab.DOMove(index < 0 ? left : right, timeAni);
+            currentTab.DOMove(index < 0 ? left : right, timeAni).SetUpdate(true);
             
             luckyWheelParent.parent.parent.position = index > 0 ? left : right;
-            luckyWheelParent.parent.parent.DOMove(center, timeAni);
+            luckyWheelParent.parent.parent.DOMove(center, timeAni).SetUpdate(true);
             currentTab = luckyWheelParent.parent.parent;
             index = 0;
 
@@ -324,6 +327,8 @@ namespace Assets.Scripts.UI.Shop
 
         public override void SaveData()
         {
+            Time.timeScale = 1;
+
             UIManager.Instance.currentcyPanel.Close();
 
             CommonTabSwitchButton.OnSelectDone -= OnTabSelected;

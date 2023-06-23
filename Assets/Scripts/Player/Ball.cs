@@ -1,12 +1,16 @@
 using Assets.Scripts.UI.Lose;
 using DG.Tweening;
 using Sirenix.OdinInspector;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class Ball : MonoBehaviour
 {
+    public static Action OnUpdateVisual;
+
     public EBallType type;
     public Texture greyTexture;
     public List<Texture> colorTexture;
@@ -16,12 +20,34 @@ public class Ball : MonoBehaviour
 
     public ParticleSystem fxColor;
     public ParticleSystem fxGrey;
+
+    [FoldoutGroup("Visual")]
+    public MeshFilter meshFilter;
+    [FoldoutGroup("Visual")]
+    public List<Trail> trails;
+
     private void Start()
     {
         material = meshRender.sharedMaterial;
         meshRender.enabled = true;
         rb.constraints = RigidbodyConstraints.None | RigidbodyConstraints.FreezePositionZ;
+        UpdateVisual();
+        OnUpdateVisual += UpdateVisual;
+    }
+
+    public void UpdateVisual()
+    {
+        meshFilter.mesh = GameManager.Instance.currentBall.ballMesh;
+        colorTexture.Clear();
+        colorTexture.AddRange(GameManager.Instance.currentBall.ballTexture);
         SetColor();
+
+        //trails
+        int length = trails.Count;
+        for (int i = 0; i < length; i++)
+        {
+            trails[i].gameObject.SetActive(trails[i].id == GameManager.Instance.currentTrail.id);
+        }
 
     }
 
@@ -121,6 +147,12 @@ public class Ball : MonoBehaviour
             if (GameManager.Instance.gameState == GameState.Gameplay)
                 GameManager.Instance.SetGameState(GameState.Lose);
         }
+
+    }
+
+    private void OnDestroy()
+    {
+        OnUpdateVisual -= UpdateVisual;
 
     }
 }

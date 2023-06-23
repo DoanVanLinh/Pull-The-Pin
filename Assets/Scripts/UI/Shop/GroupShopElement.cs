@@ -24,7 +24,7 @@ namespace Assets.Scripts.UI.Shop
 
         public void AddItems(List<Item> item)
         {
-                items.AddRange(item);
+            items.AddRange(item);
         }
         public void LoadGroup()
         {
@@ -34,10 +34,13 @@ namespace Assets.Scripts.UI.Shop
 
             labelTxt.text = LoadLabel(items[0].itemUnlockType);
             int length = items.Count;
+
             for (int i = 0; i < length; i++)
             {
-                Instantiate(element, Vector3.zero, Quaternion.identity, elementParent).LoadElement(items[i].id);
+                itemElements.Add(Instantiate(element, Vector3.zero, Quaternion.identity, elementParent));
+                itemElements[i].LoadElement(items[i].id);
             }
+            UpdateGroup();
         }
         public void UpdateGroup()
         {

@@ -45,6 +45,11 @@ public class Level : MonoBehaviour
         }
     }
 
+    private void OnDestroy()
+    {
+        handTut.transform.DOKill();
+    }
+
 #if UNITY_EDITOR
     [SerializeField]
     private Ball ballPrefabs;

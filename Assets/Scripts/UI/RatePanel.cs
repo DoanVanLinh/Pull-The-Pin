@@ -6,6 +6,7 @@ namespace Assets.Scripts.UI
 {
     public class RatePanel : BaseUI
     {
+        public Animator ani;
         [FoldoutGroup("Button")]
         public Button rateBtn;
         [FoldoutGroup("Button")]
@@ -26,6 +27,11 @@ namespace Assets.Scripts.UI
                 Application.OpenURL(Helper.OPEN_LINK_RATE);
             }
             Close();
+        }
+        public override void Open()
+        {
+            base.Open();
+            ani.Play("Open");
         }
         public override void SaveData()
         {

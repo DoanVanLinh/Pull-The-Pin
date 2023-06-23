@@ -60,6 +60,13 @@ public class GameManager : SerializedMonoBehaviour
     private int stageIndex => DataManager.Instance.CurrentStage < stage.Count ?
                                 DataManager.Instance.CurrentStage :
                                 DataManager.Instance.CurrentStage - (stage.Count - countStageTutorial) * Math.DivRem((DataManager.Instance.CurrentStage - countStageTutorial), (stage.Count - countStageTutorial), out int a);
+
+    public Item currentBall => ballData[DataManager.Instance.CurrentBall];
+    public Item currentTheme => themeData[DataManager.Instance.CurrentThemeVisual];
+    public Item currentPin => pinData[DataManager.Instance.CurrentPin];
+    public Item currentTrail => trailData[DataManager.Instance.CurrentTrail];
+    public Item currentWall => wallData[DataManager.Instance.CurrentWall];
+
     public void Init()
     {
         countStageTutorial = 2;
@@ -153,7 +160,6 @@ public class GameManager : SerializedMonoBehaviour
         currentStage.ClearStage();
         DataManager.Instance.AddCurrentStage(1);
         currentStage = stage[stageIndex];
-        Debug.Log(stageIndex);
         SetGameState(GameState.Gameplay);
     }
     public void NextLevel()

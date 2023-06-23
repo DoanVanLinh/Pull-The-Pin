@@ -76,9 +76,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2aa0315d393671e45848a320c6ff0cea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radiusExplosion: 4
+  radiusExplosion: 6.42
   dangerExplosion: 2.7
-  force: 35
+  force: 50
   colorBallLayer:
     serializedVersion: 2
     m_Bits: 64

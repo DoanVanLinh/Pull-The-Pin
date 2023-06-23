@@ -72,7 +72,6 @@ namespace Assets.Scripts.UI.Shop
         {
             hightLight.SetActive(id == gameObject.GetInstanceID());
         }
-
         private void OnDisable()
         {
             OnSelected -= Chose;

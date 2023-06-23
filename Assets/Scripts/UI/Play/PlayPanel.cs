@@ -48,6 +48,7 @@ namespace Assets.Scripts.UI.Play
 
         private void HomeButton()
         {
+            Time.timeScale = 0;
             UIManager.Instance.homePanel.Open();
         }
 

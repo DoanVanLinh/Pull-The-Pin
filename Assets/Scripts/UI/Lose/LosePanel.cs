@@ -9,6 +9,8 @@ namespace Assets.Scripts.UI.Lose
 {
     public class LosePanel : BaseUI
     {
+        public Animator ani;
+
         [FoldoutGroup("Button"), SerializeField]
         private Button resumeBtn;
         [FoldoutGroup("Button"), SerializeField]
@@ -22,6 +24,12 @@ namespace Assets.Scripts.UI.Lose
         private TextMeshProUGUI stageTxt;
 
         public ELoseType loseType;
+
+        public override void Open()
+        {
+            base.Open();
+            ani.Play("Open");
+        }
         public override void LoadData()
         {
             Time.timeScale = 0;
@@ -37,19 +45,19 @@ namespace Assets.Scripts.UI.Lose
             switch (loseType)
             {
                 case ELoseType.BomBall:
-                    tips = "You lose the balls!" +
+                    tips = "You lose the balls!\n" +
                         "Get rid of bombs before they destroy it";
                     break;
                 case ELoseType.BomBuck:
-                    tips = "You lose the bucket!" +
+                    tips = "You lose the bucket!\n" +
                         "Get rid of bombs before they destroy it";
                     break;
                 case ELoseType.LoseBall:
-                    tips = "Ball fell out of the level!" +
+                    tips = "Ball fell out of the level!\n" +
                         "Avoid gaps to protect your ball from falling";
                     break;
                 case ELoseType.CollectGreyBall:
-                    tips = "Grey ball can't be collected!" +
+                    tips = "Grey ball can't be collected!\n" +
                         "Use collored ball to spread the paint";
                     break;
                 default:
@@ -60,20 +68,28 @@ namespace Assets.Scripts.UI.Lose
 
         private void SkipButton()
         {
-            GameManager.Instance.NextLevel();
-            Close();
+            GameManager.Instance.ShowAdsReward(Helper.Skip_Level_Placement, () =>
+            {
+                GameManager.Instance.NextLevel();
+                ani.Play("Close");
+            });
+
         }
 
         private void ContinuesButton()
         {
             GameManager.Instance.ReplayStage();
-            Close();
+            ani.Play("Close");
         }
 
         private void ResumeButton()
         {
-            GameManager.Instance.ReplayLevel();
-            Close();
+            GameManager.Instance.ShowAdsReward(Helper.Resume_Level_Placement, () =>
+            {
+                GameManager.Instance.ReplayLevel();
+                ani.Play("Close");
+            });
+            
         }
 
         public override void SaveData()

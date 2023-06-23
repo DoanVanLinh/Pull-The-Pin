@@ -20,10 +20,12 @@ namespace Assets.Scripts.UI.Puzzle
         }
         public override void LoadData()
         {
+            Time.timeScale = 0;
             closeBtn.onClick.AddListener(() => Close());
         }
         public override void SaveData()
         {
+            Time.timeScale = 1;
             closeBtn.onClick.RemoveAllListeners();
         }
 

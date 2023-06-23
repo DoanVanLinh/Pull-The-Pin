@@ -589,7 +589,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9b3b1650b78e984d82ede8f572c9a0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ani: {fileID: 6342980424249871413}
   settingBtn: {fileID: 6342980424473199417}
   noAdsBtn: {fileID: 6342980424805890443}
   rateBtn: {fileID: 6342980422727750568}
@@ -606,7 +605,7 @@ Animator:
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 9ac2862c159473c47aacfbacee3b67d4, type: 2}
   m_CullingMode: 0
-  m_UpdateMode: 0
+  m_UpdateMode: 2
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0

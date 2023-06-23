@@ -27,6 +27,7 @@ namespace Assets.Scripts.UI.DailyMission
 
         public override void LoadData()
         {
+            Time.timeScale = 0;
             backBtn.onClick.AddListener(delegate { BackButton(); });
             currentStar = 0;
             ((PlayPanel)UIManager.Instance.gamePlayPanel).dailyMissionNoti.SetActive(false);
@@ -61,6 +62,7 @@ namespace Assets.Scripts.UI.DailyMission
             int targetStar = currentStar + star;
 
             DOTween.To(() => currentStar, x => currentStar = x, targetStar, 0.25f)
+                    .SetUpdate(true)
                     .OnUpdate(() =>
                     {
                         UpdateVisual();
@@ -95,6 +97,8 @@ namespace Assets.Scripts.UI.DailyMission
         }
         public override void SaveData()
         {
+            Time.timeScale =1;
+
             UIManager.Instance.currentcyPanel.Close();
 
         }

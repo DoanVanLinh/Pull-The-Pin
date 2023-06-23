@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: 2
   m_EditorClassIdentifier: 
   itemType: 0
-  icon: {fileID: 21300000, guid: 5ca2b04418806be49924528ee718d899, type: 3}
+  icon: {fileID: 21300000, guid: 52ed84b05af8a2c4e9845f84e44022c0, type: 3}
   itemUnlockType: 1
-  value: 0
-  ballMesh: {fileID: 0}
-  ballTexture: []
+  value: 10
+  ballMesh: {fileID: -5495902117074765545, guid: 8e9aa913071a23f479ede540c0b9c7e6, type: 3}
+  ballTexture:
+  - {fileID: 2800000, guid: aec08fc2a4098904c8804235f7c18fd1, type: 3}
+  - {fileID: 2800000, guid: ed1c337ca581096409758c27efa8e75b, type: 3}
   headPin: {fileID: 0}
   headPinTexture: {fileID: 0}
   bodyPin: {fileID: 0}

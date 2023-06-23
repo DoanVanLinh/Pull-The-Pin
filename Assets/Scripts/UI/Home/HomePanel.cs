@@ -24,6 +24,7 @@ namespace Assets.Scripts.UI.Home
 
         public override void LoadData()
         {
+            Time.timeScale = 0;
             settingBtn.onClick.AddListener(delegate { SettingButton(); });
             noAdsBtn.onClick.AddListener(delegate { NoAdsButton(); });
             rateBtn.onClick.AddListener(delegate { RateButton(); });
@@ -42,6 +43,7 @@ namespace Assets.Scripts.UI.Home
         private void PlayButton()
         {
             Close();
+            Time.timeScale = 1;
         }
 
         private void RateButton()
@@ -51,11 +53,11 @@ namespace Assets.Scripts.UI.Home
         public override void Open()
         {
             base.Open();
-            transform.DOMove(UIManager.Instance.center, 0.5f);
+            transform.DOMove(UIManager.Instance.center, 0.5f).SetUpdate(true);
         }
         public override void Close()
         {
-            transform.DOMove(UIManager.Instance.right, 0.5f);
+            transform.DOMove(UIManager.Instance.right, 0.5f).SetUpdate(true);
         }
         private void NoAdsButton()
         {
@@ -64,7 +66,7 @@ namespace Assets.Scripts.UI.Home
         private void SettingButton()
         {
             UIManager.Instance.settingPanel.Open();
-            transform.DOMove(UIManager.Instance.left, 0.25f);
+            transform.DOMove(UIManager.Instance.left, 0.25f).SetUpdate(true);
         }
 
         public override void SaveData()

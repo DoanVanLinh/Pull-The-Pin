@@ -23,6 +23,7 @@ namespace Assets.Scripts.UI.Puzzle
                 transform.localScale = Vector3.one * 1.2f;
 
                 transform.DOLocalMove(defaultLoc, 1f)
+                    .SetUpdate(true)
                     .SetEase(Ease.Linear)
                     .OnComplete(() =>
                     {
@@ -33,7 +34,8 @@ namespace Assets.Scripts.UI.Puzzle
                         });
                     });
 
-                transform.DORotate(Vector3.forward * 720f, 1f, RotateMode.FastBeyond360);
+                transform.DORotate(Vector3.forward * 720f, 1f, RotateMode.FastBeyond360)
+                    .SetUpdate(true);
             }
         }
     }

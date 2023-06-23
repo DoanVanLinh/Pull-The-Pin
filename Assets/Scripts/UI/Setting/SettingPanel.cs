@@ -66,12 +66,12 @@ namespace Assets.Scripts.UI.Setting
         public override void Open()
         {
             base.Open();
-            transform.DOMove(UIManager.Instance.center, 0.25f);
+            transform.DOMove(UIManager.Instance.center, 0.25f).SetUpdate(true);
         }
         public override void Close()
         {
-            transform.DOMove(UIManager.Instance.right, 0.25f);
-            UIManager.Instance.homePanel.transform.DOMove(UIManager.Instance.center, 0.25f);
+            transform.DOMove(UIManager.Instance.right, 0.25f).SetUpdate(true);
+            UIManager.Instance.homePanel.transform.DOMove(UIManager.Instance.center, 0.25f).SetUpdate(true);
 
         }
         public override void SaveData()

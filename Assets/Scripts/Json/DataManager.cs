@@ -166,6 +166,7 @@ public class DataManager : MonoBehaviour
     public void SetCurrentBall(string id)
     {
         CurrentBall = id;
+        Ball.OnUpdateVisual?.Invoke();
         CPlayerPrefs.SetString(Helper.Current_Ball_Key, CurrentBall);
     }
     public void SetCurrentThemeVisual(string id)
@@ -181,6 +182,7 @@ public class DataManager : MonoBehaviour
     public void SetCurrentTrail(string id)
     {
         CurrentTrail = id;
+        Ball.OnUpdateVisual?.Invoke();
         CPlayerPrefs.SetString(Helper.Current_Trail_Key, CurrentTrail);
     }
     public void SetCurrentWall(string id)

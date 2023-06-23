@@ -11,6 +11,10 @@ public class Bom : MonoBehaviour
     public LayerMask greyBallLayer;
     public LayerMask buckLayer;
     private bool isExplosion;
+
+    private Collider[] colliders;
+
+    private int length;
     private void Start()
     {
         isExplosion = false;
@@ -18,18 +22,43 @@ public class Bom : MonoBehaviour
     }
     private void Explosion()
     {
+        bool isIndanger = false;
+        //Danger Color
+        colliders = Physics.OverlapSphere(transform.position, dangerExplosion, colorBallLayer);
 
-
-        Collider[] colliders = Physics.OverlapSphere(transform.position, radiusExplosion, colorBallLayer);
-
-        int length = colliders.Length;
+        length = colliders.Length;
+        isIndanger = isIndanger ? isIndanger : length > 0;
         for (int i = 0; i < length; i++)
         {
             Ball ball = colliders[i].GetComponent<Ball>();
             if (ball != null)
-                ball.AddForce((ball.transform.position - transform.position).normalized * force);
+                ball.AddForce((ball.transform.position - transform.position).normalized * force, true);
         }
 
+        //Danger Grey
+        colliders = Physics.OverlapSphere(transform.position, dangerExplosion, greyBallLayer);
+
+        length = colliders.Length;
+        isIndanger = isIndanger ? isIndanger : length > 0;
+        for (int i = 0; i < length; i++)
+        {
+            Ball ball = colliders[i].GetComponent<Ball>();
+            if (ball != null)
+                ball.AddForce((ball.transform.position - transform.position).normalized * force, true);
+        }
+
+        //Color Ball
+        colliders = Physics.OverlapSphere(transform.position, radiusExplosion, colorBallLayer);
+
+        length = colliders.Length;
+        for (int i = 0; i < length; i++)
+        {
+            Ball ball = colliders[i].GetComponent<Ball>();
+            if (ball != null)
+                ball.AddForce((ball.transform.position - transform.position).normalized * force, isIndanger);
+        }
+
+        //Grey Ball
         colliders = Physics.OverlapSphere(transform.position, radiusExplosion, greyBallLayer);
 
         length = colliders.Length;
@@ -37,28 +66,9 @@ public class Bom : MonoBehaviour
         {
             Ball ball = colliders[i].GetComponent<Ball>();
             if (ball != null)
-                ball.AddForce((ball.transform.position - transform.position).normalized * force);
+                ball.AddForce((ball.transform.position - transform.position).normalized * force, isIndanger);
         }
 
-        colliders = Physics.OverlapSphere(transform.position, dangerExplosion, colorBallLayer);
-
-        length = colliders.Length;
-        for (int i = 0; i < length; i++)
-        {
-            Ball ball = colliders[i].GetComponent<Ball>();
-            if (ball != null)
-                ball.AddForce((ball.transform.position - transform.position).normalized * force,true);
-        }
-
-        colliders = Physics.OverlapSphere(transform.position, dangerExplosion, greyBallLayer);
-
-        length = colliders.Length;
-        for (int i = 0; i < length; i++)
-        {
-            Ball ball = colliders[i].GetComponent<Ball>();
-            if (ball != null)
-                ball.AddForce((ball.transform.position - transform.position).normalized * force, true);
-        }
 
         colliders = Physics.OverlapSphere(transform.position, radiusExplosion, buckLayer);
 
@@ -76,29 +86,35 @@ public class Bom : MonoBehaviour
         if (isExplosion) return;
 
         isExplosion = true;
-        DataManager.Instance.GetData().AddDailyMissionValue(EDailyMissionID.DefuseBomb, 1);
-
 
         transform.DOScale(Vector3.one * 1.5f, 1f)
             .SetEase(Ease.Linear)
             .OnComplete(() =>
             {
                 Explosion();
+                GameManager.Instance.mainCam.DOShakePosition(0.25f,1,5,randomnessMode:ShakeRandomnessMode.Harmonic);
+                DataManager.Instance.GetData().AddDailyMissionValue(EDailyMissionID.DefuseBomb, 1);
+
             });
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag(Helper.BALL_TAG)  || other.gameObject.layer == LayerMask.NameToLayer(Helper.BUCK_LAYER))
+        if (other.gameObject.CompareTag(Helper.BALL_TAG) || other.gameObject.layer == LayerMask.NameToLayer(Helper.BUCK_LAYER))
         {
             CastExplosion();
         }
-        if(other.gameObject.layer == LayerMask.NameToLayer(Helper.BOM_LAYER))
+        if (other.gameObject.layer == LayerMask.NameToLayer(Helper.BOM_LAYER))
         {
             CastExplosion();
             Bom otherBom = other.GetComponent<Bom>();
             if (otherBom != null)
                 otherBom.CastExplosion();
         }
+    }
+
+    private void OnDestroy()
+    {
+        transform.DOKill();
     }
 
 #if UNITY_EDITOR

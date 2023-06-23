@@ -59,13 +59,10 @@ public static class Helper
     public static string Another_Puzzle_Placement = "AnotherPuzzle";
     public static string Gift_Placement = "Gift";
     public static string Extra_Coins_Win_Placement = "ExtraCoinsWin";
-    public static string Extra_Coins_Lose_Placement = "ExtraCoinsLose";
-    public static string Upg_Level_Placement = "UpgLevel";
+    public static string Skip_Level_Placement = "SkipLevel";
+    public static string Resume_Level_Placement = "ResumeLevel";
+    public static string Skip_Daily_Mission_Placement = "SkipDailyMission";
     public static string Int_Capping_Placement = "CappingInt";
-    public static string Revive_Placement = "Revive";
-    public static string Upgrade_Chess_Placement = "UpgradeChess";
-    public static string Free_Common_Item_Placement = "FreeCommonItem";
-    public static string Free_Immortal_Item_Placement = "FreeImmortalItem";
     #endregion
 
 

@@ -85,18 +85,16 @@ public class Buck : MonoBehaviour
         piece.gameObject.SetActive(false);
         visual.transform.DOKill();
 
-        visual.transform.DOMove(GameManager.Instance.mainCam.transform.position, 1f)
+
+        visual.transform.DOMove(Random.insideUnitCircle.normalized * 15f + (Vector2)transform.position, 1f)
                   .SetEase(Ease.Linear);
 
-        visual.transform.DOShakeRotation(1f)
-            .OnComplete(() =>
-            {
-                ((LosePanel)UIManager.Instance.losePanel).loseType = ELoseType.BomBuck;
 
-                if (GameManager.Instance.gameState == GameState.Gameplay)
-                    GameManager.Instance.SetGameState(GameState.Lose);
-            });
+        visual.transform.DORotate(Random.insideUnitSphere.normalized * 720f, 1f, RotateMode.FastBeyond360);
+        ((LosePanel)UIManager.Instance.losePanel).loseType = ELoseType.BomBuck;
 
+        if (GameManager.Instance.gameState == GameState.Gameplay)
+            GameManager.Instance.SetGameState(GameState.Lose);
 
     }
     private void OnDestroy()
