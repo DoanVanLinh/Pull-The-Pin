@@ -87,6 +87,7 @@ public class DataManager : MonoBehaviour
     public int CountDailyReward { get; set; }
     public bool IsNoads { get; set; }
     public int GiftPercent { get; set; }
+    public int CurrentStreak { get; set; }
 
     void SetupKey()
     {
@@ -110,6 +111,19 @@ public class DataManager : MonoBehaviour
         CountDailyReward = CPlayerPrefs.GetInt(Helper.Current_Count_Daily_Reward_Key, 0);
         IsNoads = CPlayerPrefs.GetBool(Helper.Is_No_Ads_Key, false);
         GiftPercent = CPlayerPrefs.GetInt(Helper.Gift_Percent_Key, 0);
+        CurrentStreak = CPlayerPrefs.GetInt(Helper.Current_Streak_Key, 0);
+    }
+
+    public void SetStreak(int streak)
+    {
+        CurrentStreak = streak;
+        CPlayerPrefs.SetInt(Helper.Current_Streak_Key, CurrentStreak);
+    }
+    public void AddStreak(int streak)
+    {
+        CurrentStreak += streak;
+        CurrentStreak = CurrentStreak > 15 ? 0 : CurrentStreak;
+        CPlayerPrefs.SetInt(Helper.Current_Streak_Key, CurrentStreak);
     }
     public void AddCountDailyReward()
     {
@@ -274,7 +288,7 @@ public class DataManager : MonoBehaviour
     }
 
     #endregion
-    public int GetInt(string key,int defaulValue = 0)
+    public int GetInt(string key, int defaulValue = 0)
     {
         return CPlayerPrefs.GetInt(key, defaulValue);
     }

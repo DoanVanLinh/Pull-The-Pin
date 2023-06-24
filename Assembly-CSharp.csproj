@@ -107,6 +107,7 @@
     <Compile Include="Assets\Scripts\CodeStage\AntiCheatToolkit\Runtime\Scripts\ObscuredTypes\ObscuredVector2Int.cs" />
     <Compile Include="Assets\Scripts\CodeStage\AntiCheatToolkit\Runtime\Scripts\ObscuredTypes\ObscuredVector3.cs" />
     <Compile Include="Assets\Scripts\UI\Gift\GiftPanel.cs" />
+    <Compile Include="Assets\Scripts\Player\Wall.cs" />
     <Compile Include="Assets\Scripts\CodeStage\AntiCheatToolkit\Examples\Scripts\ExamplesGUI.cs" />
     <Compile Include="Assets\Scripts\CodeStage\AntiCheatToolkit\Runtime\Scripts\ObscuredTypes\ObscuredInt.cs" />
     <Compile Include="Assets\Scripts\UI\DailyMission\MainDailyMissionGift.cs" />
@@ -176,7 +177,9 @@
     <Compile Include="Assets\Scripts\CodeStage\AntiCheatToolkit\Runtime\Scripts\Detectors\InjectionDetector.cs" />
     <Compile Include="Assets\Scripts\CodeStage\AntiCheatToolkit\Examples\Scripts\InfiniteRotator.cs" />
     <Compile Include="Assets\PathCreator\Examples\Scripts\RoadMeshCreator.cs" />
-    <Compile Include="Assets\Scripts\Player\Wall.cs" />
+    <Compile Include="Assets\Scripts\UI\Streak\StreakPanel.cs" />
+    <Compile Include="Assets\Scripts\UI\Streak\StreakElement.cs" />
+    <Compile Include="Assets\Scripts\UI\Streak\StreakRewardPanel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

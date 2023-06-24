@@ -106,7 +106,8 @@ public enum ERewardType
 {
     Coins,
     Item,
-    Random
+    Random,
+    None
 }
 
 public enum EDailyMissionID

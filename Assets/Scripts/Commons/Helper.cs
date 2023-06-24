@@ -54,6 +54,7 @@ public static class Helper
     public static string Current_Count_Daily_Reward_Key = "CurrentCountDailyReward1";
     public static string Is_No_Ads_Key = "NoAds1";
     public static string Gift_Percent_Key = "GiftPercent1";
+    public static string Current_Streak_Key = "CurrentStreak1";
     public static string First_Gift_Key = "FristGift1";
 
     public static string Another_Puzzle_Placement = "AnotherPuzzle";

@@ -46,7 +46,7 @@ namespace Assets.Scripts.UI.Shop
         {
             itemData = GameManager.Instance.itemsData[this.itemId];
             icon.sprite = itemData.icon;
-            icon.SetNativeSize();
+            //icon.SetNativeSize();
             isLock = !DataManager.Instance.GetData().HasItem(this.itemId);
             lockImg.gameObject.SetActive(isLock);
 

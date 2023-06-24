@@ -12,6 +12,7 @@ using UnityEngine;
 using Random = UnityEngine.Random;
 using UnityEngine.SceneManagement;
 using System.Linq;
+using Assets.Scripts.UI.Streak;
 
 public class GameManager : SerializedMonoBehaviour
 {
@@ -135,7 +136,11 @@ public class GameManager : SerializedMonoBehaviour
                 StartCoroutine(IEDelay(delay, delegate
                 {
                     if (!this.currentStage.NextLevel())
+                    {
+                        Debug.Log("Open");
+                        ((StreakPanel)UIManager.Instance.streakPanel).Open(true);
                         UIManager.Instance.winPanel.Open();
+                    }
                     else
                         this.gameState = GameState.Gameplay;
                 }));
@@ -144,6 +149,7 @@ public class GameManager : SerializedMonoBehaviour
             case GameState.Lose:
                 StartCoroutine(IEDelay(delay, delegate
                 {
+                    ((StreakPanel)UIManager.Instance.streakPanel).Open(false);
                     UIManager.Instance.losePanel.Open();
                 }));
                 break;

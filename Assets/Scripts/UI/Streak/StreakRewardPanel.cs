@@ -1,22 +1,18 @@
-﻿using Sirenix.OdinInspector;
+﻿using Assets.Scripts.UI.ResourceRecive;
+using Sirenix.OdinInspector;
 using System;
 using System.Collections;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
-using Assets.Scripts.UI.ResourceRecive;
 
-namespace Assets.Scripts.UI.RewardRecive
+namespace Assets.Scripts.UI.Streak
 {
-    public class RewardRecivePanel : BaseUI
+    public class StreakRewardPanel : BaseUI
     {
         [FoldoutGroup("Ani")]
         public Animator panelAni;
-        [FoldoutGroup("Ani")]
-        public Animator giftAni;
 
-        [FoldoutGroup("Button")]
-        public Button openBtn;
         [FoldoutGroup("Button")]
         public Button closeBtn;
 
@@ -33,67 +29,46 @@ namespace Assets.Scripts.UI.RewardRecive
 
         public ERewardType type;
         private int amount;
-        private string id;
 
-        Action onOpenDone;
-        public void Init(ERewardType type, int amount,Action onOpenDone, string id = "")
+        public void Init(ERewardType type, int amount, string id = "")
         {
-            this.onOpenDone = null;
             this.type = type;
             this.amount = amount;
-            this.id = id;
-
-            this.onOpenDone = onOpenDone;
 
             coins.SetActive(type == ERewardType.Coins);
             items.SetActive(type == ERewardType.Item);
 
             coinsTxt.text = amount.ToString();
             if (!string.IsNullOrEmpty(id))
+            {
                 itemImg.sprite = GameManager.Instance.itemsData[id].icon;
+                DataManager.Instance.GetData().AddItem(id);
+            }
             Open();
 
         }
 
         public override void LoadData()
         {
-            openBtn.onClick.AddListener(() => OpenButton());
-            closeBtn.onClick.AddListener(() => panelAni.Play("Close"));
-            closeBtn.gameObject.SetActive(false);
-            openBtn.gameObject.SetActive(true);
+            closeBtn.onClick.AddListener(() => CloseButton());
             panelAni.Play("Open");
-            giftAni.Play("Idle");
         }
 
-        private void OpenButton()
+        private void CloseButton()
         {
-            openBtn.gameObject.SetActive(false);
-            giftAni.Play("Open");
-
             switch (type)
             {
                 case ERewardType.Coins:
-                    StartCoroutine(IEOpen(() =>
-                    {
                         UIManager.Instance.currentcyPanel.Open();
                         ((ResourceRecivePanel)UIManager.Instance.resorceRecivePanel).CoinsRecive(transform.position, () =>
                         {
                             DataManager.Instance.AddCoins(amount);
-
-                            closeBtn.gameObject.SetActive(true);
-                            onOpenDone?.Invoke();
-
+                            panelAni.Play("Close");
                         });
-
-                    }));
                     break;
                 case ERewardType.Item:
-                    onOpenDone?.Invoke();
+                            panelAni.Play("Close");
 
-                    StartCoroutine(IEOpen(() =>
-                    {
-                        closeBtn.gameObject.SetActive(true);
-                    }));
                     break;
                 case ERewardType.Random:
                     break;
@@ -101,21 +76,14 @@ namespace Assets.Scripts.UI.RewardRecive
                     break;
             }
         }
-        IEnumerator IEOpen(Action action)
-        {
-            yield return new WaitForSecondsRealtime(1.5f);
-            action?.Invoke();
-
-        }
         public override void Close()
         {
             base.Close();
             UIManager.Instance.currentcyPanel.Close();
+            UIManager.Instance.streakPanel.LoadData();
         }
         public override void SaveData()
         {
-
-            openBtn.onClick.RemoveAllListeners();
             closeBtn.onClick.RemoveAllListeners();
         }
     }

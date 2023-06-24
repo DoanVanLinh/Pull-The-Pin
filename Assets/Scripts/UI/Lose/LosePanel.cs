@@ -7,7 +7,7 @@ using System;
 
 namespace Assets.Scripts.UI.Lose
 {
-    public class LosePanel : BaseUI
+    public class LosePanel : BasePopupUI
     {
         public Animator ani;
 
