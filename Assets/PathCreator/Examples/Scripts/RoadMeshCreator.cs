@@ -88,7 +88,7 @@ namespace PathCreation.Examples
                 Vector3 localUp = (usePathNormals) ? Vector3.Cross(path.GetTangent(i), path.GetNormal(i)) : path.up;
                 Vector3 localRight = (usePathNormals) ? path.GetNormal(i) : Vector3.Cross(localUp, path.GetTangent(i));
 
-               
+
 
 
                 // Find position to left and right of current path vertex
@@ -144,40 +144,8 @@ namespace PathCreation.Examples
                 triIndex += 6;
             }
 
-            for (int i = 0; i < pathCreator.EditorData.bezierPath.NumPoints; i++)
-            {
-                //just for pull the pin game
-                //wall texture
-                if (path.isClosedLoop)
-                {
-                    wallTextureHolder.spline.isOpenEnded = true;
-                    Vector3[] points = pathCreator.EditorData.bezierPath.GetPointsInSegment(i);
-                    wallTextureHolder.spline.InsertPointAt(i, points[0]);
-                    wallTextureHolder.spline.SetTangentMode(i, ShapeTangentMode.Continuous);
 
-                    wallTextureHolder.spline.SetRightTangent(i, points[1]);
 
-                    wallTextureHolder.spline.InsertPointAt(i + 1, points[3]);
-                    wallTextureHolder.spline.SetLeftTangent(i, points[2]);
-                }
-                else
-                {
-                    wallTextureHolder.spline.isOpenEnded = false;
-
-                    if (i == path.NumPoints)
-                        return;
-
-                    Vector3[] points = pathCreator.EditorData.bezierPath.GetPointsInSegment(i);
-                    if (i == 0)
-                        wallTextureHolder.spline.InsertPointAt(i, points[0]);
-                    wallTextureHolder.spline.SetTangentMode(i, ShapeTangentMode.Continuous);
-
-                    wallTextureHolder.spline.SetRightTangent(i, points[1]-points[0]);
-
-                    wallTextureHolder.spline.InsertPointAt(i + 1, points[3]);
-                    wallTextureHolder.spline.SetLeftTangent(i, points[2]-points[3]);
-                }
-            }
 
             //
             mesh.Clear();
@@ -205,6 +173,59 @@ namespace PathCreation.Examples
             //meshCornerHolder2.transform.up = -path.GetTangent(path.NumPoints - 1);
             meshCorner2.RecalculateBounds();
 
+
+            int length = pathCreator.EditorData.bezierPath.NumSegments;
+            length = path.isClosedLoop ? length : length + 1;
+            for (int i = 0; i < length; i++)
+            {                //just for pull the pin game
+                //wall texture
+                if (path.isClosedLoop)
+                {
+                    wallTextureHolder.spline.isOpenEnded = false;
+                    Vector3[] points = pathCreator.EditorData.bezierPath.GetPointsInSegment(i);
+                    if (i == 0)
+                    {
+                        wallTextureHolder.spline.InsertPointAt(i, points[0]);
+
+                        wallTextureHolder.spline.SetTangentMode(i, ShapeTangentMode.Continuous);
+                    }
+
+                    wallTextureHolder.spline.SetRightTangent(i, points[1] - points[0]);
+
+                    if (i != length - 1)
+                    {
+                        wallTextureHolder.spline.InsertPointAt(i + 1, points[3]);
+                        wallTextureHolder.spline.SetTangentMode(i + 1, ShapeTangentMode.Continuous);
+                        wallTextureHolder.spline.SetLeftTangent(i + 1, points[2] - points[3]);
+                    }
+                    else
+                    {
+                        wallTextureHolder.spline.SetLeftTangent(0, points[2] - points[3]);
+                    }
+                }
+                else
+                {
+                    wallTextureHolder.spline.isOpenEnded = true;
+
+                    if (i == length - 1)
+                        return;
+
+                    Vector3[] points = pathCreator.EditorData.bezierPath.GetPointsInSegment(i);
+                    if (i == 0)
+                    {
+                        wallTextureHolder.spline.InsertPointAt(i, points[0]);
+
+                        wallTextureHolder.spline.SetTangentMode(i, ShapeTangentMode.Continuous);
+                    }
+
+                    wallTextureHolder.spline.SetRightTangent(i, points[1] - points[0]);
+
+                    wallTextureHolder.spline.InsertPointAt(i + 1, points[3]);
+                    wallTextureHolder.spline.SetTangentMode(i + 1, ShapeTangentMode.Continuous);
+
+                    wallTextureHolder.spline.SetLeftTangent(i + 1, points[2] - points[3]);
+                }
+            }
         }
         private Mesh GenerateCircleMesh()
         {
@@ -297,9 +318,12 @@ namespace PathCreation.Examples
             {
                 meshCornerHolder1.gameObject.AddComponent<MeshRenderer>();
             }
-            if (!meshCornerHolder1.GetComponent<MeshCollider>())
+            if (!meshCornerHolder1.GetComponent<CapsuleCollider>())
             {
-                meshCornerHolder1.gameObject.AddComponent<MeshCollider>();
+                CapsuleCollider capsule = meshCornerHolder1.gameObject.AddComponent<CapsuleCollider>();
+                capsule.direction = 2;
+                capsule.height = thickness + 1;
+                capsule.center = Vector3.forward * thickness / 2f;
             }
 
             meshCornerRenderer1 = meshCornerHolder1.GetComponent<MeshRenderer>();
@@ -309,6 +333,8 @@ namespace PathCreation.Examples
                 meshCorner1 = new Mesh();
             }
             meshCornerFilter1.sharedMesh = meshCorner1;
+            meshCornerHolder1.layer = LayerMask.NameToLayer("BorderLevel");
+
             #endregion
 
             #region Corner Road 2
@@ -332,9 +358,13 @@ namespace PathCreation.Examples
             {
                 meshCornerHolder2.gameObject.AddComponent<MeshRenderer>();
             }
-            if (!meshCornerHolder2.GetComponent<MeshCollider>())
+            if (!meshCornerHolder2.GetComponent<CapsuleCollider>())
             {
-                meshCornerHolder2.gameObject.AddComponent<MeshCollider>();
+                CapsuleCollider capsule = meshCornerHolder2.gameObject.AddComponent<CapsuleCollider>();
+                capsule.direction = 2;
+                capsule.height = thickness + 1;
+                capsule.center = Vector3.forward * thickness / 2f;
+
             }
 
             meshCornerRenderer2 = meshCornerHolder2.GetComponent<MeshRenderer>();
@@ -344,7 +374,12 @@ namespace PathCreation.Examples
                 meshCorner2 = new Mesh();
             }
             meshCornerFilter2.sharedMesh = meshCorner2;
+            meshCornerHolder2.layer = LayerMask.NameToLayer("BorderLevel");
             #endregion
+
+            wallTextureHolder.transform.rotation = transform.rotation;
+            wallTextureHolder.transform.localPosition = transform.localPosition;
+
         }
 
         void AssignMaterials()

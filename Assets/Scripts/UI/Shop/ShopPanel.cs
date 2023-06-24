@@ -133,6 +133,7 @@ namespace Assets.Scripts.UI.Shop
         private void WallButton()
         {
             if (index == 5) return;
+
             label.text = "Wall";
             currentTab.DOMove(index <5  ? left : right, timeAni).SetUpdate(true);
             UpdateWall();
@@ -152,6 +153,7 @@ namespace Assets.Scripts.UI.Shop
             for (int i = 0; i < length; i++)
             {
                 wallGroups.Add(Instantiate(groupElement, Vector3.zero, Quaternion.identity, wallParent));
+                wallGroups[i].AddItems(groupBy[i]);
                 wallGroups[i].LoadGroup();
             }
         }

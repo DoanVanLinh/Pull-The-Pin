@@ -27,6 +27,9 @@ namespace Assets.Scripts.UI.Play
         [FoldoutGroup("Button"), SerializeField]
         private Button noadstBtn;
 
+        [FoldoutGroup("Image"), SerializeField]
+        private Image bgImg;
+
         [FoldoutGroup("Noti")]
         public GameObject dailyMissionNoti;
 
@@ -62,7 +65,10 @@ namespace Assets.Scripts.UI.Play
             //ads
             //
         }
-
+        public void SetBG(Sprite bg)
+        {
+            bgImg.sprite = bg;
+        }
         private void ShopButton()
         {
             UIManager.Instance.shopPanel.Open();

@@ -176,6 +176,7 @@
     <Compile Include="Assets\Scripts\CodeStage\AntiCheatToolkit\Runtime\Scripts\Detectors\InjectionDetector.cs" />
     <Compile Include="Assets\Scripts\CodeStage\AntiCheatToolkit\Examples\Scripts\InfiniteRotator.cs" />
     <Compile Include="Assets\PathCreator\Examples\Scripts\RoadMeshCreator.cs" />
+    <Compile Include="Assets\Scripts\Player\Wall.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

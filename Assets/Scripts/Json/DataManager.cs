@@ -172,6 +172,7 @@ public class DataManager : MonoBehaviour
     public void SetCurrentThemeVisual(string id)
     {
         CurrentThemeVisual = id;
+        Wall.OnUpdateVisual?.Invoke();
         CPlayerPrefs.SetString(Helper.Current_Theme_Visual_Key, CurrentThemeVisual);
     }
     public void SetCurrentPin(string id)
@@ -189,6 +190,8 @@ public class DataManager : MonoBehaviour
     public void SetCurrentWall(string id)
     {
         CurrentWall = id;
+        Wall.OnUpdateVisual?.Invoke();
+
         CPlayerPrefs.SetString(Helper.Current_Wall_Key, CurrentWall);
     }
     public void AddCountPlay()

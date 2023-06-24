@@ -30,9 +30,11 @@ namespace Assets.Scripts.Data
         public Texture bodyPinTexture;
 
         [ShowIf("itemType", EItemType.Theme)]
-        public Texture themeTexture;
+        public Sprite themeBG;
+        [ShowIf("itemType", EItemType.Theme)]
+        public Color wallColor;
 
         [ShowIf("itemType", EItemType.Wall)]
-        public Texture wallTexture;
+        public Sprite wallTexture;
     }
 }
