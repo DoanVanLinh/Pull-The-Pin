@@ -62,7 +62,7 @@ public class Buck : MonoBehaviour
                        .SetEase(Ease.Linear)
                             .OnComplete(() =>
                             {
-                                if (GameManager.Instance.gameState == GameState.Gameplay)
+                                if (GameManager.Instance.currentGameState == GameState.NormalMode)
                                     UIManager.Instance.newPuzzlePiecePanel.Open();
                                 GameManager.Instance.SetGameState(GameState.Win, 0);
 
@@ -93,7 +93,7 @@ public class Buck : MonoBehaviour
         visual.transform.DORotate(Random.insideUnitSphere.normalized * 720f, 1f, RotateMode.FastBeyond360);
         ((LosePanel)UIManager.Instance.losePanel).loseType = ELoseType.BomBuck;
 
-        if (GameManager.Instance.gameState == GameState.Gameplay)
+        if (GameManager.Instance.currentGameState == GameState.NormalMode)
             GameManager.Instance.SetGameState(GameState.Lose);
 
     }

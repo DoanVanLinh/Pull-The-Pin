@@ -16,27 +16,31 @@ namespace Assets.Scripts.UI.Streak
         public Animator ani;
         [FoldoutGroup("Component")]
         public GameObject arrow;
-        [FoldoutGroup("Text")]
-        public TextMeshProUGUI currentStreakTxt;
         [FoldoutGroup("Component")]
         public List<GameObject> locStreak;
         [FoldoutGroup("Component")]
         public List<StreakElement> streakElement;
-
+        [FoldoutGroup("Component")]
+        public List<Sprite> visuals;
         [FoldoutGroup("Component"), ListDrawerSettings(NumberOfItemsPerPage = 5)]
         public List<StreakReward> listStreak;
 
         [FoldoutGroup("Image")]
         public Image visual;
+        [FoldoutGroup("Image")]
+        public Image icon;
 
-        [FoldoutGroup("Component")]
-        public List<Sprite> visuals;
+        [FoldoutGroup("Text")]
+        public TextMeshProUGUI currentStreakTxt;
+        [FoldoutGroup("Text")]
+        public TextMeshProUGUI labelTxt;
 
         [FoldoutGroup("Button")]
         public Button keepStreakBtn;
         [FoldoutGroup("Button")]
         public Button loseStreakBtn;
 
+        public List<Sprite> icons;
         bool isWin;
         public void Open(bool isWin)
         {
@@ -82,6 +86,9 @@ namespace Assets.Scripts.UI.Streak
                 keepStreakBtn.gameObject.SetActive(false);
                 loseStreakBtn.gameObject.SetActive(false);
 
+                icon.sprite = icons[0];
+                labelTxt.text = "Amazing";
+
                 visual.sprite = visuals[currentStreakGroup + 1];
                 float newRotation = Vector2.SignedAngle(Vector2.right, (locStreak[currentLoc].transform.position - arrow.transform.position).normalized);
 
@@ -104,6 +111,8 @@ namespace Assets.Scripts.UI.Streak
             }
             else
             {
+                icon.sprite = icons[1];
+                labelTxt.text = "Failed";
                 visual.sprite = visuals[0];
 
                 keepStreakBtn.gameObject.SetActive(true);

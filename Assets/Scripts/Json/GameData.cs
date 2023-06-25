@@ -14,16 +14,18 @@ public class GameData
     public List<DailyMissions> dailyMissions;
     public List<MainDailyMissionGiftData> dailyMissionsgift;
     public List<string> currentItems = new List<string>();
-
+    public List<ChallengeData> challenges;
     public GameData()
     {
         dailyMissions = new List<DailyMissions>();
         dailyMissionsgift = new List<MainDailyMissionGiftData>();
+        challenges = new List<ChallengeData>();
     }
     public void Init()
     {
         InitShop();
         InitDailyMissionGift();
+        InitChallenges();
 
         void InitShop()
         {
@@ -41,6 +43,13 @@ public class GameData
         void InitDailyMissionGift()
         {
             ResetDailyMissionGift();
+        }
+        void InitChallenges()
+        {
+            for (int i = 0; i < 6; i++)
+            {
+                challenges.Add(new ChallengeData(i.ToString(), 200 * (i + 1), (EChalengeType)(i % 4)));
+            }
         }
     }
 
@@ -111,6 +120,16 @@ public class GameData
             if (i == id)
                 dailyMissionsgift[i].status = status;
         }
+    }
+    public void SaveChallengeById(ChallengeData data)
+    {
+        int length = challenges.Count;
+        for (int i = 0; i < length; i++)
+        {
+            if (challenges[i].id == data.id)
+                challenges[i] = data;
+        }
+        DataManager.Instance.SaveData();
     }
 }
 

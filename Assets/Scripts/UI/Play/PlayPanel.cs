@@ -46,7 +46,7 @@ namespace Assets.Scripts.UI.Play
             noadstBtn.onClick.AddListener(delegate { NoadsButton(); });
             UpdateStageText();
 
-            GameManager.Instance.SetGameState(GameState.Gameplay);
+            GameManager.Instance.SetGameState(GameState.NormalMode);
         }
 
         private void HomeButton()

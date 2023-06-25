@@ -64,6 +64,8 @@ public static class Helper
     public static string Resume_Level_Placement = "ResumeLevel";
     public static string Skip_Daily_Mission_Placement = "SkipDailyMission";
     public static string Int_Capping_Placement = "CappingInt";
+    public static string Fail_Challenge_Placement = "FailChallenge";
+    public static string Play_Again_Challenge_Placement = "PlayAgainChallenge";
     #endregion
 
 
@@ -95,6 +97,10 @@ public static class Helper
         List<RaycastResult> results = new List<RaycastResult>();
         EventSystem.current.RaycastAll(eventDataCurrentPosition, results);
         return results.Where(r => r.gameObject.layer == layer).ToList().Count > 0;
+    }
+    public static void PushNotification(string content)
+    {
+        UIManager.Instance.notification.PushNotification(content);
     }
     public static string ConvertCoins(int value)
     {

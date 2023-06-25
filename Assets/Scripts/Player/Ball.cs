@@ -9,6 +9,8 @@ using Random = UnityEngine.Random;
 
 public class Ball : MonoBehaviour
 {
+    public static Ball hieghtestBall;
+
     public static Action OnUpdateVisual;
 
     public EBallType type;
@@ -33,6 +35,9 @@ public class Ball : MonoBehaviour
         rb.constraints = RigidbodyConstraints.None | RigidbodyConstraints.FreezePositionZ;
         UpdateVisual();
         OnUpdateVisual += UpdateVisual;
+        lastPosition = transform.position;
+        if (Ball.hieghtestBall == null)
+            Ball.hieghtestBall = this;
     }
 
     public void UpdateVisual()
@@ -144,7 +149,7 @@ public class Ball : MonoBehaviour
             rb.constraints = RigidbodyConstraints.None;
             rb.AddForce(((GameManager.Instance.mainCam.transform.position + Random.insideUnitSphere.normalized * 3f) - transform.position).normalized * 40f, ForceMode.Impulse);
             ((LosePanel)UIManager.Instance.losePanel).loseType = ELoseType.BomBall;
-            if (GameManager.Instance.gameState == GameState.Gameplay)
+            if (GameManager.Instance.currentGameState == GameState.NormalMode)
                 GameManager.Instance.SetGameState(GameState.Lose);
         }
 
@@ -153,6 +158,24 @@ public class Ball : MonoBehaviour
     private void OnDestroy()
     {
         OnUpdateVisual -= UpdateVisual;
+
+    }
+
+    private Vector2 lastPosition;
+
+    private void FixedUpdate()
+    {
+        if (GameManager.Instance.currentGameState != GameState.ChallengeMode || Ball.hieghtestBall != this) return;
+        OnTransformChanged();
+    }
+
+    void OnTransformChanged()
+    {
+        if ((Vector2)transform.position != lastPosition)
+        {
+            ChallengeLevel.onBallChange?.Invoke();
+            lastPosition = transform.position;
+        }
 
     }
 }

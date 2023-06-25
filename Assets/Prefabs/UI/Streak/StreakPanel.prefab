@@ -1424,7 +1424,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ani: {fileID: 8198798649873641255}
   arrow: {fileID: 8198798648552324046}
-  currentStreakTxt: {fileID: 8198798650222694188}
   locStreak:
   - {fileID: 8198798650450454508}
   - {fileID: 1742199986235655725}
@@ -1437,6 +1436,11 @@ MonoBehaviour:
   - {fileID: 5799021779422180864}
   - {fileID: 7766928332979429626}
   - {fileID: 3038016368261491956}
+  visuals:
+  - {fileID: 21300000, guid: 0cd36c800edaa954a88879b888c2f687, type: 3}
+  - {fileID: 21300000, guid: e26a4c92851d49f49bc455830f5d1e0d, type: 3}
+  - {fileID: 21300000, guid: 4cccbe6c75dce9943bbbcdd56c267b42, type: 3}
+  - {fileID: 21300000, guid: 41ad5777058a4854cb5a7bd2d71b53e6, type: 3}
   listStreak:
   - rewardType: 0
     amount: 150
@@ -1484,13 +1488,14 @@ MonoBehaviour:
     amount: 4000
     id: Theme3
   visual: {fileID: 8198798649577376567}
-  visuals:
-  - {fileID: 21300000, guid: 0cd36c800edaa954a88879b888c2f687, type: 3}
-  - {fileID: 21300000, guid: e26a4c92851d49f49bc455830f5d1e0d, type: 3}
-  - {fileID: 21300000, guid: 4cccbe6c75dce9943bbbcdd56c267b42, type: 3}
-  - {fileID: 21300000, guid: 41ad5777058a4854cb5a7bd2d71b53e6, type: 3}
+  icon: {fileID: 8198798650394102573}
+  currentStreakTxt: {fileID: 8198798650222694188}
+  labelTxt: {fileID: 8198798650428977607}
   keepStreakBtn: {fileID: 8469069863448684566}
   loseStreakBtn: {fileID: 8672766629668744684}
+  icons:
+  - {fileID: 21300000, guid: 98f9c8fed7cd27147bc04b516c8c93c0, type: 3}
+  - {fileID: 21300000, guid: f3f4358fac4a80f4ca56436adfed7f5f, type: 3}
 --- !u!1 &8198798649897573746
 GameObject:
   m_ObjectHideFlags: 0

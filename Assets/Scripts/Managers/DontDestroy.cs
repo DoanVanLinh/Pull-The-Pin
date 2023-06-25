@@ -27,9 +27,12 @@ public class DontDestroy : MonoBehaviour
     public float timePlay;
     #endregion
 
+    public Transform tets;
     private void Update()
     {
-        if (GameManager.Instance.gameState == GameState.Gameplay)
+        if (Ball.hieghtestBall != null)
+            tets.position = Ball.hieghtestBall.transform.position;
+        if (GameManager.Instance.currentGameState == GameState.NormalMode)
         {
             curentAdsCapping += Time.unscaledDeltaTime;
             timePlay += Time.deltaTime;

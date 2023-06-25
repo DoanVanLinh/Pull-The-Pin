@@ -15,22 +15,27 @@ public class Level : MonoBehaviour
     public int amountBall;
 
     [SerializeField]
-    private GameObject handTut;
+    protected GameObject handTut;
     [ShowIf("hasTut"), SerializeField]
-    private List<Pin> pinsTut;
+    protected List<Pin> pinsTut;
     public virtual void Init(bool hasPiece)
     {
         buck.Init(this, hasPiece && DataManager.Instance.CurrentStage != 0 && DataManager.Instance.CurrentStage % 6 == 0);
 
+        InitPins();
+
+        if (hasTut && DataManager.Instance.CurrentStage < 4)
+            StartCoroutine(IETut());
+    }
+    protected virtual void InitPins()
+    {
         int length = pins.Count;
         for (int i = 0; i < length; i++)
         {
             pins[i].Init();
         }
-        if (hasTut && DataManager.Instance.CurrentStage < 4)
-            StartCoroutine(IETut());
     }
-    IEnumerator IETut()
+    protected IEnumerator IETut()
     {
         int length = pinsTut.Count;
         for (int i = 0; i < length; i++)
@@ -45,23 +50,23 @@ public class Level : MonoBehaviour
         }
     }
 
-    private void OnDestroy()
+    protected virtual void OnDestroy()
     {
         handTut.transform.DOKill();
     }
 
 #if UNITY_EDITOR
     [SerializeField]
-    private Ball ballPrefabs;
+    protected Ball ballPrefabs;
     [SerializeField]
-    private BoxCollider2D spawnLoc;
+    protected BoxCollider2D spawnLoc;
     [SerializeField]
-    private Transform ballParent;
+    protected Transform ballParent;
     [SerializeField, MinMaxSlider(0.5f, 1f)]
-    private Vector2 size;
+    protected Vector2 size;
 
     [Button()]
-    public void SpawnBall(int amount, EBallType type)
+    public virtual void SpawnBall(int amount, EBallType type)
     {
         amountBall += amount;
         for (int i = 0; i < amount; i++)
@@ -74,7 +79,7 @@ public class Level : MonoBehaviour
         UpdatePercent();
     }
     [Button()]
-    public void DeleteAllBall()
+    public virtual void DeleteAllBall()
     {
         while (ballParent.childCount != 0)
         {

@@ -50,6 +50,7 @@ public class UIManager : MonoBehaviour
     public Canvas mainCanvas;
 
     public BaseUI gamePlayPanel;
+    public BaseUI challengePlayPanel;
     public BaseUI dailyMissionPanel;
     public BaseUI dailyRewardPanel;
     public BaseUI puzzleGroupPanel;

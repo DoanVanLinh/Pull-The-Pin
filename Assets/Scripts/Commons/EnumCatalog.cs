@@ -4,11 +4,12 @@ using UnityEngine;
 public enum GameState
 {
     MainUi,
-    Gameplay,
+    NormalMode,
     Pause,
     Win,
     Lose,
-    Null
+    Null,
+    ChallengeMode
 }
 public enum GameType
 {
@@ -118,4 +119,16 @@ public enum EDailyMissionID
     CompleteLevel,
     CompleteChallenge,
     EarnCoins,
+}
+public enum EChalengeType
+{
+    Lock,
+    Play,
+    Failed,
+    Win
+}
+public enum ELevelType
+{
+    Normal,
+    Challenge
 }

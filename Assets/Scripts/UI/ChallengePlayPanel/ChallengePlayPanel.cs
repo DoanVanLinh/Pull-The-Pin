@@ -1,0 +1,45 @@
+﻿using System.Collections;
+using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
+using Sirenix.OdinInspector;
+using System.Collections.Generic;
+using System;
+
+namespace Assets.Scripts.UI.ChallengePlayPanel
+{
+
+    public class ChallengePlayPanel : BaseUI
+    {
+        [FoldoutGroup("Button"), SerializeField]
+        private Button closeBtn;
+        [FoldoutGroup("Button"), SerializeField]
+        private Button homeBtn;
+
+        public override void LoadData()
+        {
+            UIManager.Instance.challegentPanel.Close();
+
+            closeBtn.onClick.AddListener(() => CloseButton());
+            homeBtn.onClick.AddListener(() => HomeButton());
+        }
+
+        private void HomeButton()
+        {
+            UIManager.Instance.homePanel.Open();
+        }
+
+        private void CloseButton()
+        {
+            GameManager.Instance.SetGameState(GameState.NormalMode);
+        }
+
+        public override void SaveData()
+        {
+            UIManager.Instance.challegentPanel.Open();
+
+            closeBtn.onClick.RemoveAllListeners();
+            homeBtn.onClick.RemoveAllListeners();
+        }
+    }
+}

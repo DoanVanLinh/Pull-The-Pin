@@ -64,9 +64,11 @@
     <Compile Include="Assets\Scripts\CodeStage\AntiCheatToolkit\Runtime\Scripts\ObscuredTypes\ObscuredDecimal.cs" />
     <Compile Include="Assets\Scripts\CodeStage\AntiCheatToolkit\Runtime\Scripts\ObscuredTypes\ObscuredSByte.cs" />
     <Compile Include="Assets\Scripts\Json\GameData.cs" />
+    <Compile Include="Assets\Scripts\Player\ChallengePin.cs" />
     <Compile Include="Assets\Scripts\CodeStage\AntiCheatToolkit\Runtime\Scripts\Common\ACTkByte8.cs" />
     <Compile Include="Assets\Scripts\Commons\CommonHealthBar.cs" />
     <Compile Include="Assets\Scripts\Json\SaveLoadNewJson.cs" />
+    <Compile Include="Assets\Scripts\UI\Challenge\ChallengeElement.cs" />
     <Compile Include="Assets\Scripts\Managers\UIManager.cs" />
     <Compile Include="Assets\Scripts\Data\EnemyData.cs" />
     <Compile Include="Assets\Scripts\CodeStage\AntiCheatToolkit\Runtime\Scripts\ObscuredTypes\ObscuredLong.cs" />
@@ -74,11 +76,13 @@
     <Compile Include="Assets\Scripts\Managers\DontDestroy.cs" />
     <Compile Include="Assets\Scripts\Player\Ball.cs" />
     <Compile Include="Assets\Scripts\Player\Pin.cs" />
+    <Compile Include="Assets\Scripts\UI\Challenge\ChallengePanel.cs" />
     <Compile Include="Assets\Scripts\Commons\UINotification.cs" />
     <Compile Include="Assets\Scripts\UI\Win\WinPanel.cs" />
     <Compile Include="Assets\Scripts\UI\Win\ExtraElement.cs" />
     <Compile Include="Assets\Scripts\UI\Win\Extra.cs" />
     <Compile Include="Assets\Scripts\Data\PuzzleGroupData.cs" />
+    <Compile Include="Assets\Scripts\UI\Streak\StreakPanel.cs" />
     <Compile Include="Assets\Scripts\Player\Level.cs" />
     <Compile Include="Assets\Scripts\Commons\CPlayerPrefs.cs" />
     <Compile Include="Assets\Scripts\UI\Play\StagePanel.cs" />
@@ -86,11 +90,13 @@
     <Compile Include="Assets\Scripts\Managers\Pooling\Pool.cs" />
     <Compile Include="Assets\Scripts\CodeStage\AntiCheatToolkit\Runtime\Scripts\Detectors\TimeCheatingDetector.cs" />
     <Compile Include="Assets\Scripts\Player\State.cs" />
+    <Compile Include="Assets\Scripts\UI\ChallengePlayPanel\ChallengePlayPanel.cs" />
     <Compile Include="Assets\Scripts\CodeStage\AntiCheatToolkit\Runtime\Scripts\Common\ACTkByte16.cs" />
     <Compile Include="Assets\Scripts\CodeStage\AntiCheatToolkit\Runtime\Scripts\ObscuredTypes\ObscuredUInt.cs" />
     <Compile Include="Assets\Scripts\UI\Play\PlayPanel.cs" />
     <Compile Include="Assets\Scripts\UI\Win\Gift.cs" />
     <Compile Include="Assets\Scripts\Player\Bom.cs" />
+    <Compile Include="Assets\Scripts\UI\Streak\StreakRewardPanel.cs" />
     <Compile Include="Assets\Scripts\CodeStage\AntiCheatToolkit\Runtime\Scripts\ObscuredTypes\ObscuredPrefs.cs" />
     <Compile Include="Assets\Scripts\CodeStage\AntiCheatToolkit\Examples\Scripts\UsageExamples\DetectorsExamples.cs" />
     <Compile Include="Assets\Scripts\UI\Puzzle\PuzzleGroupPanel.cs" />
@@ -108,6 +114,7 @@
     <Compile Include="Assets\Scripts\CodeStage\AntiCheatToolkit\Runtime\Scripts\ObscuredTypes\ObscuredVector3.cs" />
     <Compile Include="Assets\Scripts\UI\Gift\GiftPanel.cs" />
     <Compile Include="Assets\Scripts\Player\Wall.cs" />
+    <Compile Include="Assets\Scripts\UI\Streak\StreakElement.cs" />
     <Compile Include="Assets\Scripts\CodeStage\AntiCheatToolkit\Examples\Scripts\ExamplesGUI.cs" />
     <Compile Include="Assets\Scripts\CodeStage\AntiCheatToolkit\Runtime\Scripts\ObscuredTypes\ObscuredInt.cs" />
     <Compile Include="Assets\Scripts\UI\DailyMission\MainDailyMissionGift.cs" />
@@ -119,6 +126,7 @@
     <Compile Include="Assets\Scripts\UI\Lose\LosePanel.cs" />
     <Compile Include="Assets\Scripts\UI\DailyMission\DailyMissionPanel.cs" />
     <Compile Include="Assets\Scripts\CodeStage\AntiCheatToolkit\Runtime\Scripts\ObscuredTypes\ObscuredByte.cs" />
+    <Compile Include="Assets\Scripts\Player\ChallengeLevel.cs" />
     <Compile Include="Assets\Scripts\UI\Puzzle\PuzzleInforPanel.cs" />
     <Compile Include="Assets\Scripts\Commons\EnumCatalog.cs" />
     <Compile Include="Assets\Scripts\UI\Shop\GroupShopElement.cs" />
@@ -177,9 +185,6 @@
     <Compile Include="Assets\Scripts\CodeStage\AntiCheatToolkit\Runtime\Scripts\Detectors\InjectionDetector.cs" />
     <Compile Include="Assets\Scripts\CodeStage\AntiCheatToolkit\Examples\Scripts\InfiniteRotator.cs" />
     <Compile Include="Assets\PathCreator\Examples\Scripts\RoadMeshCreator.cs" />
-    <Compile Include="Assets\Scripts\UI\Streak\StreakPanel.cs" />
-    <Compile Include="Assets\Scripts\UI\Streak\StreakElement.cs" />
-    <Compile Include="Assets\Scripts\UI\Streak\StreakRewardPanel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
