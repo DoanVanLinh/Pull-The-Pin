@@ -48,7 +48,7 @@ public class GameData
         {
             for (int i = 0; i < 6; i++)
             {
-                challenges.Add(new ChallengeData(i.ToString(), 200 * (i + 1), (EChalengeType)(i % 4)));
+                challenges.Add(new ChallengeData((i+1).ToString(), 200 * (i + 1), (EChalengeType)(i % 4)));
             }
         }
     }
@@ -121,15 +121,30 @@ public class GameData
                 dailyMissionsgift[i].status = status;
         }
     }
-    public void SaveChallengeById(ChallengeData data)
+    public void SetChallengeStatusById(ChallengeData data)
+    {
+        SetChallengeStatusById(data.id, data.type);
+    }
+    public void SetChallengeStatusById(string id, EChalengeType type)
     {
         int length = challenges.Count;
         for (int i = 0; i < length; i++)
         {
-            if (challenges[i].id == data.id)
-                challenges[i] = data;
+            if (challenges[i].id == id)
+                challenges[i].type = type;
         }
         DataManager.Instance.SaveData();
+    }
+
+    public int GetChallengeReward(string id)
+    {
+        int length = challenges.Count;
+        for (int i = 0; i < length; i++)
+        {
+            if (challenges[i].id == id)
+                return challenges[i].reward;
+        }
+        return 0;
     }
 }
 

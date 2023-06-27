@@ -114,6 +114,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   closeBtn: {fileID: 340173381406491440}
   homeBtn: {fileID: 340173380604426387}
+  moveTxt: {fileID: 340173381005634666}
+  ChallengeTxt: {fileID: 340173380465261229}
 --- !u!1 &340173380465261231
 GameObject:
   m_ObjectHideFlags: 0

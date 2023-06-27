@@ -92,7 +92,7 @@ public class Bom : MonoBehaviour
             .OnComplete(() =>
             {
                 Explosion();
-                GameManager.Instance.mainCam.DOShakePosition(0.25f,1,5,randomnessMode:ShakeRandomnessMode.Harmonic);
+                GameManager.Instance.CamrraShake(1, 0.2f);
                 DataManager.Instance.GetData().AddDailyMissionValue(EDailyMissionID.DefuseBomb, 1);
 
             });

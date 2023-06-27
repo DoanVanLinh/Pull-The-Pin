@@ -122,7 +122,7 @@ public class DataManager : MonoBehaviour
     public void AddStreak(int streak)
     {
         CurrentStreak += streak;
-        CurrentStreak = CurrentStreak > 15 ? 0 : CurrentStreak;
+        CurrentStreak = CurrentStreak >= 15 ? 0 : CurrentStreak;
         CPlayerPrefs.SetInt(Helper.Current_Streak_Key, CurrentStreak);
     }
     public void AddCountDailyReward()

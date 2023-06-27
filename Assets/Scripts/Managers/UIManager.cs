@@ -58,7 +58,9 @@ public class UIManager : MonoBehaviour
     public BaseUI puzzleInforPanel;
     public BaseUI challegentPanel;
     public BaseUI losePanel;
+    public BaseUI challengeLosePanel;
     public BaseUI winPanel;
+    public BaseUI challengeWinPanel;
     public BaseUI chessPanel;
     public BaseUI homePanel;
     public BaseUI shopPanel;

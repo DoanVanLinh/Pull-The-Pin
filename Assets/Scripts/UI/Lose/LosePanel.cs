@@ -25,13 +25,9 @@ namespace Assets.Scripts.UI.Lose
 
         public ELoseType loseType;
 
-        public override void Open()
-        {
-            base.Open();
-            ani.Play("Open");
-        }
         public override void LoadData()
         {
+            ani.Play("Open");
             Time.timeScale = 0;
             resumeBtn.onClick.AddListener(delegate { ResumeButton(); });
             skipBtn.onClick.AddListener(delegate { SkipButton(); });

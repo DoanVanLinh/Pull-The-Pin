@@ -7,6 +7,8 @@ using DG.Tweening;
 
 public class Level : MonoBehaviour
 {
+    public float cameraSize = 65;
+
     public bool hasTut;
 
     public float percentPerBall;

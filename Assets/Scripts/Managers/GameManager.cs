@@ -14,6 +14,7 @@ using UnityEngine.SceneManagement;
 using System.Linq;
 using Assets.Scripts.UI.Streak;
 using DG.Tweening;
+using Cinemachine;
 
 public class GameManager : SerializedMonoBehaviour
 {
@@ -56,6 +57,11 @@ public class GameManager : SerializedMonoBehaviour
     #endregion
 
     public Camera mainCam;
+    public Transform cinemachineTarget;
+    public CinemachineVirtualCamera cinemachineCamera;
+    private CinemachineBasicMultiChannelPerlin mainCinemachineBasicMultiChannelPerlin;
+
+    private bool folowBall;
     public LayerMask pinLayer;
     public List<State> stage;
 
@@ -76,6 +82,7 @@ public class GameManager : SerializedMonoBehaviour
     {
         countStageTutorial = 2;
         currentStage = stage[stageIndex];
+        mainCinemachineBasicMultiChannelPerlin = cinemachineCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
         GetDailyMissionData();
         GetItemsData();
         GetPuzzleGroupData();
@@ -121,29 +128,23 @@ public class GameManager : SerializedMonoBehaviour
     {
         puzzleData = Resources.LoadAll<PuzzleData>("ScriptableObject/Puzzle/").ToList();
     }
-    public void UpdateCamChallegeLoc(float timeAni = 1)
+    public void UpdateCamChallegeLoc()
     {
-        if (mainCam.transform.position.y > Ball.hieghtestBall.transform.position.y)
-        {
-            SetCamLoc(Ball.hieghtestBall.transform.position, true, timeAni, Ease.InOutQuad,true);
-        }
+        if (folowBall)
+            if (cinemachineTarget.position.y > Ball.hieghtestBall.transform.position.y && Ball.hieghtestBall.transform.position.y > 0)
+            {
+                cinemachineTarget.position = new Vector3(0, Ball.hieghtestBall.transform.position.y, 0);
+            }
     }
-    public void SetCamLoc(Vector2 loc, bool ani = false, float timeAni = 1,Ease ease = Ease.Linear, bool speedBase = true)
+    public void SetCamLoc(Vector2 loc)
     {
-        Vector3 target = new Vector3(0, loc.y > 0 ? loc.y : 0, mainCam.transform.position.z);
-        if (ani)
-            mainCam.transform.DOMove(target, timeAni)
-                            .SetEase(ease)
-                            .SetSpeedBased(speedBase);
-        else
-            mainCam.transform.position = target;
+        cinemachineTarget.position = loc;
     }
     public ScriptableObject GetDataByName(string name)
     {
         return Resources.LoadAll<ScriptableObject>("Prefabs/Data/" + name)[0];
     }
 
-    [Button()]
     public void SetGameState(GameState gameState, float delay = 1)
     {
         if (this.currentGameState == gameState)
@@ -156,8 +157,11 @@ public class GameManager : SerializedMonoBehaviour
 
                 break;
             case GameState.NormalMode:
+                CamrraShake(0);
                 if (currentChallenge != null)
+                {
                     Destroy(currentChallenge.gameObject);
+                }
 
                 SetCamLoc(Vector2.zero);
                 UIManager.Instance.gamePlayPanel.Open();
@@ -179,7 +183,13 @@ public class GameManager : SerializedMonoBehaviour
                     }));
                 else if (currentGameState == GameState.ChallengeMode)
                 {
+                    DataManager.Instance.GetData().AddDailyMissionValue(EDailyMissionID.CompleteChallenge, 1);
+                    DataManager.Instance.GetData().SetChallengeStatusById(currentChallenge.id, EChalengeType.Win);
+                    StartCoroutine(IEDelay(delay, delegate
+                    {
+                        UIManager.Instance.challengeWinPanel.Open();
 
+                    }));
                 }
                 break;
             case GameState.Lose:
@@ -192,7 +202,12 @@ public class GameManager : SerializedMonoBehaviour
                     }));
                 else if (currentGameState == GameState.ChallengeMode)
                 {
+                    DataManager.Instance.GetData().SetChallengeStatusById(currentChallenge.id, EChalengeType.Failed);
 
+                    StartCoroutine(IEDelay(delay, delegate
+                    {
+                        UIManager.Instance.challengeLosePanel.Open();
+                    }));
                 }
                 break;
             case GameState.Null:
@@ -201,17 +216,26 @@ public class GameManager : SerializedMonoBehaviour
             case GameState.Pause:
                 break;
             case GameState.ChallengeMode:
+                CamrraShake(0);
+                folowBall = false;
                 if (currentStage != null)
                     currentStage.ClearStage();
 
+                SetCameraSize(currentChallenge.cameraSize);
                 SetCamLoc(Vector2.zero);
                 UIManager.Instance.gamePlayPanel.Close();
                 UIManager.Instance.challengePlayPanel.Open();
 
-                StartCoroutine(IEDelay(1, delegate
-                {
-                    SetCamLoc(Ball.hieghtestBall.transform.position, true, 2,Ease.InOutQuart, false);
-                }));
+                Vector2 screentPoint = mainCam.WorldToViewportPoint(Ball.hieghtestBall.transform.position);
+
+                if (screentPoint.y > 1 || screentPoint.y < 0)
+                    folowBall = true;
+                if (folowBall)
+                    StartCoroutine(IEDelay(1, delegate
+                    {
+                        cinemachineTarget.DOMove(new Vector3(0, Ball.hieghtestBall.transform.position.y, 0), 2f)
+                                        .SetEase(Ease.Linear);
+                    }));
 
                 break;
             default:
@@ -221,12 +245,20 @@ public class GameManager : SerializedMonoBehaviour
         this.currentGameState = gameState;
 
     }
+    public void SetCameraSize(float size)
+    {
+        cinemachineCamera.m_Lens.FieldOfView = size;
+    }
     public void StartChallenge(string id)
     {
-        SetGameState(GameState.ChallengeMode);
-
+        if (currentChallenge != null)
+        {
+            Destroy(currentChallenge.gameObject);
+            currentChallenge = null;
+        }
         currentChallenge = Instantiate(challengeLevels[id], Vector3.zero, Quaternion.identity);
         currentChallenge.Init(false);
+        SetGameState(GameState.ChallengeMode);
     }
     [Button()]
     public void NextStage()
@@ -254,6 +286,14 @@ public class GameManager : SerializedMonoBehaviour
     {
         currentGameState = GameState.Null;
         SetGameState(GameState.NormalMode);
+    }
+    public void CamrraShake(float force = 1, float time = 1)
+    {
+        mainCinemachineBasicMultiChannelPerlin.m_AmplitudeGain = force;
+        StartCoroutine(IEDelay(time, () =>
+        {
+            mainCinemachineBasicMultiChannelPerlin.m_AmplitudeGain = 0;
+        }));
     }
     IEnumerator IEDelay(float time, Action action)
     {

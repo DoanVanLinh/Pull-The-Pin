@@ -268,3 +268,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 0190c2a0606bdb748bdd1fcd0852705c, type: 3}
   - {fileID: 21300000, guid: 7a105b4b05da43649bbf6d372f1a1446, type: 3}
   - {fileID: 21300000, guid: cd2ffc0799b682d46911951dc6917ea9, type: 3}
+  reward:
+    rewardType: 0
+    amount: 0
+    id: 

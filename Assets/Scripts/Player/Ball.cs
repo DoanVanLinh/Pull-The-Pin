@@ -149,7 +149,7 @@ public class Ball : MonoBehaviour
             rb.constraints = RigidbodyConstraints.None;
             rb.AddForce(((GameManager.Instance.mainCam.transform.position + Random.insideUnitSphere.normalized * 3f) - transform.position).normalized * 40f, ForceMode.Impulse);
             ((LosePanel)UIManager.Instance.losePanel).loseType = ELoseType.BomBall;
-            if (GameManager.Instance.currentGameState == GameState.NormalMode)
+            //if (GameManager.Instance.currentGameState == GameState.NormalMode)
                 GameManager.Instance.SetGameState(GameState.Lose);
         }
 

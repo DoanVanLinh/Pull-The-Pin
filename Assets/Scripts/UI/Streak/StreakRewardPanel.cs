@@ -59,15 +59,17 @@ namespace Assets.Scripts.UI.Streak
             switch (type)
             {
                 case ERewardType.Coins:
-                        UIManager.Instance.currentcyPanel.Open();
-                        ((ResourceRecivePanel)UIManager.Instance.resorceRecivePanel).CoinsRecive(transform.position, () =>
-                        {
-                            DataManager.Instance.AddCoins(amount);
-                            panelAni.Play("Close");
-                        });
+                    UIManager.Instance.currentcyPanel.Open();
+                    ((ResourceRecivePanel)UIManager.Instance.resorceRecivePanel).CoinsRecive(transform.position, () =>
+                    {
+                        DataManager.Instance.AddCoins(amount);
+                        UIManager.Instance.streakPanel.LoadData();
+                        panelAni.Play("Close");
+                    });
                     break;
                 case ERewardType.Item:
-                            panelAni.Play("Close");
+                    UIManager.Instance.streakPanel.LoadData();
+                    panelAni.Play("Close");
 
                     break;
                 case ERewardType.Random:
@@ -80,7 +82,6 @@ namespace Assets.Scripts.UI.Streak
         {
             base.Close();
             UIManager.Instance.currentcyPanel.Close();
-            UIManager.Instance.streakPanel.LoadData();
         }
         public override void SaveData()
         {

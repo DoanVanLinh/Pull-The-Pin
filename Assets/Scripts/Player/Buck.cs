@@ -93,7 +93,7 @@ public class Buck : MonoBehaviour
         visual.transform.DORotate(Random.insideUnitSphere.normalized * 720f, 1f, RotateMode.FastBeyond360);
         ((LosePanel)UIManager.Instance.losePanel).loseType = ELoseType.BomBuck;
 
-        if (GameManager.Instance.currentGameState == GameState.NormalMode)
+        //if (GameManager.Instance.currentGameState == GameState.NormalMode)
             GameManager.Instance.SetGameState(GameState.Lose);
 
     }

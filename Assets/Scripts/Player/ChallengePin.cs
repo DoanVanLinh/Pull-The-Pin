@@ -12,6 +12,9 @@ public class ChallengePin : Pin
     }
     protected override void OnPlayerTouchOn()
     {
+        if (owner.CurrentMove <= 0)
+            return;
+
         base.OnPlayerTouchOn();
         owner.CurrentMove--;
     }

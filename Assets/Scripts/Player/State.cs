@@ -21,6 +21,7 @@ public class State : MonoBehaviour
         currentIndexLevel = level;
         currentLevel = Instantiate(levels[currentIndexLevel], Vector3.zero, Quaternion.identity);
         currentLevel.Init(currentIndexLevel == maxLevel - 1);
+        GameManager.Instance.SetCameraSize(currentLevel.cameraSize);
         ((PlayPanel)UIManager.Instance.gamePlayPanel).stagePanel.Init(maxLevel);
     }
     [Button()]
@@ -55,6 +56,7 @@ public class State : MonoBehaviour
             clone.transform.position = Vector3.zero;
             currentLevel = clone;
         }
+        GameManager.Instance.SetCameraSize(clone.cameraSize);
 
         DataManager.Instance.SetCurrentLevel(currentIndexLevel);
         return true;

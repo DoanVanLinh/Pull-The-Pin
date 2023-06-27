@@ -2940,6 +2940,7 @@ MonoBehaviour:
   - {fileID: 4294867606741723815}
   - {fileID: 2924343424044386119}
   unlockCoins: {fileID: 4834714769449955924}
+  levelTxt: {fileID: 249662543186133142}
 --- !u!1 &7926167467478231731
 GameObject:
   m_ObjectHideFlags: 0

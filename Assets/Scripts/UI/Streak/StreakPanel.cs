@@ -17,6 +17,8 @@ namespace Assets.Scripts.UI.Streak
         [FoldoutGroup("Component")]
         public GameObject arrow;
         [FoldoutGroup("Component")]
+        public GameObject parentStreak;
+        [FoldoutGroup("Component")]
         public List<GameObject> locStreak;
         [FoldoutGroup("Component")]
         public List<StreakElement> streakElement;
@@ -47,13 +49,11 @@ namespace Assets.Scripts.UI.Streak
             this.isWin = isWin;
             Open();
         }
-        public override void Open()
-        {
-            base.Open();
-            ani.Play("Open");
-        }
         public override void LoadData()
         {
+            parentStreak.SetActive(true);
+
+            ani.Play("Open");
             keepStreakBtn.onClick.AddListener(() => KeepStreakButton());
             loseStreakBtn.onClick.AddListener(() => LoseStreakButton());
             LoadCurrentStreak();
@@ -129,8 +129,10 @@ namespace Assets.Scripts.UI.Streak
                 streakElement[i].Collect();
                 yield return new WaitForSeconds(0.2f);
             }
-
+            yield return new WaitForSeconds(1f);
+            parentStreak.SetActive(false);
             ((StreakRewardPanel)UIManager.Instance.streakRewardPanel).Init(streakElement[4].reward.rewardType, streakElement[4].reward.amount, streakElement[4].reward.id);
+            
         }
         private void KeepStreakButton()
         {

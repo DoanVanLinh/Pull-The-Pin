@@ -93,8 +93,8 @@
     <Compile Include="Assets\Scripts\UI\ChallengePlayPanel\ChallengePlayPanel.cs" />
     <Compile Include="Assets\Scripts\CodeStage\AntiCheatToolkit\Runtime\Scripts\Common\ACTkByte16.cs" />
     <Compile Include="Assets\Scripts\CodeStage\AntiCheatToolkit\Runtime\Scripts\ObscuredTypes\ObscuredUInt.cs" />
-    <Compile Include="Assets\Scripts\UI\Play\PlayPanel.cs" />
     <Compile Include="Assets\Scripts\UI\Win\Gift.cs" />
+    <Compile Include="Assets\Scripts\UI\Play\PlayPanel.cs" />
     <Compile Include="Assets\Scripts\Player\Bom.cs" />
     <Compile Include="Assets\Scripts\UI\Streak\StreakRewardPanel.cs" />
     <Compile Include="Assets\Scripts\CodeStage\AntiCheatToolkit\Runtime\Scripts\ObscuredTypes\ObscuredPrefs.cs" />
@@ -160,6 +160,7 @@
     <Compile Include="Assets\Scripts\CodeStage\AntiCheatToolkit\Examples\Scripts\UsageExamples\ObscuredTypesExamples.cs" />
     <Compile Include="Assets\Scripts\UI\Shop\ShopElement.cs" />
     <Compile Include="Assets\Scripts\CodeStage\AntiCheatToolkit\Runtime\Scripts\Detectors\Abstract\ActDetectorBase.cs" />
+    <Compile Include="Assets\Scripts\UI\ChallengeLose\ChallengeLose.cs" />
     <Compile Include="Assets\Scripts\UI\Currency\CurrencyPanel.cs" />
     <Compile Include="Assets\Scripts\Data\Item.cs" />
     <Compile Include="Assets\Scripts\CodeStage\AntiCheatToolkit\Runtime\Scripts\Utils\xxHash.cs" />
@@ -172,6 +173,7 @@
     <Compile Include="Assets\PathCreator\Examples\Scripts\PathSceneTool.cs" />
     <Compile Include="Assets\Scripts\Commons\CommonSpriteTextPopup.cs" />
     <Compile Include="Assets\Scripts\UI\DailyReward\DailyRewardElement.cs" />
+    <Compile Include="Assets\Scripts\UI\ChallengeWin\ChallengeWin.cs" />
     <Compile Include="Assets\Scripts\CodeStage\AntiCheatToolkit\Runtime\Scripts\ObscuredTypes\ObscuredChar.cs" />
     <Compile Include="Assets\PathCreator\Examples\Scripts\PathFollower.cs" />
     <Compile Include="Assets\Scripts\CodeStage\AntiCheatToolkit\Runtime\Scripts\ObscuredTypes\ObscuredFloat.cs" />
@@ -822,6 +824,9 @@
     </Reference>
     <Reference Include="Unity.2D.IK.Runtime">
       <HintPath>Library\ScriptAssemblies\Unity.2D.IK.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="Cinemachine">
+      <HintPath>Library\ScriptAssemblies\Cinemachine.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.Tilemap.Extras">
       <HintPath>Library\ScriptAssemblies\Unity.2D.Tilemap.Extras.dll</HintPath>

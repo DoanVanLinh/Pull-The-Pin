@@ -17,6 +17,7 @@ namespace Assets.Scripts.UI.Challenge
 
         public List<TextMeshProUGUI> rewardCoins;
         public TextMeshProUGUI unlockCoins;
+        public TextMeshProUGUI levelTxt;
         public void LoadElement(ChallengeData data)
         {
             this.data = data;
@@ -28,6 +29,7 @@ namespace Assets.Scripts.UI.Challenge
                 rewardCoins[i].text = data.reward.ToString();
             }
             unlockCoins.text = data.amountUnlock.ToString();
+            levelTxt.text = data.id;
 
             LoadVisual();
         }
@@ -46,8 +48,10 @@ namespace Assets.Scripts.UI.Challenge
             {
                 case EChalengeType.Lock:
                     if (DataManager.Instance.Coins >= data.amountUnlock)
+                    {
+                        DataManager.Instance.AddCoins(-data.amountUnlock);
                         data.type = EChalengeType.Play;
-                    //else
+                    }//else
                     //    Helper.PushNotification("Not Enought Coins");
                     break;
                 case EChalengeType.Play:
@@ -68,7 +72,7 @@ namespace Assets.Scripts.UI.Challenge
                     break;
             }
 
-            DataManager.Instance.GetData().SaveChallengeById(data);
+            DataManager.Instance.GetData().SetChallengeStatusById(data);
             LoadVisual();
         }
     }

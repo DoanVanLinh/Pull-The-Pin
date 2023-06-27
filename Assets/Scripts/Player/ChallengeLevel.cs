@@ -5,6 +5,7 @@ using UnityEngine;
 using System.Linq;
 using System;
 using Random = UnityEngine.Random;
+using Assets.Scripts.UI.ChallengePlayPanel;
 
 public class ChallengeLevel : Level
 {
@@ -18,6 +19,9 @@ public class ChallengeLevel : Level
         set
         {
             currentMove = value;
+            if (currentMove == 0)
+                StartCoroutine(IECheckLose());
+            ((ChallengePlayPanel)UIManager.Instance.challengePlayPanel).UpdateMove(currentMove);
         }
     }
 
@@ -51,14 +55,28 @@ public class ChallengeLevel : Level
                 Ball.hieghtestBall = balls[i];
             }
         }
-        GameManager.Instance.UpdateCamChallegeLoc(10);
-        
+        GameManager.Instance.UpdateCamChallegeLoc();
+
     }
 
     protected override void OnDestroy()
     {
         base.OnDestroy();
         onBallChange -= FindHeightestBall;
+    }
+
+    private IEnumerator IECheckLose()
+    {
+        float currentPercent = buck.currentPercent;
+        WaitForSeconds waitfor4Seceonds = new WaitForSeconds(4);
+        while (GameManager.Instance.currentGameState == GameState.ChallengeMode)
+        {
+            yield return waitfor4Seceonds;
+            if (currentPercent == buck.currentPercent)
+                GameManager.Instance.SetGameState(GameState.Lose);
+            else
+                currentPercent = buck.currentPercent;
+        }
     }
 #if UNITY_EDITOR
 
