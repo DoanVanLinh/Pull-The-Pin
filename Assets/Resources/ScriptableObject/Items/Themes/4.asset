@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d6754e9054c7ae842b158dd509ea4544, type: 3}
-  m_Name: 3
+  m_Name: 4
   m_EditorClassIdentifier: 
   itemType: 1
-  icon: {fileID: 21300000, guid: 5ca2b04418806be49924528ee718d899, type: 3}
-  itemUnlockType: 5
+  icon: {fileID: 21300000, guid: dea216c316d8d334d8be64361b01d2b4, type: 3}
+  itemUnlockType: 3
   value: 0
   ballMesh: {fileID: 0}
   ballTexture: []
@@ -22,6 +22,6 @@ MonoBehaviour:
   headPinTexture: {fileID: 0}
   bodyPin: {fileID: 0}
   bodyPinTexture: {fileID: 0}
-  themeBG: {fileID: 21300000, guid: f659182d11180e041b19587478f89dae, type: 3}
-  wallColor: {r: 0, g: 0, b: 0, a: 0}
+  themeBG: {fileID: 21300000, guid: ec5de271af2f0bd4288a2a9f85d225e0, type: 3}
+  wallColor: {r: 1, g: 1, b: 1, a: 1}
   wallTexture: {fileID: 0}

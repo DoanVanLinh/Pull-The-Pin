@@ -28,6 +28,7 @@ namespace Assets.Scripts.UI.Gift
             amountCoins = Random.Range(600, 1000);
 
             adsIcon.gameObject.SetActive(DataManager.Instance.HasKey(Helper.First_Gift_Key));
+            closeBtn.gameObject.SetActive(DataManager.Instance.HasKey(Helper.First_Gift_Key));
 
             openBtn.interactable = true;
             open2Btn.interactable = true;
