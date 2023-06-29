@@ -175,7 +175,8 @@ public class GameManager : SerializedMonoBehaviour
                     {
                         if (!this.currentStage.NextLevel())
                         {
-                            ((StreakPanel)UIManager.Instance.streakPanel).Open(true);
+                            if (DataManager.Instance.CurrentStage > 4)
+                                ((StreakPanel)UIManager.Instance.streakPanel).Open(true);
                             UIManager.Instance.winPanel.Open();
                         }
                         else

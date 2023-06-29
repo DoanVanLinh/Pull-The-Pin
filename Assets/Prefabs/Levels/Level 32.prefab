@@ -9576,7 +9576,7 @@ PrefabInstance:
     - target: {fileID: 3046081924063770254, guid: 6bdb654984d4bfe48b752f37b1732e11, type: 3}
       propertyPath: m_Sprites.Array.data[0]
       value: 
-      objectReference: {fileID: 21300000, guid: 7be07af680f4b604799da31082e14607, type: 3}
+      objectReference: {fileID: 21300000, guid: a7f8570efbff9754da7d3431618a7c5a, type: 3}
     - target: {fileID: 4363684139532555723, guid: 6bdb654984d4bfe48b752f37b1732e11, type: 3}
       propertyPath: m_Spline.m_ControlPoints.Array.size
       value: 16
@@ -9963,7 +9963,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6797272312203080981, guid: 6bdb654984d4bfe48b752f37b1732e11, type: 3}
       propertyPath: hasTut
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6797272312203080981, guid: 6bdb654984d4bfe48b752f37b1732e11, type: 3}
       propertyPath: size.x
