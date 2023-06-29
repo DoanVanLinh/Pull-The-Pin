@@ -2167,7 +2167,7 @@ PrefabInstance:
     - target: {fileID: 480531072299551653, guid: 522a0bb71a78b3846addd57b808f8464, type: 3}
       propertyPath: m_Sprites.Array.data[0]
       value: 
-      objectReference: {fileID: 21300000, guid: a7f8570efbff9754da7d3431618a7c5a, type: 3}
+      objectReference: {fileID: 21300000, guid: cdabc9098a38122428ddbf4535020b79, type: 3}
     - target: {fileID: 1179943872036661472, guid: 522a0bb71a78b3846addd57b808f8464, type: 3}
       propertyPath: m_Spline.m_ControlPoints.Array.size
       value: 4
@@ -2518,7 +2518,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8266964108711002148, guid: 522a0bb71a78b3846addd57b808f8464, type: 3}
       propertyPath: editorData.vertexPathUpToDate
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8266964108711002148, guid: 522a0bb71a78b3846addd57b808f8464, type: 3}
       propertyPath: editorData._bezierPath.flipNormals
@@ -2546,35 +2546,35 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8266964108711002148, guid: 522a0bb71a78b3846addd57b808f8464, type: 3}
       propertyPath: editorData._bezierPath.points.Array.data[1].x
-      value: 0.67012084
+      value: 1.8113501
       objectReference: {fileID: 0}
     - target: {fileID: 8266964108711002148, guid: 522a0bb71a78b3846addd57b808f8464, type: 3}
       propertyPath: editorData._bezierPath.points.Array.data[1].y
-      value: -6.0722194
+      value: -5.690258
       objectReference: {fileID: 0}
     - target: {fileID: 8266964108711002148, guid: 522a0bb71a78b3846addd57b808f8464, type: 3}
       propertyPath: editorData._bezierPath.points.Array.data[2].x
-      value: 1.8537612
+      value: 2.8551047
       objectReference: {fileID: 0}
     - target: {fileID: 8266964108711002148, guid: 522a0bb71a78b3846addd57b808f8464, type: 3}
       propertyPath: editorData._bezierPath.points.Array.data[2].y
-      value: -7.1128864
+      value: -6.0845656
       objectReference: {fileID: 0}
     - target: {fileID: 8266964108711002148, guid: 522a0bb71a78b3846addd57b808f8464, type: 3}
       propertyPath: editorData._bezierPath.points.Array.data[3].x
-      value: 3.5031028
+      value: 3.6901083
       objectReference: {fileID: 0}
     - target: {fileID: 8266964108711002148, guid: 522a0bb71a78b3846addd57b808f8464, type: 3}
       propertyPath: editorData._bezierPath.points.Array.data[3].y
-      value: -6.7378197
+      value: -6.4092894
       objectReference: {fileID: 0}
     - target: {fileID: 8266964108711002148, guid: 522a0bb71a78b3846addd57b808f8464, type: 3}
       propertyPath: editorData._bezierPath.points.Array.data[4].x
-      value: 5.1524444
+      value: 4.525112
       objectReference: {fileID: 0}
     - target: {fileID: 8266964108711002148, guid: 522a0bb71a78b3846addd57b808f8464, type: 3}
       propertyPath: editorData._bezierPath.points.Array.data[4].y
-      value: -6.362753
+      value: -6.734013
       objectReference: {fileID: 0}
     - target: {fileID: 8266964108711002148, guid: 522a0bb71a78b3846addd57b808f8464, type: 3}
       propertyPath: editorData._bezierPath.points.Array.data[5].x
@@ -2877,7 +2877,7 @@ PrefabInstance:
     - target: {fileID: 3046081924063770254, guid: 6bdb654984d4bfe48b752f37b1732e11, type: 3}
       propertyPath: m_Sprites.Array.data[0]
       value: 
-      objectReference: {fileID: 21300000, guid: a7f8570efbff9754da7d3431618a7c5a, type: 3}
+      objectReference: {fileID: 21300000, guid: cdabc9098a38122428ddbf4535020b79, type: 3}
     - target: {fileID: 4363684139532555723, guid: 6bdb654984d4bfe48b752f37b1732e11, type: 3}
       propertyPath: m_Spline.m_ControlPoints.Array.size
       value: 7

@@ -40,10 +40,11 @@ public class Buck : MonoBehaviour
 
         if (other.gameObject.layer == LayerMask.NameToLayer(Helper.COLOR_BALL_LAYER))
         {
-            currentPercent += owner.percentPerBall;
-            currentPercentTxt.text = Mathf.RoundToInt(currentPercent) + "%";
-            visual.transform.DOLocalMove(defaultLoc + Vector3.down * (currentPercent / 100f) * 2f, 1f);
-            if (Mathf.RoundToInt(currentPercent) == 100)
+            //currentPercent += owner.percentPerBall;
+            currentPercent += 1;
+            currentPercentTxt.text = Mathf.RoundToInt((currentPercent / owner.amountBall)*100f) + "%";
+            visual.transform.DOLocalMove(defaultLoc + Vector3.down * (currentPercent / owner.amountBall) * 2f, 1f);
+            if (currentPercent == owner.amountBall)
             {
                 visual.transform.DOKill();
 
@@ -94,7 +95,7 @@ public class Buck : MonoBehaviour
         ((LosePanel)UIManager.Instance.losePanel).loseType = ELoseType.BomBuck;
 
         //if (GameManager.Instance.currentGameState == GameState.NormalMode)
-            GameManager.Instance.SetGameState(GameState.Lose);
+        GameManager.Instance.SetGameState(GameState.Lose);
 
     }
     private void OnDestroy()

@@ -2956,6 +2956,10 @@ PrefabInstance:
       value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 6797272312203080981, guid: 6bdb654984d4bfe48b752f37b1732e11, type: 3}
+      propertyPath: cameraSize
+      value: 75
+      objectReference: {fileID: 0}
+    - target: {fileID: 6797272312203080981, guid: 6bdb654984d4bfe48b752f37b1732e11, type: 3}
       propertyPath: percentPerBall
       value: 1
       objectReference: {fileID: 0}

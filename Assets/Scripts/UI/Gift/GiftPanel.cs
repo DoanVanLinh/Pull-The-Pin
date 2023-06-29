@@ -25,6 +25,9 @@ namespace Assets.Scripts.UI.Gift
         public Image adsIcon;
         public override void LoadData()
         {
+            openBtn.gameObject.SetActive(true);
+            closeBtn.gameObject.SetActive(true);
+
             amountCoins = Random.Range(600, 1000);
 
             adsIcon.gameObject.SetActive(DataManager.Instance.HasKey(Helper.First_Gift_Key));
