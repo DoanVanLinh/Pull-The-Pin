@@ -15,6 +15,8 @@ public class Bom : MonoBehaviour
     private Collider[] colliders;
 
     private int length;
+
+    public MeshRenderer mesh;
     private void Start()
     {
         isExplosion = false;
@@ -86,6 +88,8 @@ public class Bom : MonoBehaviour
         if (isExplosion) return;
 
         isExplosion = true;
+
+        mesh.material.DOColor(Color.red, 1f);
 
         transform.DOScale(Vector3.one * 1.5f, 1f)
             .SetEase(Ease.Linear)

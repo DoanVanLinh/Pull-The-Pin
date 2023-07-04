@@ -1,4 +1,5 @@
-﻿using Sirenix.OdinInspector;
+﻿using Assets.Scripts.UI.Shop;
+using Sirenix.OdinInspector;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -14,7 +15,7 @@ namespace Assets.Scripts.Commons
         public InputAction HackTime;
         public InputAction HackCoins;
         public InputAction HackLevel;
-        public InputAction HackScraps;
+        public InputAction HackShop;
         public InputAction HackHeroSouls;
         public InputAction HackBricks;
         public InputAction HackHero;
@@ -28,7 +29,7 @@ namespace Assets.Scripts.Commons
             currentTimeScale = 0;
             HackCoins.Enable();
             HackLevel.Enable();
-            HackScraps.Enable();
+            HackShop.Enable();
             HackHeroSouls.Enable();
             HackBricks.Enable();
             HackHero.Enable();
@@ -44,9 +45,18 @@ namespace Assets.Scripts.Commons
             {
                 GameManager.Instance.NextLevel();
             };
-            HackRandomItem.performed += delegate
+            HackShop.performed += delegate
             {
+                foreach (string item in GameManager.Instance.itemsData.Keys)
+                {
+                    DataManager.Instance.GetData().AddItem(item);
+                }
 
+                ((ShopPanel)UIManager.Instance.shopPanel).UpdateBall();
+                ((ShopPanel)UIManager.Instance.shopPanel).UpdatePin();
+                ((ShopPanel)UIManager.Instance.shopPanel).UpdateTheme();
+                ((ShopPanel)UIManager.Instance.shopPanel).UpdateTrail();
+                ((ShopPanel)UIManager.Instance.shopPanel).UpdateWall();
             };
             HackTime.performed += delegate
             {
@@ -57,7 +67,7 @@ namespace Assets.Scripts.Commons
         {
             HackCoins.Disable();
             HackLevel.Disable();
-            HackScraps.Disable();
+            HackShop.Disable();
             HackHeroSouls.Disable();
             HackBricks.Disable();
             HackHero.Disable();

@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6754e9054c7ae842b158dd509ea4544, type: 3}
+  m_Name: 4
+  m_EditorClassIdentifier: 
+  itemType: 2
+  icon: {fileID: 21300000, guid: cf5ffe71f74c0af4ba942bb7631cb980, type: 3}
+  itemUnlockType: 2
+  value: 0
+  ballMesh: {fileID: 0}
+  ballTexture: []
+  headPin: {fileID: -7587030971442298145, guid: 5142e71c814bc674eb8a609779b68c93, type: 3}
+  headPinTexture: {fileID: 2800000, guid: 88ce2c9123c4e044f9f766f2dd0faa5c, type: 3}
+  bodyPin: {fileID: 2534964839176971238, guid: 5142e71c814bc674eb8a609779b68c93, type: 3}
+  bodyPinTexture: {fileID: 2800000, guid: 88ce2c9123c4e044f9f766f2dd0faa5c, type: 3}
+  themeBG: {fileID: 0}
+  wallColor: {r: 0, g: 0, b: 0, a: 0}
+  wallTexture: {fileID: 0}

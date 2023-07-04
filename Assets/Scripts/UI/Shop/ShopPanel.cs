@@ -28,6 +28,10 @@ namespace Assets.Scripts.UI.Shop
         private CommonTabSwitchButton trailBtn;
         [FoldoutGroup("Button"), SerializeField]
         private CommonTabSwitchButton wallBtn;
+        [FoldoutGroup("Button"), SerializeField]
+        private Button coinGatchaBtn;
+        [FoldoutGroup("Button"), SerializeField]
+        private Button adsGatchaBtn;
 
         [FoldoutGroup("Parent"), SerializeField]
         private Transform luckyWheelParent;
@@ -48,8 +52,10 @@ namespace Assets.Scripts.UI.Shop
         [FoldoutGroup("Prefabs"), SerializeField]
         private GroupShopElement groupElement;
 
-        [FoldoutGroup("Camera"), SerializeField]
+        [FoldoutGroup("Component"), SerializeField]
         private Camera mainCam;
+        [FoldoutGroup("Bask"), SerializeField]
+        private Bask bask;
 
         private List<GroupShopElement> ballGroups = new List<GroupShopElement>();
         private List<GroupShopElement> themeGroups = new List<GroupShopElement>();
@@ -74,9 +80,9 @@ namespace Assets.Scripts.UI.Shop
             LoadWall();
 
             center = luckyWheelParent.parent.parent.position;
-            left = mainCam.ViewportToWorldPoint(new Vector3(-0.5f,0.5f, 0));
+            left = mainCam.ViewportToWorldPoint(new Vector3(-0.5f, 0.5f, 0));
             left = new Vector3(left.x, center.y, center.z);
-            right = mainCam.ViewportToWorldPoint(new Vector3(1.5f, 0.5f,center.z));
+            right = mainCam.ViewportToWorldPoint(new Vector3(1.5f, 0.5f, center.z));
             right = new Vector3(right.x, center.y, center.z);
             index = 0;
             luckyWheelParent.parent.parent.position = center;
@@ -89,8 +95,11 @@ namespace Assets.Scripts.UI.Shop
 
         public override void LoadData()
         {
-            Time.timeScale = 0;
+            bask.Init();
+            //Time.timeScale = 0;
             closeBtn.onClick.AddListener(() => CloseButton());
+            coinGatchaBtn.onClick.AddListener(() => CoinGatchaButton());
+            adsGatchaBtn.onClick.AddListener(() => AdsGatchaButton());
             //CommonTabSwitchButton.OnSelectDone += OnTabSelected;
             luckyWheelBtn.OnClickDone += LuckyWhellButton;
             ballBtn.OnClickDone += BallButton;
@@ -113,6 +122,26 @@ namespace Assets.Scripts.UI.Shop
             //OnTabSelected();
         }
 
+        private void AdsGatchaButton()
+        {
+            GameManager.Instance.ShowAdsReward(Helper.Gatcha_Placement, () =>
+            {
+                Gatcha();
+            });
+        }
+        private void CoinGatchaButton()
+        {
+            if (DataManager.Instance.Coins >= 500)
+            {
+                Gatcha();
+                DataManager.Instance.AddCoins(-500);
+            }
+        }
+        private void Gatcha()
+        {
+            bask.gameObject.SetActive(true);
+        }
+
         private void CloseButton()
         {
             Close();
@@ -127,7 +156,7 @@ namespace Assets.Scripts.UI.Shop
             trailParent.gameObject.SetActive(trailBtn.status);
             wallParent.gameObject.SetActive(wallBtn.status);
 
-            
+
         }
 
         private void WallButton()
@@ -135,7 +164,7 @@ namespace Assets.Scripts.UI.Shop
             if (index == 5) return;
 
             label.text = "Wall";
-            currentTab.DOMove(index <5  ? left : right, timeAni).SetUpdate(true);
+            currentTab.DOMove(index < 5 ? left : right, timeAni).SetUpdate(true);
             UpdateWall();
             wallParent.parent.parent.position = index < 5 ? right : left;
             wallParent.parent.parent.DOMove(center, timeAni).SetUpdate(true);
@@ -157,7 +186,7 @@ namespace Assets.Scripts.UI.Shop
                 wallGroups[i].LoadGroup();
             }
         }
-        private void UpdateWall()
+        public void UpdateWall()
         {
             int length = wallGroups.Count;
 
@@ -173,7 +202,7 @@ namespace Assets.Scripts.UI.Shop
             currentTab.DOMove(index < 4 ? left : right, timeAni).SetUpdate(true);
 
             UpdateTrail();
-            trailParent.parent.parent.position = index <4 ? right : left;
+            trailParent.parent.parent.position = index < 4 ? right : left;
             trailParent.parent.parent.DOMove(center, timeAni).SetUpdate(true);
             currentTab = trailParent.parent.parent;
             index = 4;
@@ -194,7 +223,7 @@ namespace Assets.Scripts.UI.Shop
                 trailGroups[i].LoadGroup();
             }
         }
-        private void UpdateTrail()
+        public void UpdateTrail()
         {
             int length = trailGroups.Count;
 
@@ -230,7 +259,7 @@ namespace Assets.Scripts.UI.Shop
                 pinGroups[i].LoadGroup();
             }
         }
-        private void UpdatePin()
+        public void UpdatePin()
         {
             int length = pinGroups.Count;
 
@@ -243,7 +272,7 @@ namespace Assets.Scripts.UI.Shop
         {
             if (index == 2) return;
             label.text = "Theme";
-            currentTab.DOMove(index < 2? left : right, timeAni).SetUpdate(true);
+            currentTab.DOMove(index < 2 ? left : right, timeAni).SetUpdate(true);
             UpdateTheme();
             themeParent.parent.parent.position = index > 2 ? left : right;
             themeParent.parent.parent.DOMove(center, timeAni).SetUpdate(true);
@@ -267,7 +296,7 @@ namespace Assets.Scripts.UI.Shop
             }
 
         }
-        private void UpdateTheme()
+        public void UpdateTheme()
         {
             int length = themeGroups.Count;
 
@@ -304,7 +333,7 @@ namespace Assets.Scripts.UI.Shop
                 ballGroups[i].LoadGroup();
             }
         }
-        private void UpdateBall()
+        public void UpdateBall()
         {
             int length = ballGroups.Count;
 
@@ -316,10 +345,11 @@ namespace Assets.Scripts.UI.Shop
 
         private void LuckyWhellButton()
         {
+            bask.Init();
             if (index == 0) return;
             label.text = "Lucky Wheel";
             currentTab.DOMove(index < 0 ? left : right, timeAni).SetUpdate(true);
-            
+
             luckyWheelParent.parent.parent.position = index > 0 ? left : right;
             luckyWheelParent.parent.parent.DOMove(center, timeAni).SetUpdate(true);
             currentTab = luckyWheelParent.parent.parent;

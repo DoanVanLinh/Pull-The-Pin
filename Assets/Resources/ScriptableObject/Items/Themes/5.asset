@@ -24,4 +24,8 @@ MonoBehaviour:
   bodyPinTexture: {fileID: 0}
   themeBG: {fileID: 21300000, guid: 1e04987d6a463184bb5cea853601987b, type: 3}
   wallColor: {r: 1, g: 1, b: 1, a: 1}
+  colliderBuck: {fileID: -191150281361116541, guid: c248666ff56ab4f4ea5acc7945d1c18d, type: 3}
+  headBuck: {fileID: -5846019916611238758, guid: c248666ff56ab4f4ea5acc7945d1c18d, type: 3}
+  bodyBuck: {fileID: 3368488659378706901, guid: c248666ff56ab4f4ea5acc7945d1c18d, type: 3}
+  buckTexture: {fileID: 2800000, guid: 3fcf5b3ceacd51f498bd0facfc0ec634, type: 3}
   wallTexture: {fileID: 0}

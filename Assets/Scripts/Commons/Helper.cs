@@ -66,6 +66,7 @@ public static class Helper
     public static string Int_Capping_Placement = "CappingInt";
     public static string Fail_Challenge_Placement = "FailChallenge";
     public static string Play_Again_Challenge_Placement = "PlayAgainChallenge";
+    public static string Gatcha_Placement = "Gatcha";
     #endregion
 
 

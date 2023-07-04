@@ -33,6 +33,14 @@ namespace Assets.Scripts.Data
         public Sprite themeBG;
         [ShowIf("itemType", EItemType.Theme)]
         public Color wallColor;
+        [ShowIf("itemType", EItemType.Theme)]
+        public Mesh colliderBuck;
+        [ShowIf("itemType", EItemType.Theme)]
+        public Mesh headBuck;
+        [ShowIf("itemType", EItemType.Theme)]
+        public Mesh bodyBuck;
+        [ShowIf("itemType", EItemType.Theme)]
+        public Texture buckTexture;
 
         [ShowIf("itemType", EItemType.Wall)]
         public Sprite wallTexture;

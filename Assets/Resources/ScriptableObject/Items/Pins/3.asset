@@ -13,13 +13,15 @@ MonoBehaviour:
   m_Name: 3
   m_EditorClassIdentifier: 
   itemType: 2
-  icon: {fileID: 21300000, guid: 5ca2b04418806be49924528ee718d899, type: 3}
+  icon: {fileID: 21300000, guid: bdf707d8e63555945a367202c897060a, type: 3}
   itemUnlockType: 2
   value: 0
   ballMesh: {fileID: 0}
   ballTexture: []
-  headPin: {fileID: 0}
-  headPinTexture: {fileID: 0}
-  bodyPin: {fileID: 0}
-  themeTexture: {fileID: 0}
+  headPin: {fileID: -8397660239470689030, guid: 6e69ee05a374e544480e21fddd0604da, type: 3}
+  headPinTexture: {fileID: 2800000, guid: d55e7d4d4b622394e95205315ec3cb51, type: 3}
+  bodyPin: {fileID: 2534964839176971238, guid: 6e69ee05a374e544480e21fddd0604da, type: 3}
+  bodyPinTexture: {fileID: 2800000, guid: d55e7d4d4b622394e95205315ec3cb51, type: 3}
+  themeBG: {fileID: 0}
+  wallColor: {r: 0, g: 0, b: 0, a: 0}
   wallTexture: {fileID: 0}

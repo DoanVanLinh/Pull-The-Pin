@@ -67,6 +67,9 @@ public class GameManager : SerializedMonoBehaviour
 
     public State currentStage;
     public ChallengeLevel currentChallenge;
+
+    public GameObject victory1;
+    public GameObject victory2;
     private int countStageTutorial;
     private int stageIndex => DataManager.Instance.CurrentStage < stage.Count ?
                                 DataManager.Instance.CurrentStage :
@@ -170,6 +173,9 @@ public class GameManager : SerializedMonoBehaviour
                 currentStage.StartState(DataManager.Instance.CurrentLevel);
                 break;
             case GameState.Win:
+                victory1.SetActive(true);
+                victory2.SetActive(true);
+
                 if (currentGameState == GameState.NormalMode)
                     StartCoroutine(IEDelay(delay, delegate
                     {

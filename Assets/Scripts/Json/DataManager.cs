@@ -187,6 +187,7 @@ public class DataManager : MonoBehaviour
     {
         CurrentThemeVisual = id;
         Wall.OnUpdateVisual?.Invoke();
+        Buck.OnVisualUpdate?.Invoke();
         CPlayerPrefs.SetString(Helper.Current_Theme_Visual_Key, CurrentThemeVisual);
     }
     public void SetCurrentPin(string id)

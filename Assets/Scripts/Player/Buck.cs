@@ -7,6 +7,8 @@ using Sirenix.OdinInspector;
 using Assets.Scripts.UI.Lose;
 using Assets.Scripts.UI.Play;
 using Assets.Scripts.UI.Puzzle;
+using System;
+using Random = UnityEngine.Random;
 
 public class Buck : MonoBehaviour
 {
@@ -18,6 +20,21 @@ public class Buck : MonoBehaviour
     public Transform visual;
     private bool hasPiece;
     private bool complete;
+
+    public static Action OnVisualUpdate;
+
+    [FoldoutGroup("Visual"), SerializeField]
+    protected MeshFilter colliderMesh;
+    [FoldoutGroup("Visual"), SerializeField]
+    protected MeshCollider coll;
+    [FoldoutGroup("Visual"), SerializeField]
+    protected MeshFilter headMesh;
+    [FoldoutGroup("Visual"), SerializeField]
+    protected MeshFilter bodyMesh;
+    [FoldoutGroup("Visual"), SerializeField]
+    protected Material headMaterial;
+    [FoldoutGroup("Visual"), SerializeField]
+    protected Material bodyMaterial;
     public void Init(Level owner, bool hasPiece)
     {
         this.owner = owner;
@@ -28,8 +45,19 @@ public class Buck : MonoBehaviour
         complete = false;
         this.hasPiece = hasPiece;
         piece.gameObject.SetActive(hasPiece);
+        OnVisualUpdate += OnThemeChange;
     }
 
+    private void OnThemeChange()
+    {
+        colliderMesh.mesh = GameManager.Instance.currentTheme.colliderBuck;
+        coll.sharedMesh = GameManager.Instance.currentTheme.colliderBuck;
+        headMesh.mesh = GameManager.Instance.currentTheme.headBuck;
+        bodyMesh.mesh = GameManager.Instance.currentTheme.colliderBuck;
+
+        headMaterial.SetTexture("_MainTex", GameManager.Instance.currentPin.buckTexture);
+        bodyMaterial.SetTexture("_MainTex", GameManager.Instance.currentPin.buckTexture);
+    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -42,7 +70,7 @@ public class Buck : MonoBehaviour
         {
             //currentPercent += owner.percentPerBall;
             currentPercent += 1;
-            currentPercentTxt.text = Mathf.RoundToInt((currentPercent / owner.amountBall)*100f) + "%";
+            currentPercentTxt.text = Mathf.RoundToInt((currentPercent / owner.amountBall) * 100f) + "%";
             visual.transform.DOLocalMove(defaultLoc + Vector3.down * (currentPercent / owner.amountBall) * 2f, 1f);
             if (currentPercent == owner.amountBall)
             {
@@ -101,5 +129,7 @@ public class Buck : MonoBehaviour
     private void OnDestroy()
     {
         visual.transform.DOKill();
+        OnVisualUpdate -= OnThemeChange;
+
     }
 }
