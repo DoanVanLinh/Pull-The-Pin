@@ -4,7 +4,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 public class Pin : MonoBehaviour
 {
     public static Action OnVisualUpdate;
@@ -24,12 +23,26 @@ public class Pin : MonoBehaviour
     [FoldoutGroup("Material"), SerializeField]
     protected Material bodyMaterial;
 
+    public Outline outline1;
+    public Outline outline2;
     protected virtual void Awake()
     {
         defaultLoc = transform.localPosition;
         targetLoc = transform.localPosition + transform.up * 50;
         UpdateVisual();
         OnVisualUpdate += UpdateVisual;
+
+        Color cacheColor = outline1.OutlineColor;
+        outline1.OutlineColor = new Color(cacheColor.r, cacheColor.g, cacheColor.b, 0);
+        outline2.OutlineColor = new Color(cacheColor.r, cacheColor.g, cacheColor.b, 0);
+
+        DOTween.To(() => outline1.OutlineColor, x => outline1.OutlineColor = x, cacheColor, 1f)
+            .SetEase(Ease.Linear)
+                .SetLoops(6, LoopType.Yoyo);
+
+        DOTween.To(() => outline2.OutlineColor, x => outline2.OutlineColor = x, cacheColor, 1f)
+           .SetEase(Ease.Linear)
+               .SetLoops(6, LoopType.Yoyo);
     }
 
     public void UpdateVisual()
@@ -51,6 +64,7 @@ public class Pin : MonoBehaviour
     {
         canTouch = true;
         transform.localPosition = defaultLoc;
+
     }
     protected virtual void OnPlayerTouchOn()
     {

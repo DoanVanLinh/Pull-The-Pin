@@ -55,7 +55,7 @@ namespace Assets.Scripts.UI.Shop
         [FoldoutGroup("Component"), SerializeField]
         private Camera mainCam;
         [FoldoutGroup("Bask"), SerializeField]
-        private Bask bask;
+        public Bask bask;
 
         private List<GroupShopElement> ballGroups = new List<GroupShopElement>();
         private List<GroupShopElement> themeGroups = new List<GroupShopElement>();

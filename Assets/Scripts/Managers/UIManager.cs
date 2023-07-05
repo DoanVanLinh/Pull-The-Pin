@@ -73,5 +73,6 @@ public class UIManager : MonoBehaviour
     public BaseUI rewardRecivePanel;
     public BaseUI streakPanel;
     public BaseUI streakRewardPanel;
+    public BaseUI gatchaRewardPanel;
     public UINotification notification;
 }

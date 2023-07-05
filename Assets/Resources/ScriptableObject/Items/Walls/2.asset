@@ -24,4 +24,9 @@ MonoBehaviour:
   bodyPinTexture: {fileID: 0}
   themeBG: {fileID: 0}
   wallColor: {r: 0, g: 0, b: 0, a: 0}
-  wallTexture: {fileID: 21300000, guid: d3759faa46944b540879cc8610d3be90, type: 3}
+  colliderBuck: {fileID: 0}
+  headBuck: {fileID: 0}
+  bodyBuck: {fileID: 0}
+  headBuckMaterial: {fileID: 0}
+  bodyBuckMaterial: {fileID: 0}
+  wallTexture: {fileID: 21300000, guid: 017d10cd655c1864a80b4fb070cc210b, type: 3}

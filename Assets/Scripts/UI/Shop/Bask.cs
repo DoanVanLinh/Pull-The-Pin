@@ -25,9 +25,9 @@ namespace Assets.Scripts.UI.Shop
         }
         public void OnBreak()
         {
-            Break();
+            StartCoroutine(Break());
         }
-        private void Break()
+        private IEnumerator Break()
         {
             ani.enabled = false;
             int length = unicornPieceVisual.Count;
@@ -39,11 +39,13 @@ namespace Assets.Scripts.UI.Shop
             }
             unicornVisual.gameObject.SetActive(false);
 
+            yield return new WaitForSeconds(1f);
+
             float randomReward = Random.Range(-1f, 1f);
             int coins = Random.Range(100, 1000);
             if (randomReward > 0)//coin
             {
-                ((RewardRecivePanel)UIManager.Instance.rewardRecivePanel).Init(ERewardType.Coins, coins, () => DataManager.Instance.AddCoins(coins));
+                ((GatchaRewardPanel)UIManager.Instance.gatchaRewardPanel).Init(ERewardType.Coins, coins);
             }
             else
             {
@@ -51,11 +53,11 @@ namespace Assets.Scripts.UI.Shop
 
                 if (!string.IsNullOrEmpty(id))//item
                 {
-                    ((RewardRecivePanel)UIManager.Instance.rewardRecivePanel).Init(ERewardType.Item, coins, null, id);
+                    ((GatchaRewardPanel)UIManager.Instance.gatchaRewardPanel).Init(ERewardType.Item, coins, id);
                     DataManager.Instance.GetData().AddItem(id);
                 }
                 else//coin
-                    ((RewardRecivePanel)UIManager.Instance.rewardRecivePanel).Init(ERewardType.Coins, coins, () => DataManager.Instance.AddCoins(coins));
+                    ((GatchaRewardPanel)UIManager.Instance.gatchaRewardPanel).Init(ERewardType.Coins, coins);
             }
         }
 

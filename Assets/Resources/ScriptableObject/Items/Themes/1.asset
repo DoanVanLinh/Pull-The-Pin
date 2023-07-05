@@ -23,7 +23,7 @@ MonoBehaviour:
   bodyPin: {fileID: 0}
   bodyPinTexture: {fileID: 0}
   themeBG: {fileID: 21300000, guid: eb31f8c0424836c4d8020694685b833e, type: 3}
-  wallColor: {r: 1, g: 1, b: 1, a: 1}
+  wallColor: {r: 0.69803923, g: 0.5254902, b: 0.6392157, a: 1}
   colliderBuck: {fileID: 333919060745432309, guid: 60195579452df914cbdeac2c1cbd1da5, type: 3}
   headBuck: {fileID: -5846019916611238758, guid: 60195579452df914cbdeac2c1cbd1da5, type: 3}
   bodyBuck: {fileID: 1333376136001306794, guid: 60195579452df914cbdeac2c1cbd1da5, type: 3}
