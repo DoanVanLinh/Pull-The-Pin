@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: 7
   m_EditorClassIdentifier: 
   itemType: 1
-  icon: {fileID: 21300000, guid: dea216c316d8d334d8be64361b01d2b4, type: 3}
-  itemUnlockType: 3
+  icon: {fileID: 21300000, guid: 534e43874c7e9bc49b40dc2d3afeef12, type: 3}
+  itemUnlockType: 4
   value: 0
   ballMesh: {fileID: 0}
   ballTexture: []
@@ -24,8 +24,9 @@ MonoBehaviour:
   bodyPinTexture: {fileID: 0}
   themeBG: {fileID: 21300000, guid: cf2d3de1fafea7445b30917a2f068ae1, type: 3}
   wallColor: {r: 1, g: 1, b: 1, a: 1}
-  colliderBuck: {fileID: 0}
-  headBuck: {fileID: 0}
-  bodyBuck: {fileID: 0}
-  buckTexture: {fileID: 2800000, guid: 3fcf5b3ceacd51f498bd0facfc0ec634, type: 3}
+  colliderBuck: {fileID: -191150281361116541, guid: 93d8317872f869043a39812f3b942f87, type: 3}
+  headBuck: {fileID: -7697351780799930775, guid: 93d8317872f869043a39812f3b942f87, type: 3}
+  bodyBuck: {fileID: -6990292317992972733, guid: 93d8317872f869043a39812f3b942f87, type: 3}
+  headBuckMaterial: {fileID: 2100000, guid: 49996ae024e296d4c98ff80ae7304140, type: 2}
+  bodyBuckMaterial: {fileID: 2100000, guid: 49996ae024e296d4c98ff80ae7304140, type: 2}
   wallTexture: {fileID: 0}

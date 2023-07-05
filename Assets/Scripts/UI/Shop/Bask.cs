@@ -1,4 +1,6 @@
-﻿using System.Collections;
+﻿using Assets.Scripts.UI.RewardRecive;
+using Assets.Scripts.UI.Streak;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -25,11 +27,6 @@ namespace Assets.Scripts.UI.Shop
         {
             Break();
         }
-        private void Update()
-        {
-            if (Input.GetKeyDown(KeyCode.Space))
-                Break();
-        }
         private void Break()
         {
             ani.enabled = false;
@@ -38,10 +35,28 @@ namespace Assets.Scripts.UI.Shop
             {
                 unicornPieceVisual[i].isKinematic = false;
 
-                unicornPieceVisual[i].AddExplosionForce(1500, unicornVisual.transform.position,10);
+                unicornPieceVisual[i].AddExplosionForce(1500, unicornVisual.transform.position, 10);
             }
             unicornVisual.gameObject.SetActive(false);
-            
+
+            float randomReward = Random.Range(-1f, 1f);
+            int coins = Random.Range(100, 1000);
+            if (randomReward > 0)//coin
+            {
+                ((RewardRecivePanel)UIManager.Instance.rewardRecivePanel).Init(ERewardType.Coins, coins, () => DataManager.Instance.AddCoins(coins));
+            }
+            else
+            {
+                string id = GameManager.Instance.GetRandomItemByType(EItemUnlockType.LuckyWheel);
+
+                if (!string.IsNullOrEmpty(id))//item
+                {
+                    ((RewardRecivePanel)UIManager.Instance.rewardRecivePanel).Init(ERewardType.Item, coins, null, id);
+                    DataManager.Instance.GetData().AddItem(id);
+                }
+                else//coin
+                    ((RewardRecivePanel)UIManager.Instance.rewardRecivePanel).Init(ERewardType.Coins, coins, () => DataManager.Instance.AddCoins(coins));
+            }
         }
 
 #if UNITY_EDITOR

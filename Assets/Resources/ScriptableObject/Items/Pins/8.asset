@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6754e9054c7ae842b158dd509ea4544, type: 3}
+  m_Name: 8
+  m_EditorClassIdentifier: 
+  itemType: 2
+  icon: {fileID: 21300000, guid: f14a47776edc40b4c92c95be444ec82e, type: 3}
+  itemUnlockType: 3
+  value: 0
+  ballMesh: {fileID: 0}
+  ballTexture: []
+  headPin: {fileID: 7116845592555322686, guid: 65f028e5ffca9394ab392a67e59a9acc, type: 3}
+  headPinTexture: {fileID: 2800000, guid: 84b0e9bcbd9fc774fb945f87c4dc5ca3, type: 3}
+  bodyPin: {fileID: 2534964839176971238, guid: 65f028e5ffca9394ab392a67e59a9acc, type: 3}
+  bodyPinTexture: {fileID: 2800000, guid: 84b0e9bcbd9fc774fb945f87c4dc5ca3, type: 3}
+  themeBG: {fileID: 0}
+  wallColor: {r: 0, g: 0, b: 0, a: 0}
+  colliderBuck: {fileID: 0}
+  headBuck: {fileID: 0}
+  bodyBuck: {fileID: 0}
+  headBuckMaterial: {fileID: 0}
+  bodyBuckMaterial: {fileID: 0}
+  wallTexture: {fileID: 0}

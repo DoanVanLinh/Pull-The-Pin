@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: 9
   m_EditorClassIdentifier: 
   itemType: 1
-  icon: {fileID: 21300000, guid: dea216c316d8d334d8be64361b01d2b4, type: 3}
-  itemUnlockType: 3
+  icon: {fileID: 21300000, guid: f9e56e4f99e367d47884deedba8b5d54, type: 3}
+  itemUnlockType: 4
   value: 0
   ballMesh: {fileID: 0}
   ballTexture: []
@@ -27,5 +27,6 @@ MonoBehaviour:
   colliderBuck: {fileID: -191150281361116541, guid: ff6139106a8a73149b654096d80158aa, type: 3}
   headBuck: {fileID: -4806891733080773102, guid: ff6139106a8a73149b654096d80158aa, type: 3}
   bodyBuck: {fileID: -9114703323446395147, guid: ff6139106a8a73149b654096d80158aa, type: 3}
-  buckTexture: {fileID: 2800000, guid: 3fcf5b3ceacd51f498bd0facfc0ec634, type: 3}
+  headBuckMaterial: {fileID: 2100000, guid: 49996ae024e296d4c98ff80ae7304140, type: 2}
+  bodyBuckMaterial: {fileID: 2100000, guid: 49996ae024e296d4c98ff80ae7304140, type: 2}
   wallTexture: {fileID: 0}

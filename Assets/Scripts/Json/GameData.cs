@@ -30,15 +30,10 @@ public class GameData
         void InitShop()
         {
             AddItem("Ball1");
-            AddItem("Ball2");
-            AddItem("Theme1");
-            AddItem("Theme2");
+            AddItem("Theme0");
             AddItem("Pin1");
-            AddItem("Pin2");
             AddItem("Trail1");
-            AddItem("Trail2");
             AddItem("Wall1");
-            AddItem("Wall2");
         }
         void InitDailyMissionGift()
         {

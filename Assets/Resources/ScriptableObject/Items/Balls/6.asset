@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemType: 0
   icon: {fileID: 21300000, guid: 4f2d3fbd744e4904fb610b61f145952c, type: 3}
-  itemUnlockType: 2
+  itemUnlockType: 3
   value: 0
   ballMesh: {fileID: -7977380389902416908, guid: d926208185af69b44950ac4a7990abcf, type: 3}
   ballTexture:
@@ -25,4 +25,9 @@ MonoBehaviour:
   bodyPinTexture: {fileID: 0}
   themeBG: {fileID: 0}
   wallColor: {r: 0, g: 0, b: 0, a: 0}
+  colliderBuck: {fileID: 0}
+  headBuck: {fileID: 0}
+  bodyBuck: {fileID: 0}
+  headBuckMaterial: {fileID: 0}
+  bodyBuckMaterial: {fileID: 0}
   wallTexture: {fileID: 0}

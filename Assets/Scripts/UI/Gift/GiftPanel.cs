@@ -23,10 +23,15 @@ namespace Assets.Scripts.UI.Gift
         public Button closeBtn;
 
         public Image adsIcon;
+        public GameObject coinObj;
+        public Image itemObj;
+
         public override void LoadData()
         {
             openBtn.gameObject.SetActive(true);
             closeBtn.gameObject.SetActive(true);
+            coinObj.SetActive(true);
+            itemObj.gameObject.SetActive(false);
 
             amountCoins = Random.Range(600, 1000);
 
@@ -48,8 +53,7 @@ namespace Assets.Scripts.UI.Gift
         {
             if (!DataManager.Instance.HasKey(Helper.First_Gift_Key))
             {
-                DataManager.Instance.SetInt(Helper.First_Gift_Key, 1);
-                OpenGift();
+                OpenGift(true);
             }
             else
             {
@@ -59,7 +63,7 @@ namespace Assets.Scripts.UI.Gift
                  });
             }
 
-            void OpenGift()
+            void OpenGift(bool isFirstTime = false)
             {
                 openBtn.interactable = false;
                 open2Btn.interactable = false;
@@ -68,7 +72,11 @@ namespace Assets.Scripts.UI.Gift
                 closeBtn.gameObject.SetActive(false);
 
                 giftAni.Play("Open");
-                StartCoroutine(IEOpen());
+                if (!isFirstTime)
+                    StartCoroutine(IEOpen());
+                else
+                    StartCoroutine(IEFirstOpen());
+
             }
         }
         public override void Open()
@@ -81,8 +89,51 @@ namespace Assets.Scripts.UI.Gift
         IEnumerator IEOpen()
         {
             yield return new WaitForSeconds(1.5f);
-            UIManager.Instance.currentcyPanel.Open();
-            ((ResourceRecivePanel)UIManager.Instance.resorceRecivePanel).CoinsRecive(transform.position, () => panelAni.Play("Close"));
+
+            float randomGift = Random.Range(-1f, 1f);
+
+            if(randomGift>0)//coins
+            {
+                coinObj.SetActive(true);
+                itemObj.gameObject.SetActive(false);
+                UIManager.Instance.currentcyPanel.Open();
+                DataManager.Instance.AddCoins(1000);
+                ((ResourceRecivePanel)UIManager.Instance.resorceRecivePanel).CoinsRecive(transform.position, () => panelAni.Play("Close"));
+            }
+            else
+            {
+                string id = GameManager.Instance.GetRandomItemByType(EItemUnlockType.GiftBox);
+
+                if (!string.IsNullOrEmpty(id))
+                {
+                    coinObj.SetActive(false);
+                    itemObj.gameObject.SetActive(true);
+                    itemObj.sprite = GameManager.Instance.themeData[id].icon;
+                    DataManager.Instance.GetData().AddItem(id);
+                    yield return new WaitForSeconds(1f);
+                    panelAni.Play("Close");
+                }
+                else
+                {
+                    coinObj.SetActive(true);
+                    itemObj.gameObject.SetActive(false);
+                    UIManager.Instance.currentcyPanel.Open();
+                    DataManager.Instance.AddCoins(1000);
+                    ((ResourceRecivePanel)UIManager.Instance.resorceRecivePanel).CoinsRecive(transform.position, () => panelAni.Play("Close"));
+                }
+            }
+
+            
+        }
+        IEnumerator IEFirstOpen()
+        {
+            coinObj.SetActive(false);
+            itemObj.gameObject.SetActive(true);
+            itemObj.sprite = GameManager.Instance.themeData["Theme9"].icon;
+            DataManager.Instance.GetData().AddItem("Theme9");
+            DataManager.Instance.SetCurrentThemeVisual("Theme9");
+            yield return new WaitForSeconds(2.5f);
+            panelAni.Play("Close");
         }
 
         public void CloseButton()

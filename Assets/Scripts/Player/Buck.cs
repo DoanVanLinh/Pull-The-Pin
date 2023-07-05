@@ -32,9 +32,9 @@ public class Buck : MonoBehaviour
     [FoldoutGroup("Visual"), SerializeField]
     protected MeshFilter bodyMesh;
     [FoldoutGroup("Visual"), SerializeField]
-    protected Material headMaterial;
+    protected MeshRenderer headMaterial;
     [FoldoutGroup("Visual"), SerializeField]
-    protected Material bodyMaterial;
+    protected MeshRenderer bodyMaterial;
     public void Init(Level owner, bool hasPiece)
     {
         this.owner = owner;
@@ -45,6 +45,7 @@ public class Buck : MonoBehaviour
         complete = false;
         this.hasPiece = hasPiece;
         piece.gameObject.SetActive(hasPiece);
+        OnThemeChange();
         OnVisualUpdate += OnThemeChange;
     }
 
@@ -53,10 +54,10 @@ public class Buck : MonoBehaviour
         colliderMesh.mesh = GameManager.Instance.currentTheme.colliderBuck;
         coll.sharedMesh = GameManager.Instance.currentTheme.colliderBuck;
         headMesh.mesh = GameManager.Instance.currentTheme.headBuck;
-        bodyMesh.mesh = GameManager.Instance.currentTheme.colliderBuck;
+        bodyMesh.mesh = GameManager.Instance.currentTheme.bodyBuck;
 
-        headMaterial.SetTexture("_MainTex", GameManager.Instance.currentPin.buckTexture);
-        bodyMaterial.SetTexture("_MainTex", GameManager.Instance.currentPin.buckTexture);
+        headMaterial.material = GameManager.Instance.currentTheme.headBuckMaterial;
+        bodyMaterial.material = GameManager.Instance.currentTheme.bodyBuckMaterial;
     }
 
     private void OnTriggerEnter(Collider other)

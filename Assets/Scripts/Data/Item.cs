@@ -40,7 +40,9 @@ namespace Assets.Scripts.Data
         [ShowIf("itemType", EItemType.Theme)]
         public Mesh bodyBuck;
         [ShowIf("itemType", EItemType.Theme)]
-        public Texture buckTexture;
+        public Material headBuckMaterial;
+        [ShowIf("itemType", EItemType.Theme)]
+        public Material bodyBuckMaterial;
 
         [ShowIf("itemType", EItemType.Wall)]
         public Sprite wallTexture;
