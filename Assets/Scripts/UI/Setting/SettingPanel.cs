@@ -22,7 +22,7 @@ namespace Assets.Scripts.UI.Setting
         public override void LoadData()
         {
             transform.position = UIManager.Instance.right;
-            closeButton.onClick.AddListener(delegate { CloseButton(); });
+            closeButton.onClick.AddListener(delegate { SoundManager.Instance.Play("Button Click"); CloseButton(); });
             soundButton.SetStatus(DataManager.Instance.CurrentSoundEffectState == 1);
             //musicButton.SetStatus(DataManager.Instance.CurrentSoundThemeState == 1);
             vibrationButton.SetStatus(DataManager.Instance.CurrentVibrateState == 1);
@@ -35,7 +35,7 @@ namespace Assets.Scripts.UI.Setting
 
         private void OnVibrationChange()
         {
-            DataManager.Instance.SetVibrateState(vibrationButton.status ? 1 : 0);
+            SoundManager.Instance.Play("Button Click"); DataManager.Instance.SetVibrateState(vibrationButton.status ? 1 : 0);
         }
 
         //private void OnMusicChange()
@@ -50,7 +50,7 @@ namespace Assets.Scripts.UI.Setting
 
         private void OnSoundChange()
         {
-            DataManager.Instance.SetSoundEffectState(soundButton.status ? 1 : 0);
+            SoundManager.Instance.Play("Button Click"); DataManager.Instance.SetSoundEffectState(soundButton.status ? 1 : 0);
 
             if (soundButton.status)
                 SoundManager.Instance.Resume(TypeSound.Sfx);

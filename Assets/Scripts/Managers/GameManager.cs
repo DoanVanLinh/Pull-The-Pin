@@ -183,6 +183,8 @@ public class GameManager : SerializedMonoBehaviour
                         {
                             if (DataManager.Instance.CurrentStage > 4)
                                 ((StreakPanel)UIManager.Instance.streakPanel).Open(true);
+
+                            SoundManager.Instance.Play("Win");
                             UIManager.Instance.winPanel.Open();
                         }
                         else

@@ -57,6 +57,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\ScriptableObjects\Sounds.cs" />
+    <Compile Include="Assets\QuickOutline\Scripts\Outline.cs" />
     <Compile Include="Assets\PathCreator\Examples\Scripts\PathSpawner.cs" />
     <Compile Include="Assets\Scripts\CodeStage\AntiCheatToolkit\Examples\Scripts\ObscuredPerformanceTests.cs" />
     <Compile Include="Assets\Scripts\UI\RatePanel.cs" />
@@ -180,6 +181,7 @@
     <Compile Include="Assets\PathCreator\Examples\Scripts\PathFollower.cs" />
     <Compile Include="Assets\Scripts\CodeStage\AntiCheatToolkit\Runtime\Scripts\ObscuredTypes\ObscuredFloat.cs" />
     <Compile Include="Assets\Scripts\UI\Puzzle\PuzzleGroupElement.cs" />
+    <Compile Include="Assets\Scripts\UI\Shop\GatchaRewardPanel.cs" />
     <Compile Include="Assets\Scripts\UI\RewardRecive\RewardRecivePanel.cs" />
     <Compile Include="Assets\Scripts\UI\Home\HomePanel.cs" />
     <Compile Include="Assets\Scripts\Player\DeadZone.cs" />
@@ -189,8 +191,6 @@
     <Compile Include="Assets\Scripts\CodeStage\AntiCheatToolkit\Runtime\Scripts\Detectors\InjectionDetector.cs" />
     <Compile Include="Assets\Scripts\CodeStage\AntiCheatToolkit\Examples\Scripts\InfiniteRotator.cs" />
     <Compile Include="Assets\PathCreator\Examples\Scripts\RoadMeshCreator.cs" />
-    <Compile Include="Assets\QuickOutline\Scripts\Outline.cs" />
-    <Compile Include="Assets\Scripts\UI\Shop\GatchaRewardPanel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
@@ -211,6 +211,7 @@
     <None Include="Assets\TextMesh Pro\Shaders\TMPro_Properties.cginc" />
     <None Include="Assets\QuickOutline\Readme.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro_Surface.cginc" />
+    <None Include="Assets\Commons\SpriteMask.shader" />
     <None Include="Assets\Scripts\CodeStage\AntiCheatToolkit\Integration\readme.txt" />
     <None Include="Assets\Scripts\CodeStage\AntiCheatToolkit\Runtime\Shaders\WallHackTexture.shader" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />

@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b3d4ad5e2dfa76499bc982a3733e17d, type: 3}
+  m_Name: Hippo
+  m_EditorClassIdentifier: 
+  id: Hippo
+  amountReward: 500
+  sprites:
+  - {fileID: -8155102723598979028, guid: b639cedb1f7a17b45baf3ddfd776b526, type: 3}
+  - {fileID: 514522049124175447, guid: b639cedb1f7a17b45baf3ddfd776b526, type: 3}
+  - {fileID: -5736664687958427551, guid: b639cedb1f7a17b45baf3ddfd776b526, type: 3}
+  - {fileID: -3148324859477245709, guid: b639cedb1f7a17b45baf3ddfd776b526, type: 3}
+  - {fileID: -2259748569694358075, guid: b639cedb1f7a17b45baf3ddfd776b526, type: 3}
+  - {fileID: -4191273115342569446, guid: b639cedb1f7a17b45baf3ddfd776b526, type: 3}
+  - {fileID: -1500840325547332061, guid: b639cedb1f7a17b45baf3ddfd776b526, type: 3}
+  - {fileID: -6598246767088915351, guid: b639cedb1f7a17b45baf3ddfd776b526, type: 3}
+  - {fileID: 7188527212752069475, guid: b639cedb1f7a17b45baf3ddfd776b526, type: 3}
+  - {fileID: 6236064929200982945, guid: b639cedb1f7a17b45baf3ddfd776b526, type: 3}
+  - {fileID: 2944378664384458604, guid: ed801ff48410a0942b389d15a0dcd8a1, type: 3}

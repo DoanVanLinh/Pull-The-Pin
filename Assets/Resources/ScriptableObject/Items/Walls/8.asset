@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 8
   m_EditorClassIdentifier: 
   itemType: 4
-  icon: {fileID: 21300000, guid: 082fbbb97bb0477499580c53cdc32311, type: 3}
+  icon: {fileID: 21300000, guid: fd531f6c85ae06b4fb42d099c4c3b698, type: 3}
   itemUnlockType: 3
   value: 0
   ballMesh: {fileID: 0}
@@ -29,4 +29,4 @@ MonoBehaviour:
   bodyBuck: {fileID: 0}
   headBuckMaterial: {fileID: 0}
   bodyBuckMaterial: {fileID: 0}
-  wallTexture: {fileID: 21300000, guid: a7f8570efbff9754da7d3431618a7c5a, type: 3}
+  wallTexture: {fileID: 21300000, guid: d46baf2a56abed34d9cb90bf0a75abef, type: 3}

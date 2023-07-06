@@ -71,6 +71,7 @@ namespace Assets.Scripts.UI.DailyMission
 
         private void ActionButton()
         {
+            SoundManager.Instance.Play("Button Click");
 
             switch (currentDailyMission.currentStatus)
             {

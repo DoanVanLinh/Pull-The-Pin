@@ -49,6 +49,7 @@ namespace Assets.Scripts.UI.Streak
 
             ((ResourceRecivePanel)UIManager.Instance.resorceRecivePanel).CoinsRecive(visual.transform.position, () =>
             {
+                SoundManager.Instance.Play("GetCoins");
                 DataManager.Instance.AddCoins(reward.amount);
             });
         }

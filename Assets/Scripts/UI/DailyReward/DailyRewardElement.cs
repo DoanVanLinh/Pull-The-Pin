@@ -36,6 +36,8 @@ namespace Assets.Scripts.UI.DailyReward
 
         private void ClaimButton()
         {
+            SoundManager.Instance.Play("Button Click");
+
             claimBtn.interactable = false;
 
             switch (type)
@@ -45,6 +47,7 @@ namespace Assets.Scripts.UI.DailyReward
                     ((ResourceRecivePanel)UIManager.Instance.resorceRecivePanel).CoinsRecive(transform.position,
                                    delegate
                                    {
+                                       SoundManager.Instance.Play("GetCoins");
                                        ((DailyRewardPanel)UIManager.Instance.dailyRewardPanel).CloseButton();
                                        UIManager.Instance.currentcyPanel.Close();
                                    });

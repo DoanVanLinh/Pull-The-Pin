@@ -44,6 +44,7 @@ namespace Assets.Scripts.UI.Challenge
         }
         private void ActionButton()
         {
+            SoundManager.Instance.Play("Button Click");
             switch (data.type)
             {
                 case EChalengeType.Lock:

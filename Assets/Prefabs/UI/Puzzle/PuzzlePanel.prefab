@@ -522,8 +522,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Landscapes
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8e0a8644808a743449fb98c1331a0900, type: 2}
-  m_sharedMaterial: {fileID: -3040038555836245752, guid: 8e0a8644808a743449fb98c1331a0900, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: e21d4c42d3b20e244835df8762f6ac23, type: 2}
+  m_sharedMaterial: {fileID: 6045729248650932482, guid: e21d4c42d3b20e244835df8762f6ac23, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

@@ -26,6 +26,8 @@ namespace Assets.Scripts.UI.DailyMission
 
         private void CollectButton()
         {
+            SoundManager.Instance.Play("Button Click");
+
             string idItem = "";
             switch (currentData.status)
             {

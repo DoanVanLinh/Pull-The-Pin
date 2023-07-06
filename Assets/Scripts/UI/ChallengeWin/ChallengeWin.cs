@@ -26,11 +26,14 @@ namespace Assets.Scripts.UI.ChallengeWin
         }
         private void ContinueButton()
         {
+            SoundManager.Instance.Play("Button Click");
+
             UIManager.Instance.currentcyPanel.Open();
 
             ((ResourceRecivePanel)UIManager.Instance.resorceRecivePanel).CoinsRecive(transform.position,
                                    delegate
                                    {
+                                       SoundManager.Instance.Play("GetCoins");
                                        UIManager.Instance.currentcyPanel.Close();
                                        DataManager.Instance.AddCoins(reward);
                                        UIManager.Instance.challegentPanel.Open();

@@ -36,7 +36,7 @@ namespace Assets.Scripts.UI.Gift
             amountCoins = Random.Range(600, 1000);
 
             adsIcon.gameObject.SetActive(DataManager.Instance.HasKey(Helper.First_Gift_Key));
-            closeBtn.gameObject.SetActive(DataManager.Instance.HasKey(Helper.First_Gift_Key));
+            closeBtn.gameObject.SetActive(!DataManager.Instance.HasKey(Helper.First_Gift_Key));
 
             openBtn.interactable = true;
             open2Btn.interactable = true;
@@ -51,9 +51,12 @@ namespace Assets.Scripts.UI.Gift
 
         private void OpenButton()
         {
+            SoundManager.Instance.Play("Button Click");
+
             if (!DataManager.Instance.HasKey(Helper.First_Gift_Key))
             {
                 OpenGift(true);
+                DataManager.Instance.SetInt(Helper.First_Gift_Key, 1);
             }
             else
             {
@@ -98,7 +101,7 @@ namespace Assets.Scripts.UI.Gift
                 itemObj.gameObject.SetActive(false);
                 UIManager.Instance.currentcyPanel.Open();
                 DataManager.Instance.AddCoins(1000);
-                ((ResourceRecivePanel)UIManager.Instance.resorceRecivePanel).CoinsRecive(transform.position, () => panelAni.Play("Close"));
+                ((ResourceRecivePanel)UIManager.Instance.resorceRecivePanel).CoinsRecive(transform.position, () => { SoundManager.Instance.Play("GetCoins"); panelAni.Play("Close"); });
             }
             else
             {
@@ -119,7 +122,7 @@ namespace Assets.Scripts.UI.Gift
                     itemObj.gameObject.SetActive(false);
                     UIManager.Instance.currentcyPanel.Open();
                     DataManager.Instance.AddCoins(1000);
-                    ((ResourceRecivePanel)UIManager.Instance.resorceRecivePanel).CoinsRecive(transform.position, () => panelAni.Play("Close"));
+                    ((ResourceRecivePanel)UIManager.Instance.resorceRecivePanel).CoinsRecive(transform.position, () => {SoundManager.Instance.Play("GetCoins"); panelAni.Play("Close"); });
                 }
             }
 
@@ -138,6 +141,8 @@ namespace Assets.Scripts.UI.Gift
 
         public void CloseButton()
         {
+            SoundManager.Instance.Play("Button Click");
+
             UIManager.Instance.currentcyPanel.Close();
 
             openBtn.interactable = false;

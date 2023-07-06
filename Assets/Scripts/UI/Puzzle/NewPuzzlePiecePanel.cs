@@ -37,6 +37,7 @@ namespace Assets.Scripts.UI.Puzzle
             for (int i = 0; i < 9; i++)
             {
                 pieces[i].UpdateData(data.id + "_" + i, newPiece, () => ShowAll());
+                pieces[i].render.sprite = data.sprites[i];
             }
         }
         private void ShowAll()
@@ -51,6 +52,7 @@ namespace Assets.Scripts.UI.Puzzle
                 ((ResourceRecivePanel)UIManager.Instance.resorceRecivePanel).CoinsRecive(transform.position,
                                    delegate
                                    {
+                                       SoundManager.Instance.Play("GetCoins");
                                        DataManager.Instance.AddCoins(data.amountReward);
                                    });
 
@@ -62,8 +64,8 @@ namespace Assets.Scripts.UI.Puzzle
         }
         public override void LoadData()
         {
-            closeBtn.onClick.AddListener(delegate { CloseButton(); });
-            anotherPuzzleBtn.onClick.AddListener(delegate { AnotherPuzzleButton(); });
+            closeBtn.onClick.AddListener(delegate { SoundManager.Instance.Play("Button Click"); CloseButton(); });
+            anotherPuzzleBtn.onClick.AddListener(delegate { SoundManager.Instance.Play("Button Click"); AnotherPuzzleButton(); });
             ani.Play("Open");
         }
 

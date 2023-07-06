@@ -90,6 +90,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 
+  render: {fileID: 8263779777210299012}
 --- !u!1 &879691582291368867
 GameObject:
   m_ObjectHideFlags: 0
@@ -180,6 +181,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 
+  render: {fileID: 6140902600781632570}
 --- !u!1 &1049510159711955869
 GameObject:
   m_ObjectHideFlags: 0
@@ -317,6 +319,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 
+  render: {fileID: 4174716735974225063}
 --- !u!1 &3300491762104335067
 GameObject:
   m_ObjectHideFlags: 0
@@ -407,6 +410,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 
+  render: {fileID: 3255118995670613409}
 --- !u!1 &3691218748956126750
 GameObject:
   m_ObjectHideFlags: 0
@@ -573,6 +577,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 
+  render: {fileID: 1367048877015995004}
 --- !u!1 &4591052117700622686
 GameObject:
   m_ObjectHideFlags: 0
@@ -663,6 +668,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 
+  render: {fileID: 3991929604208752685}
 --- !u!1 &4666329374932931097
 GameObject:
   m_ObjectHideFlags: 0
@@ -731,8 +737,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: New Text
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8e0a8644808a743449fb98c1331a0900, type: 2}
-  m_sharedMaterial: {fileID: -3040038555836245752, guid: 8e0a8644808a743449fb98c1331a0900, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: e21d4c42d3b20e244835df8762f6ac23, type: 2}
+  m_sharedMaterial: {fileID: 6045729248650932482, guid: e21d4c42d3b20e244835df8762f6ac23, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -888,6 +894,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 
+  render: {fileID: 3166963311768471082}
 --- !u!1 &5054589591780520431
 GameObject:
   m_ObjectHideFlags: 0
@@ -1055,6 +1062,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 
+  render: {fileID: 8084586127476134034}
 --- !u!1 &5352377905781489503
 GameObject:
   m_ObjectHideFlags: 0
@@ -1372,3 +1380,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 
+  render: {fileID: 2717067188588525716}

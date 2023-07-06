@@ -52,13 +52,14 @@ namespace Assets.Scripts.UI.Shop
 
         private void OpenButton()
         {
-            closeBtn.interactable = false;
+            SoundManager.Instance.Play("Button Click"); closeBtn.interactable = false;
             switch (type)
             {
                 case ERewardType.Coins:
                     UIManager.Instance.currentcyPanel.Open();
                     ((ResourceRecivePanel)UIManager.Instance.resorceRecivePanel).CoinsRecive(transform.position, () =>
                     {
+                        SoundManager.Instance.Play("GetCoins");
                         DataManager.Instance.AddCoins(amount);
                         CloseButton();
                     });

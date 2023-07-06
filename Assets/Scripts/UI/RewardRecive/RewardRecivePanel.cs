@@ -57,8 +57,8 @@ namespace Assets.Scripts.UI.RewardRecive
 
         public override void LoadData()
         {
-            openBtn.onClick.AddListener(() => OpenButton());
-            closeBtn.onClick.AddListener(() => panelAni.Play("Close"));
+            openBtn.onClick.AddListener(() => { SoundManager.Instance.Play("Button Click"); OpenButton(); });
+            closeBtn.onClick.AddListener(() => { SoundManager.Instance.Play("Button Click"); panelAni.Play("Close"); });
             closeBtn.gameObject.SetActive(false);
             openBtn.gameObject.SetActive(true);
             panelAni.Play("Open");
@@ -78,6 +78,7 @@ namespace Assets.Scripts.UI.RewardRecive
                         UIManager.Instance.currentcyPanel.Open();
                         ((ResourceRecivePanel)UIManager.Instance.resorceRecivePanel).CoinsRecive(transform.position, () =>
                         {
+                            SoundManager.Instance.Play("GetCoins");
                             DataManager.Instance.AddCoins(amount);
 
                             closeBtn.gameObject.SetActive(true);

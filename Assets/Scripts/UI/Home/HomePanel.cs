@@ -42,12 +42,15 @@ namespace Assets.Scripts.UI.Home
 
         private void PlayButton()
         {
+            SoundManager.Instance.Play("Button Click");
+
             Close();
             Time.timeScale = 1;
         }
 
         private void RateButton()
         {
+            SoundManager.Instance.Play("Button Click");
             UIManager.Instance.ratePanel.Open();
         }
         public override void Open()
@@ -61,10 +64,13 @@ namespace Assets.Scripts.UI.Home
         }
         private void NoAdsButton()
         {
+            SoundManager.Instance.Play("Button Click");
+
         }
 
         private void SettingButton()
         {
+            SoundManager.Instance.Play("Button Click");
             UIManager.Instance.settingPanel.Open();
             transform.DOMove(UIManager.Instance.left, 0.25f).SetUpdate(true);
         }

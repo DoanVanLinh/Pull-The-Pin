@@ -23,6 +23,8 @@ namespace Assets.Scripts.UI.ChallengeLose
         }
         private void RetryButton()
         {
+            SoundManager.Instance.Play("Button Click");
+
             GameManager.Instance.ShowAdsReward(Helper.Play_Again_Challenge_Placement, () =>
             {
                 DataManager.Instance.GetData().SetChallengeStatusById(GameManager.Instance.currentChallenge.id, EChalengeType.Play);
@@ -33,6 +35,8 @@ namespace Assets.Scripts.UI.ChallengeLose
 
         private void CloseButton()
         {
+            SoundManager.Instance.Play("Button Click");
+
             ani.Play("Close");
             GameManager.Instance.SetGameState(GameState.NormalMode);
             UIManager.Instance.challegentPanel.Open();

@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b3d4ad5e2dfa76499bc982a3733e17d, type: 3}
+  m_Name: Tiger
+  m_EditorClassIdentifier: 
+  id: Tiger
+  amountReward: 500
+  sprites:
+  - {fileID: -3992336946368452857, guid: df78dde2ac4c64643b70132389b2adf7, type: 3}
+  - {fileID: -8044284903261028998, guid: df78dde2ac4c64643b70132389b2adf7, type: 3}
+  - {fileID: 2153885553113832840, guid: df78dde2ac4c64643b70132389b2adf7, type: 3}
+  - {fileID: -1045339307545749466, guid: df78dde2ac4c64643b70132389b2adf7, type: 3}
+  - {fileID: -6330175923310407350, guid: df78dde2ac4c64643b70132389b2adf7, type: 3}
+  - {fileID: -7321819837309306673, guid: df78dde2ac4c64643b70132389b2adf7, type: 3}
+  - {fileID: -2642074127483731920, guid: df78dde2ac4c64643b70132389b2adf7, type: 3}
+  - {fileID: 373741144545522054, guid: df78dde2ac4c64643b70132389b2adf7, type: 3}
+  - {fileID: 5116925295292174126, guid: df78dde2ac4c64643b70132389b2adf7, type: 3}
+  - {fileID: 5835063434846647408, guid: df78dde2ac4c64643b70132389b2adf7, type: 3}
+  - {fileID: 2944378664384458604, guid: ed801ff48410a0942b389d15a0dcd8a1, type: 3}

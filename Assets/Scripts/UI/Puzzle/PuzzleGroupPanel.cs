@@ -21,7 +21,7 @@ namespace Assets.Scripts.UI.Puzzle
         public override void LoadData()
         {
             Time.timeScale = 0;
-            closeBtn.onClick.AddListener(() => Close());
+            closeBtn.onClick.AddListener(() => { SoundManager.Instance.Play("Button Click"); Close(); });
         }
         public override void SaveData()
         {

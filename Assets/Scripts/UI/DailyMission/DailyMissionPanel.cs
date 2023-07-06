@@ -39,6 +39,8 @@ namespace Assets.Scripts.UI.DailyMission
 
         private void BackButton()
         {
+            SoundManager.Instance.Play("Button Click");
+
             Close();
         }
 

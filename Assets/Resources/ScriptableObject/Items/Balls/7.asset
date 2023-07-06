@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemType: 0
   icon: {fileID: 21300000, guid: 479acc0ecba40694b84e359b849dc062, type: 3}
-  itemUnlockType: 3
+  itemUnlockType: 5
   value: 0
   ballMesh: {fileID: 5535825521801597683, guid: 9347d405ad44ff84abbf5c7b8efb47d6, type: 3}
   ballTexture:

@@ -61,6 +61,7 @@ namespace Assets.Scripts.UI.Streak
 
         private void LoseStreakButton()
         {
+            SoundManager.Instance.Play("Button Click");
             ani.Play("Close");
             DataManager.Instance.SetStreak(0);
         }
@@ -136,6 +137,7 @@ namespace Assets.Scripts.UI.Streak
         }
         private void KeepStreakButton()
         {
+            SoundManager.Instance.Play("Button Click");
             visual.sprite = visuals[DataManager.Instance.CurrentStreak / 5 + 1];
 
             ani.Play("Close");

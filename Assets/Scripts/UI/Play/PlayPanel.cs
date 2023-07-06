@@ -37,13 +37,14 @@ namespace Assets.Scripts.UI.Play
         private TextMeshProUGUI stageTxt;
         public override void LoadData()
         {
-            replayBtn.onClick.AddListener(delegate { ReplayButton(); });
-            dailyMissionBtn.onClick.AddListener(delegate { DailyMissionButton(); });
-            puzzleBtn.onClick.AddListener(delegate { CollectionButton(); });
-            challegentBtn.onClick.AddListener(delegate { ChallegentButton(); });
-            shoptBtn.onClick.AddListener(delegate { ShopButton(); });
-            hometBtn.onClick.AddListener(delegate { HomeButton(); });
-            noadstBtn.onClick.AddListener(delegate { NoadsButton(); });
+            
+            replayBtn.onClick.AddListener(delegate { SoundManager.Instance.Play("Button Click"); ReplayButton(); });
+            dailyMissionBtn.onClick.AddListener(delegate { SoundManager.Instance.Play("Button Click"); DailyMissionButton(); });
+            puzzleBtn.onClick.AddListener(delegate { SoundManager.Instance.Play("Button Click"); CollectionButton(); });
+            challegentBtn.onClick.AddListener(delegate { SoundManager.Instance.Play("Button Click"); ChallegentButton(); });
+            shoptBtn.onClick.AddListener(delegate { SoundManager.Instance.Play("Button Click"); ShopButton(); });
+            hometBtn.onClick.AddListener(delegate { SoundManager.Instance.Play("Button Click"); HomeButton(); });
+            noadstBtn.onClick.AddListener(delegate { SoundManager.Instance.Play("Button Click"); NoadsButton(); });
             UpdateStageText();
 
             GameManager.Instance.SetGameState(GameState.NormalMode);

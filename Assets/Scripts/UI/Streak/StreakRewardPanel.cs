@@ -56,12 +56,14 @@ namespace Assets.Scripts.UI.Streak
 
         private void CloseButton()
         {
+            SoundManager.Instance.Play("Button Click");
             switch (type)
             {
                 case ERewardType.Coins:
                     UIManager.Instance.currentcyPanel.Open();
                     ((ResourceRecivePanel)UIManager.Instance.resorceRecivePanel).CoinsRecive(transform.position, () =>
                     {
+                        SoundManager.Instance.Play("GetCoins");
                         DataManager.Instance.AddCoins(amount);
                         UIManager.Instance.streakPanel.LoadData();
                         panelAni.Play("Close");

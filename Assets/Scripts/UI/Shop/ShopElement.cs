@@ -32,7 +32,7 @@ namespace Assets.Scripts.UI.Shop
         private void OnEnable()
         {
             OnSelected += Chose;
-            choseButton.onClick.AddListener(delegate { ChoseButton(); });
+            choseButton.onClick.AddListener(delegate { SoundManager.Instance.Play("Button Click"); ChoseButton(); });
         }
 
         public void LoadElement(string id)

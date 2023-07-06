@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b3d4ad5e2dfa76499bc982a3733e17d, type: 3}
+  m_Name: Yeti
+  m_EditorClassIdentifier: 
+  id: Yeti
+  amountReward: 500
+  sprites:
+  - {fileID: -4408331067664028834, guid: 5bcb5d93361e5d74fa20c65269a7cf89, type: 3}
+  - {fileID: -1809123414350789285, guid: 5bcb5d93361e5d74fa20c65269a7cf89, type: 3}
+  - {fileID: -2120596354985322941, guid: 5bcb5d93361e5d74fa20c65269a7cf89, type: 3}
+  - {fileID: 1741616154062584646, guid: 5bcb5d93361e5d74fa20c65269a7cf89, type: 3}
+  - {fileID: 1452281184676230866, guid: 5bcb5d93361e5d74fa20c65269a7cf89, type: 3}
+  - {fileID: 8797466978213796832, guid: 5bcb5d93361e5d74fa20c65269a7cf89, type: 3}
+  - {fileID: -6175207784151716505, guid: 5bcb5d93361e5d74fa20c65269a7cf89, type: 3}
+  - {fileID: 5942474663446658, guid: 5bcb5d93361e5d74fa20c65269a7cf89, type: 3}
+  - {fileID: -6944834114479378842, guid: 5bcb5d93361e5d74fa20c65269a7cf89, type: 3}
+  - {fileID: -3634095071502180375, guid: 5bcb5d93361e5d74fa20c65269a7cf89, type: 3}
+  - {fileID: 2944378664384458604, guid: ed801ff48410a0942b389d15a0dcd8a1, type: 3}

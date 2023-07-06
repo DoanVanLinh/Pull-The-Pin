@@ -124,6 +124,7 @@ namespace Assets.Scripts.UI.Shop
 
         private void AdsGatchaButton()
         {
+            SoundManager.Instance.Play("Button Click");
             GameManager.Instance.ShowAdsReward(Helper.Gatcha_Placement, () =>
             {
                 Gatcha();
@@ -131,6 +132,7 @@ namespace Assets.Scripts.UI.Shop
         }
         private void CoinGatchaButton()
         {
+            SoundManager.Instance.Play("Button Click");
             if (DataManager.Instance.Coins >= 500)
             {
                 Gatcha();
@@ -144,19 +146,19 @@ namespace Assets.Scripts.UI.Shop
 
         private void CloseButton()
         {
+            SoundManager.Instance.Play("Button Click");
             Close();
         }
 
         private void OnTabSelected()
         {
+            SoundManager.Instance.Play("Button Click");
             luckyWheelParent.gameObject.SetActive(luckyWheelBtn.status);
             ballParent.gameObject.SetActive(ballBtn.status);
             themeParent.gameObject.SetActive(themeBtn.status);
             pinParent.gameObject.SetActive(pinBtn.status);
             trailParent.gameObject.SetActive(trailBtn.status);
             wallParent.gameObject.SetActive(wallBtn.status);
-
-
         }
 
         private void WallButton()

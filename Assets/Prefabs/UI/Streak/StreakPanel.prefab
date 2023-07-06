@@ -1457,7 +1457,7 @@ MonoBehaviour:
     id: 
   - rewardType: 1
     amount: 900
-    id: Ball2
+    id: Ball7
   - rewardType: 0
     amount: 1000
     id: 
@@ -1472,7 +1472,7 @@ MonoBehaviour:
     id: 
   - rewardType: 1
     amount: 2000
-    id: Trail3
+    id: Trail7
   - rewardType: 3
     amount: 0
     id: 
@@ -1487,7 +1487,7 @@ MonoBehaviour:
     id: 
   - rewardType: 1
     amount: 4000
-    id: Theme3
+    id: Pin14
   visual: {fileID: 8198798649577376567}
   icon: {fileID: 8198798650394102573}
   currentStreakTxt: {fileID: 8198798650222694188}
@@ -2058,6 +2058,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1399058509372922617}
     m_Modifications:
+    - target: {fileID: 1980774316976003191, guid: 70d1ff111ab3800489830e5f4e34b8c9, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 112
+      objectReference: {fileID: 0}
+    - target: {fileID: 1980774316976003191, guid: 70d1ff111ab3800489830e5f4e34b8c9, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 129
+      objectReference: {fileID: 0}
+    - target: {fileID: 1980774316976003191, guid: 70d1ff111ab3800489830e5f4e34b8c9, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1980774318023648346, guid: 70d1ff111ab3800489830e5f4e34b8c9, type: 3}
       propertyPath: m_Name
       value: Element

@@ -29,8 +29,8 @@ namespace Assets.Scripts.UI.Win
             DataManager.Instance.AddCoins(amountCoins);
             coins.text = amountCoins.ToString();
             coinsButton.text = amountCoins.ToString();
-            continuesBtn.onClick.AddListener(delegate { ContinuesButton(); });
-            extraCoinsBtn.onClick.AddListener(delegate { ExtraCoinsButton(); });
+            continuesBtn.onClick.AddListener(delegate { SoundManager.Instance.Play("Button Click"); ContinuesButton(); });
+            extraCoinsBtn.onClick.AddListener(delegate { SoundManager.Instance.Play("Button Click"); ExtraCoinsButton(); });
             gift.Init();
             extra.Init(amountCoins);
             ani.Play("Open");
@@ -48,6 +48,7 @@ namespace Assets.Scripts.UI.Win
                 UIManager.Instance.currentcyPanel.Open();
                 ((ResourceRecivePanel)UIManager.Instance.resorceRecivePanel).CoinsRecive(extraCoinsBtn.transform.position, () =>
                 {
+                                       SoundManager.Instance.Play("GetCoins");
                     ani.Play("Close");
                     UIManager.Instance.currentcyPanel.Close();
 
@@ -68,6 +69,7 @@ namespace Assets.Scripts.UI.Win
             UIManager.Instance.currentcyPanel.Open();
             ((ResourceRecivePanel)UIManager.Instance.resorceRecivePanel).CoinsRecive(continuesBtn.transform.position, () =>
             {
+                                       SoundManager.Instance.Play("GetCoins");
                 ani.Play("Close");
                 UIManager.Instance.currentcyPanel.Close();
 

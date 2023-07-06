@@ -19,7 +19,7 @@ namespace Assets.Scripts.UI.Puzzle
 
         public override void LoadData()
         {
-            backBtn.onClick.AddListener(delegate { Close(); });
+            backBtn.onClick.AddListener(delegate { SoundManager.Instance.Play("Button Click"); Close(); });
             
 
         }

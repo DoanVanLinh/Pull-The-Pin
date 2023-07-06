@@ -95,7 +95,7 @@ public class DataManager : MonoBehaviour
         Key = CPlayerPrefs.GetInt(Helper.Current_Key_Key, 0);
 
         CurrentBall = CPlayerPrefs.GetString(Helper.Current_Ball_Key, "Ball1");
-        CurrentThemeVisual = CPlayerPrefs.GetString(Helper.Current_Theme_Visual_Key, "Theme1");
+        CurrentThemeVisual = CPlayerPrefs.GetString(Helper.Current_Theme_Visual_Key, "Theme0");
         CurrentPin = CPlayerPrefs.GetString(Helper.Current_Pin_Key, "Pin1");
         CurrentTrail = CPlayerPrefs.GetString(Helper.Current_Trail_Key, "Trail1");
         CurrentWall = CPlayerPrefs.GetString(Helper.Current_Wall_Key, "Wall1");

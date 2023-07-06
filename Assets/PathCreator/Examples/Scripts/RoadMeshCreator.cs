@@ -378,7 +378,7 @@ namespace PathCreation.Examples
             #endregion
 
             wallTextureHolder.transform.rotation = transform.rotation;
-            wallTextureHolder.transform.localPosition = transform.localPosition;
+            wallTextureHolder.transform.localPosition = transform.localPosition + Vector3.back * 0.2f;
 
         }
 

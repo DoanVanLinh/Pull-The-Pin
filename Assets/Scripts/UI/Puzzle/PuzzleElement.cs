@@ -20,7 +20,7 @@ namespace Assets.Scripts.UI.Puzzle
 
         private void OnEnable()
         {
-            actionBtn.onClick.AddListener(delegate { ActionButton(); });
+            actionBtn.onClick.AddListener(delegate { SoundManager.Instance.Play("Button Click"); ActionButton(); });
         }
 
         private void ActionButton()
@@ -42,15 +42,20 @@ namespace Assets.Scripts.UI.Puzzle
             for (int i = 0; i < 9; i++)
             {
                 pieces[i].UpdateData(data.id + "_" + i);
+                pieces[i].render.sprite = data.sprites[i];
             }
-            if(DataManager.Instance.GetInt(data.id)==9)
+            if (DataManager.Instance.GetInt(data.id)==9)
             {
                 for (int i = 0; i < 9; i++)
                 {
                     pieces[i].gameObject.SetActive(false);
                 }
                 bg.SetActive(false);
+                completePuzzle.gameObject.SetActive(true);
             }
+            else
+                completePuzzle.gameObject.SetActive(false);
+
         }
 
         private void OnDisable()

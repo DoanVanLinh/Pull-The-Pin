@@ -34,6 +34,7 @@ namespace Assets.Scripts.UI.Puzzle
             for (int i = 0; i < 9; i++)
             {
                 pieces[i].UpdateData(data.id + "_" + i);
+                pieces[i].render.sprite = data.sprites[i];
             }
             if (DataManager.Instance.GetInt(data.id) == 9)
             {
@@ -42,11 +43,15 @@ namespace Assets.Scripts.UI.Puzzle
                     pieces[i].gameObject.SetActive(false);
                 }
                 bg.SetActive(false);
+                completePuzzle.gameObject.SetActive(true);
+
             }
+            else
+                completePuzzle.gameObject.SetActive(false);
         }
         public override void LoadData()
         {
-            closeBtn.onClick.AddListener(delegate { CloseButton(); });
+            closeBtn.onClick.AddListener(delegate { SoundManager.Instance.Play("Button Click"); CloseButton(); });
             ani.Play("Open");
         }
 

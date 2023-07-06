@@ -2,6 +2,7 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Assets.Scripts.UI.Puzzle
 {
@@ -10,7 +11,7 @@ namespace Assets.Scripts.UI.Puzzle
         public string id;
 
         Vector3 defaultLoc;
-
+        public Image render;
         public void UpdateData(string id, string newPiece = "", Action onactionDone = null)
         {
             this.id = id;

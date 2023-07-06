@@ -38,11 +38,15 @@ namespace Assets.Scripts.UI.ChallengePlayPanel
         }
         private void HomeButton()
         {
+            SoundManager.Instance.Play("Button Click");
+
             UIManager.Instance.homePanel.Open();
         }
 
         private void CloseButton()
         {
+            SoundManager.Instance.Play("Button Click");
+
             GameManager.Instance.SetGameState(GameState.NormalMode);
         }
 

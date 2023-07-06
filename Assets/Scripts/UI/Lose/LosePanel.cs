@@ -64,6 +64,7 @@ namespace Assets.Scripts.UI.Lose
 
         private void SkipButton()
         {
+            SoundManager.Instance.Play("Button Click");
             GameManager.Instance.ShowAdsReward(Helper.Skip_Level_Placement, () =>
             {
                 GameManager.Instance.NextLevel();
@@ -74,12 +75,14 @@ namespace Assets.Scripts.UI.Lose
 
         private void ContinuesButton()
         {
+            SoundManager.Instance.Play("Button Click");
             GameManager.Instance.ReplayStage();
             ani.Play("Close");
         }
 
         private void ResumeButton()
         {
+            SoundManager.Instance.Play("Button Click");
             GameManager.Instance.ShowAdsReward(Helper.Resume_Level_Placement, () =>
             {
                 GameManager.Instance.ReplayLevel();

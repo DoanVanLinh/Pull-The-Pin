@@ -16,7 +16,7 @@ namespace Assets.Scripts.UI.Puzzle
 
         private void OnEnable()
         {
-            actionBtn.onClick.AddListener(delegate { OpenGroup(); });
+            actionBtn.onClick.AddListener(delegate { SoundManager.Instance.Play("Button Click"); OpenGroup(); });
         }
 
         private void OpenGroup()

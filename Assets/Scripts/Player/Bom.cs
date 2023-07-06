@@ -24,6 +24,7 @@ public class Bom : MonoBehaviour
     }
     private void Explosion()
     {
+        SoundManager.Instance.Play("BombExploser"); 
         bool isIndanger = false;
         //Danger Color
         colliders = Physics.OverlapSphere(transform.position, dangerExplosion, colorBallLayer);

@@ -26,7 +26,11 @@ namespace Assets.Scripts.UI.Challenge
         public override void LoadData()
         {
             Time.timeScale = 0;
-            closeBtn.onClick.AddListener(() => Close());
+            closeBtn.onClick.AddListener(() => {
+                Close();
+                SoundManager.Instance.Play("Button Click");
+
+            });
             UpdateVisual();
         }
         public void UpdateVisual()

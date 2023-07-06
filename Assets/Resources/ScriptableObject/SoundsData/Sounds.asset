@@ -13,6 +13,12 @@ MonoBehaviour:
   m_Name: Sounds
   m_EditorClassIdentifier: 
   listSounds:
+  - nameSound: BombExploser
+    clip: {fileID: 8300000, guid: 0d1bdc0f019b98546bafda48b415110f, type: 3}
+    playOnAwake: 1
+    loop: 0
+    volume: 1
+    typeSound: 1
   - nameSound: Bubble
     clip: {fileID: 8300000, guid: 4e3c850e47a36874ead0d224b6f8860c, type: 3}
     playOnAwake: 1
@@ -31,8 +37,32 @@ MonoBehaviour:
     loop: 0
     volume: 1
     typeSound: 1
+  - nameSound: Button Click
+    clip: {fileID: 8300000, guid: 8e733abb1f448064fa36f4cf27565f34, type: 3}
+    playOnAwake: 1
+    loop: 0
+    volume: 1
+    typeSound: 1
+  - nameSound: GetCoins
+    clip: {fileID: 8300000, guid: f4074c1341d698440b30cd2974fdfcd5, type: 3}
+    playOnAwake: 1
+    loop: 0
+    volume: 1
+    typeSound: 1
+  - nameSound: Lose
+    clip: {fileID: 8300000, guid: 43e4f3dec15874d42b4b43f2297134e1, type: 3}
+    playOnAwake: 1
+    loop: 0
+    volume: 1
+    typeSound: 1
   - nameSound: Pin
     clip: {fileID: 8300000, guid: 91db7c4936b1e73408bbce6887c01029, type: 3}
+    playOnAwake: 1
+    loop: 0
+    volume: 1
+    typeSound: 1
+  - nameSound: Win
+    clip: {fileID: 8300000, guid: ce5432f485c9a934192e1bad56a0774b, type: 3}
     playOnAwake: 1
     loop: 0
     volume: 1
