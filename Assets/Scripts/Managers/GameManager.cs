@@ -148,7 +148,7 @@ public class GameManager : SerializedMonoBehaviour
         return Resources.LoadAll<ScriptableObject>("Prefabs/Data/" + name)[0];
     }
 
-    public void SetGameState(GameState gameState, float delay = 1)
+    public void SetGameState(GameState gameState, float delay = 2)
     {
         if (this.currentGameState == gameState)
             return;

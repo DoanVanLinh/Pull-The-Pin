@@ -26,10 +26,6 @@ namespace Assets.Scripts.UI.Puzzle
         {
             currentAmount = 0;
             GetRandomPuzzlePiece(out data, out newPiece);
-            label.text = this.data.id;
-            bg.SetActive(true);
-            completePuzzle.sprite = data.sprites[9];
-            UpdateData();
         }
 
         public void UpdateData()
@@ -39,6 +35,8 @@ namespace Assets.Scripts.UI.Puzzle
                 pieces[i].UpdateData(data.id + "_" + i, newPiece, () => ShowAll());
                 pieces[i].render.sprite = data.sprites[i];
             }
+
+            completePuzzle.gameObject.SetActive(currentAmount == 9);
         }
         private void ShowAll()
         {
@@ -73,7 +71,8 @@ namespace Assets.Scripts.UI.Puzzle
         {
             GameManager.Instance.ShowAdsReward(Helper.Another_Puzzle_Placement, delegate
             {
-                ani.Play("Open");
+                if(!GetRandomPuzzlePiece(out data, out newPiece))
+                    ani.Play("Close");
 
             });
         }
@@ -97,6 +96,11 @@ namespace Assets.Scripts.UI.Puzzle
                     DataManager.Instance.SetInt(GameManager.Instance.puzzleData[i].id, currentAmount);
                     DataManager.Instance.SetInt(newPiece, currentAmount);
                     parent = GameManager.Instance.puzzleData[i];
+
+                    label.text = this.data.id;
+                    bg.SetActive(true);
+                    completePuzzle.sprite = data.sprites[9];
+                    UpdateData();
                     return true;
                 }
             }

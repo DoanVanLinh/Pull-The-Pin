@@ -36,7 +36,7 @@ namespace Assets.Scripts.UI.Gift
             amountCoins = Random.Range(600, 1000);
 
             adsIcon.gameObject.SetActive(DataManager.Instance.HasKey(Helper.First_Gift_Key));
-            closeBtn.gameObject.SetActive(!DataManager.Instance.HasKey(Helper.First_Gift_Key));
+            closeBtn.gameObject.SetActive(DataManager.Instance.HasKey(Helper.First_Gift_Key));
 
             openBtn.interactable = true;
             open2Btn.interactable = true;
@@ -44,7 +44,7 @@ namespace Assets.Scripts.UI.Gift
 
             coinsTxt.text = amountCoins.ToString();
 
-            openBtn.onClick.AddListener(() => OpenButton());
+            //openBtn.onClick.AddListener(() => OpenButton());
             open2Btn.onClick.AddListener(() => OpenButton());
             closeBtn.onClick.AddListener(() => CloseButton());
         }
@@ -68,6 +68,7 @@ namespace Assets.Scripts.UI.Gift
 
             void OpenGift(bool isFirstTime = false)
             {
+
                 openBtn.interactable = false;
                 open2Btn.interactable = false;
                 closeBtn.interactable = false;
@@ -91,42 +92,53 @@ namespace Assets.Scripts.UI.Gift
         }
         IEnumerator IEOpen()
         {
+            float randomGift = Random.Range(-1f, 1f);
+            coinObj.SetActive(randomGift > 0);
+            itemObj.gameObject.SetActive(randomGift <= 0);
+            string id = GameManager.Instance.GetRandomItemByType(EItemUnlockType.GiftBox);
+
+            if (randomGift > 0)//coins
+            {
+                DataManager.Instance.AddCoins(1000);
+            }
+            else
+            {
+
+                if (!string.IsNullOrEmpty(id))
+                {
+                    itemObj.sprite = GameManager.Instance.itemsData[id].icon;
+                    DataManager.Instance.GetData().AddItem(id);
+                }
+                else
+                {
+                    UIManager.Instance.currentcyPanel.Open();
+                    DataManager.Instance.AddCoins(1000);
+                }
+            }
+
             yield return new WaitForSeconds(1.5f);
 
-            float randomGift = Random.Range(-1f, 1f);
 
-            if(randomGift>0)//coins
+            if (randomGift > 0)//coins
             {
-                coinObj.SetActive(true);
-                itemObj.gameObject.SetActive(false);
                 UIManager.Instance.currentcyPanel.Open();
-                DataManager.Instance.AddCoins(1000);
                 ((ResourceRecivePanel)UIManager.Instance.resorceRecivePanel).CoinsRecive(transform.position, () => { SoundManager.Instance.Play("GetCoins"); panelAni.Play("Close"); });
             }
             else
             {
-                string id = GameManager.Instance.GetRandomItemByType(EItemUnlockType.GiftBox);
-
                 if (!string.IsNullOrEmpty(id))
                 {
-                    coinObj.SetActive(false);
-                    itemObj.gameObject.SetActive(true);
-                    itemObj.sprite = GameManager.Instance.themeData[id].icon;
-                    DataManager.Instance.GetData().AddItem(id);
                     yield return new WaitForSeconds(1f);
                     panelAni.Play("Close");
                 }
                 else
                 {
-                    coinObj.SetActive(true);
-                    itemObj.gameObject.SetActive(false);
                     UIManager.Instance.currentcyPanel.Open();
-                    DataManager.Instance.AddCoins(1000);
-                    ((ResourceRecivePanel)UIManager.Instance.resorceRecivePanel).CoinsRecive(transform.position, () => {SoundManager.Instance.Play("GetCoins"); panelAni.Play("Close"); });
+                    ((ResourceRecivePanel)UIManager.Instance.resorceRecivePanel).CoinsRecive(transform.position, () => { SoundManager.Instance.Play("GetCoins"); panelAni.Play("Close"); });
                 }
             }
 
-            
+
         }
         IEnumerator IEFirstOpen()
         {

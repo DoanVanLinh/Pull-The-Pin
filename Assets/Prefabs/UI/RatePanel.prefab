@@ -346,6 +346,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0ebe9c600b364949acc1ce6df68588f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ani: {fileID: 1552326048}
   rateBtn: {fileID: 7917964003312539243}
   closeBtn: {fileID: 7917964003273519960}
 --- !u!222 &7917964003149348553

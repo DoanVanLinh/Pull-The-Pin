@@ -64,8 +64,8 @@ public class Level : MonoBehaviour
     protected BoxCollider2D spawnLoc;
     [SerializeField]
     protected Transform ballParent;
-    [SerializeField, MinMaxSlider(0.5f, 1f)]
-    protected Vector2 size;
+    [SerializeField, MinMaxSlider(0.5f, 5f)]
+    protected Vector2 size = new Vector2(1,1);
 
     [Button()]
     public virtual void SpawnBall(int amount, EBallType type)

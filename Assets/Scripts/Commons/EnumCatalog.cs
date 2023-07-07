@@ -100,7 +100,8 @@ public enum ELoseType
     BomBall,
     BomBuck,
     LoseBall,
-    CollectGreyBall
+    CollectGreyBall,
+    SawBall
 }
 
 public enum ERewardType

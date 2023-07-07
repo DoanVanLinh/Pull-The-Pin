@@ -47,7 +47,11 @@ namespace Assets.Scripts.UI.Puzzle
 
             }
             else
+            {
                 completePuzzle.gameObject.SetActive(false);
+                bg.SetActive(true);
+
+            }
         }
         public override void LoadData()
         {

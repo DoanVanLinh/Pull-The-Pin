@@ -46,6 +46,7 @@ namespace Assets.Scripts.UI.Shop
 
         public override void LoadData()
         {
+            closeBtn.interactable = true;
             closeBtn.onClick.AddListener(() => OpenButton());
             ani.Play("Open");
         }

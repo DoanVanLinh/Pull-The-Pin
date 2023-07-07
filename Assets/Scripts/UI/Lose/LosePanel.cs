@@ -56,6 +56,10 @@ namespace Assets.Scripts.UI.Lose
                     tips = "Grey ball can't be collected!\n" +
                         "Use collored ball to spread the paint";
                     break;
+                case ELoseType.SawBall:
+                    tips = "You lose the balls!\n" +
+                        "Avoid the saw destroy it";
+                    break;
                 default:
                     break;
             }

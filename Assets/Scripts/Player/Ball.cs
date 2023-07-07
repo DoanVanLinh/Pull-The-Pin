@@ -94,7 +94,7 @@ public class Ball : MonoBehaviour
 
         PlaySound();
     }
-    private void PlaySound()
+    public void PlaySound()
     {
         string[] nameSounds = new string[3] { "Bubble", "Bubble2", "Bubble3" };
         SoundManager.Instance.Play(nameSounds[Random.Range(0, 3)]);

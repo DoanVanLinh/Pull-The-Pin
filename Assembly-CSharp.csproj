@@ -60,6 +60,7 @@
     <Compile Include="Assets\QuickOutline\Scripts\Outline.cs" />
     <Compile Include="Assets\PathCreator\Examples\Scripts\PathSpawner.cs" />
     <Compile Include="Assets\Scripts\CodeStage\AntiCheatToolkit\Examples\Scripts\ObscuredPerformanceTests.cs" />
+    <Compile Include="Assets\Scripts\Player\Saw.cs" />
     <Compile Include="Assets\Scripts\UI\RatePanel.cs" />
     <Compile Include="Assets\Scripts\Commons\CSVReader.cs" />
     <Compile Include="Assets\Scripts\CodeStage\AntiCheatToolkit\Runtime\Scripts\ObscuredTypes\ObscuredDecimal.cs" />
@@ -95,6 +96,7 @@
     <Compile Include="Assets\Scripts\UI\ChallengePlayPanel\ChallengePlayPanel.cs" />
     <Compile Include="Assets\Scripts\CodeStage\AntiCheatToolkit\Runtime\Scripts\Common\ACTkByte16.cs" />
     <Compile Include="Assets\Scripts\CodeStage\AntiCheatToolkit\Runtime\Scripts\ObscuredTypes\ObscuredUInt.cs" />
+    <Compile Include="Assets\Scripts\Player\Dragon.cs" />
     <Compile Include="Assets\Scripts\UI\Win\Gift.cs" />
     <Compile Include="Assets\Scripts\UI\Play\PlayPanel.cs" />
     <Compile Include="Assets\Scripts\Player\Bom.cs" />
@@ -168,6 +170,7 @@
     <Compile Include="Assets\Scripts\Data\Item.cs" />
     <Compile Include="Assets\Scripts\CodeStage\AntiCheatToolkit\Runtime\Scripts\Utils\xxHash.cs" />
     <Compile Include="Assets\Scripts\Player\Trail.cs" />
+    <Compile Include="Assets\Scripts\Player\SizeEffectZone.cs" />
     <Compile Include="Assets\Scripts\Commons\HackPC.cs" />
     <Compile Include="Assets\Scripts\UI\BasePopupUI.cs" />
     <Compile Include="Assets\Scripts\CodeStage\AntiCheatToolkit\Runtime\Scripts\ObscuredTypes\ObscuredVector3Int.cs" />

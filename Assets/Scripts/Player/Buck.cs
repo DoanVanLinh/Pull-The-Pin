@@ -9,6 +9,7 @@ using Assets.Scripts.UI.Play;
 using Assets.Scripts.UI.Puzzle;
 using System;
 using Random = UnityEngine.Random;
+using Assets.Scripts.Player;
 
 public class Buck : MonoBehaviour
 {
@@ -35,6 +36,8 @@ public class Buck : MonoBehaviour
     protected MeshRenderer headMaterial;
     [FoldoutGroup("Visual"), SerializeField]
     protected MeshRenderer bodyMaterial;
+
+    public Dragon dragon;
     public void Init(Level owner, bool hasPiece)
     {
         this.owner = owner;
@@ -46,12 +49,15 @@ public class Buck : MonoBehaviour
         this.hasPiece = hasPiece;
         piece.gameObject.SetActive(hasPiece);
         OnThemeChange();
+        dragon.SetTrigger();
         OnVisualUpdate += OnThemeChange;
     }
 
     private void OnThemeChange()
     {
-        colliderMesh.mesh = GameManager.Instance.currentTheme.colliderBuck;
+        dragon.gameObject.SetActive(GameManager.Instance.currentTheme.id == "Theme0");
+
+        //colliderMesh.mesh = GameManager.Instance.currentTheme.colliderBuck;
         coll.sharedMesh = GameManager.Instance.currentTheme.colliderBuck;
         headMesh.mesh = GameManager.Instance.currentTheme.headBuck;
         bodyMesh.mesh = GameManager.Instance.currentTheme.bodyBuck;
@@ -76,7 +82,7 @@ public class Buck : MonoBehaviour
             if (currentPercent == owner.amountBall)
             {
                 visual.transform.DOKill();
-
+                dragon.SetTrigger("Eat");
                 CollectPiece();
             }
         }
