@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Assets.Scripts.Data;
 using DG.Tweening;
+using Assets.Scripts.UI.Play;
 
 namespace Assets.Scripts.UI.Shop
 {
@@ -28,10 +29,10 @@ namespace Assets.Scripts.UI.Shop
         private CommonTabSwitchButton trailBtn;
         [FoldoutGroup("Button"), SerializeField]
         private CommonTabSwitchButton wallBtn;
-        [FoldoutGroup("Button"), SerializeField]
-        private Button coinGatchaBtn;
-        [FoldoutGroup("Button"), SerializeField]
-        private Button adsGatchaBtn;
+        [FoldoutGroup("Button")]
+        public Button coinGatchaBtn;
+        [FoldoutGroup("Button")]
+        public Button adsGatchaBtn;
 
         [FoldoutGroup("Parent"), SerializeField]
         private Transform luckyWheelParent;
@@ -48,14 +49,18 @@ namespace Assets.Scripts.UI.Shop
 
         [FoldoutGroup("Text"), SerializeField]
         private TextMeshProUGUI label;
+        [FoldoutGroup("Text"), SerializeField]
+        private TextMeshProUGUI gatchaPrice;
 
         [FoldoutGroup("Prefabs"), SerializeField]
         private GroupShopElement groupElement;
 
         [FoldoutGroup("Component"), SerializeField]
         private Camera mainCam;
-        [FoldoutGroup("Bask"), SerializeField]
+        [FoldoutGroup("Component"), SerializeField]
         public Bask bask;
+        [FoldoutGroup("Component"), SerializeField]
+        private GameObject gatchaNoti;
 
         private List<GroupShopElement> ballGroups = new List<GroupShopElement>();
         private List<GroupShopElement> themeGroups = new List<GroupShopElement>();
@@ -100,7 +105,7 @@ namespace Assets.Scripts.UI.Shop
             closeBtn.onClick.AddListener(() => CloseButton());
             coinGatchaBtn.onClick.AddListener(() => CoinGatchaButton());
             adsGatchaBtn.onClick.AddListener(() => AdsGatchaButton());
-            //CommonTabSwitchButton.OnSelectDone += OnTabSelected;
+            CommonTabSwitchButton.OnSelectDone += OnTabSelected;
             luckyWheelBtn.OnClickDone += LuckyWhellButton;
             ballBtn.OnClickDone += BallButton;
             themeBtn.OnClickDone += ThemeButton;
@@ -118,29 +123,47 @@ namespace Assets.Scripts.UI.Shop
             LuckyWhellButton();
             currentTab = luckyWheelParent.parent.parent;
             UIManager.Instance.currentcyPanel.Open();
-
+            LoadGatchaPrice();
+            LoadgatchaNotification();
             //OnTabSelected();
         }
-
+        private void LoadgatchaNotification()
+        {
+            gatchaNoti.SetActive(DataManager.Instance.Coins >= DataManager.Instance.CurrentGatcha * 250 + 500);
+        }
         private void AdsGatchaButton()
         {
             SoundManager.Instance.Play("Button Click");
-            GameManager.Instance.ShowAdsReward(Helper.Gatcha_Placement, () =>
+            GameManager.Instance.ShowAdsReward(Helper.Gacha_Placement, () =>
             {
+                coinGatchaBtn.interactable = false;
+                adsGatchaBtn.interactable = false;
                 Gatcha();
             });
         }
         private void CoinGatchaButton()
         {
+            
             SoundManager.Instance.Play("Button Click");
-            if (DataManager.Instance.Coins >= 500)
+            if (DataManager.Instance.Coins >= (DataManager.Instance.CurrentGatcha * 250 + 500))
             {
+                coinGatchaBtn.interactable = false;
+                adsGatchaBtn.interactable = false;
                 Gatcha();
-                DataManager.Instance.AddCoins(-500);
+                DataManager.Instance.AddCoins(-(DataManager.Instance.CurrentGatcha * 250 + 500));
+                DataManager.Instance.AddGatcha(1);
+                LoadGatchaPrice();
+                LoadgatchaNotification();
+
             }
+        }
+        private void LoadGatchaPrice()
+        {
+            gatchaPrice.text = (DataManager.Instance.CurrentGatcha * 250 + 500).ToString();
         }
         private void Gatcha()
         {
+            DataManager.Instance.GetData().AddDailyMissionValue(EDailyMissionID.Gacha, 1);
             bask.gameObject.SetActive(true);
         }
 
@@ -153,12 +176,12 @@ namespace Assets.Scripts.UI.Shop
         private void OnTabSelected()
         {
             SoundManager.Instance.Play("Button Click");
-            luckyWheelParent.gameObject.SetActive(luckyWheelBtn.status);
-            ballParent.gameObject.SetActive(ballBtn.status);
-            themeParent.gameObject.SetActive(themeBtn.status);
-            pinParent.gameObject.SetActive(pinBtn.status);
-            trailParent.gameObject.SetActive(trailBtn.status);
-            wallParent.gameObject.SetActive(wallBtn.status);
+            //luckyWheelParent.gameObject.SetActive(luckyWheelBtn.status);
+            //ballParent.gameObject.SetActive(ballBtn.status);
+            //themeParent.gameObject.SetActive(themeBtn.status);
+            //pinParent.gameObject.SetActive(pinBtn.status);
+            //trailParent.gameObject.SetActive(trailBtn.status);
+            //wallParent.gameObject.SetActive(wallBtn.status);
         }
 
         private void WallButton()
@@ -364,6 +387,7 @@ namespace Assets.Scripts.UI.Shop
             Time.timeScale = 1;
 
             UIManager.Instance.currentcyPanel.Close();
+            ((PlayPanel)UIManager.Instance.gamePlayPanel).UpdateShopNoti();
 
             CommonTabSwitchButton.OnSelectDone -= OnTabSelected;
             luckyWheelBtn.OnClickDone -= LuckyWhellButton;
@@ -372,6 +396,11 @@ namespace Assets.Scripts.UI.Shop
             pinBtn.OnClickDone -= PinButton;
             trailBtn.OnClickDone -= TrailButton;
             wallBtn.OnClickDone -= WallButton;
+
+            closeBtn.onClick.RemoveAllListeners();
+            coinGatchaBtn.onClick.RemoveAllListeners();
+            adsGatchaBtn.onClick.RemoveAllListeners();
+
         }
     }
 }

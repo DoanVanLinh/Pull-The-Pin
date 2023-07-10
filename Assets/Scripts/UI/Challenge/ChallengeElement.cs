@@ -18,6 +18,8 @@ namespace Assets.Scripts.UI.Challenge
         public List<TextMeshProUGUI> rewardCoins;
         public TextMeshProUGUI unlockCoins;
         public TextMeshProUGUI levelTxt;
+
+        public GameObject noti;
         public void LoadElement(ChallengeData data)
         {
             this.data = data;
@@ -30,7 +32,6 @@ namespace Assets.Scripts.UI.Challenge
             }
             unlockCoins.text = data.amountUnlock.ToString();
             levelTxt.text = data.id;
-
             LoadVisual();
         }
         public void LoadVisual()
@@ -41,6 +42,8 @@ namespace Assets.Scripts.UI.Challenge
                 contents[i].SetActive(i == (int)data.type);
                 buttons[i].SetActive(i == (int)data.type);
             }
+            noti.SetActive(data.type == EChalengeType.Lock && DataManager.Instance.Coins >= data.amountUnlock);
+
         }
         private void ActionButton()
         {

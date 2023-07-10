@@ -32,6 +32,10 @@ namespace Assets.Scripts.UI.Play
 
         [FoldoutGroup("Noti")]
         public GameObject dailyMissionNoti;
+        [FoldoutGroup("Noti")]
+        public GameObject shopNoti;
+        [FoldoutGroup("Noti")]
+        public GameObject challengeNoti;
 
         [FoldoutGroup("Text"), SerializeField]
         private TextMeshProUGUI stageTxt;
@@ -46,10 +50,21 @@ namespace Assets.Scripts.UI.Play
             hometBtn.onClick.AddListener(delegate { SoundManager.Instance.Play("Button Click"); HomeButton(); });
             noadstBtn.onClick.AddListener(delegate { SoundManager.Instance.Play("Button Click"); NoadsButton(); });
             UpdateStageText();
+            UpdateShopNoti();
+            UpdateChallengeNoti();
 
             GameManager.Instance.SetGameState(GameState.NormalMode);
         }
-
+        public void UpdateShopNoti()
+        {
+            bool canGatcha = DataManager.Instance.Coins >= DataManager.Instance.CurrentGatcha * 250 + 500;
+            bool newItem = DataManager.Instance.GetData().HasNewItemInShop();
+            shopNoti.SetActive(canGatcha||newItem);
+        }
+        public void UpdateChallengeNoti()
+        {
+            challengeNoti.SetActive(DataManager.Instance.GetData().HasNewChallenge());
+        }
         private void HomeButton()
         {
             Time.timeScale = 0;

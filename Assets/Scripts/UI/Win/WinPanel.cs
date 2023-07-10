@@ -26,7 +26,6 @@ namespace Assets.Scripts.UI.Win
             SetInterrect(true);
 
             amountCoins = Random.Range(80, 110);
-            DataManager.Instance.AddCoins(amountCoins);
             coins.text = amountCoins.ToString();
             coinsButton.text = amountCoins.ToString();
             continuesBtn.onClick.AddListener(delegate { SoundManager.Instance.Play("Button Click"); ContinuesButton(); });
@@ -34,6 +33,8 @@ namespace Assets.Scripts.UI.Win
             gift.Init();
             extra.Init(amountCoins);
             ani.Play("Open");
+            UIManager.Instance.currentcyPanel.Open();
+
         }
 
         private void ExtraCoinsButton()
@@ -43,14 +44,13 @@ namespace Assets.Scripts.UI.Win
                 SetInterrect(false);
 
                 extra.running = false;
-                DataManager.Instance.AddCoins(amountCoins * ExtraElement.currentElement.extra);
                 GameManager.Instance.NextStage();
-                UIManager.Instance.currentcyPanel.Open();
                 ((ResourceRecivePanel)UIManager.Instance.resorceRecivePanel).CoinsRecive(extraCoinsBtn.transform.position, () =>
                 {
-                                       SoundManager.Instance.Play("GetCoins");
+                    SoundManager.Instance.Play("GetCoins");
+                    DataManager.Instance.AddCoins(amountCoins * ExtraElement.currentElement.extra);
+
                     ani.Play("Close");
-                    UIManager.Instance.currentcyPanel.Close();
 
                 });
                 ((PlayPanel)UIManager.Instance.gamePlayPanel).UpdateStageText();
@@ -66,13 +66,12 @@ namespace Assets.Scripts.UI.Win
         {
             SetInterrect(false);
             GameManager.Instance.NextStage();
-            UIManager.Instance.currentcyPanel.Open();
             ((ResourceRecivePanel)UIManager.Instance.resorceRecivePanel).CoinsRecive(continuesBtn.transform.position, () =>
             {
-                                       SoundManager.Instance.Play("GetCoins");
-                ani.Play("Close");
-                UIManager.Instance.currentcyPanel.Close();
+                SoundManager.Instance.Play("GetCoins");
+                DataManager.Instance.AddCoins(amountCoins);
 
+                ani.Play("Close");
             });
             ((PlayPanel)UIManager.Instance.gamePlayPanel).UpdateStageText();
         }
@@ -81,6 +80,7 @@ namespace Assets.Scripts.UI.Win
         {
             base.Close();
 
+            UIManager.Instance.currentcyPanel.Close();
 
             continuesBtn.onClick.RemoveAllListeners();
             extraCoinsBtn.onClick.RemoveAllListeners();

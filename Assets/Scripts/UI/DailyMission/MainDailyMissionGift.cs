@@ -59,7 +59,7 @@ namespace Assets.Scripts.UI.DailyMission
                     DataManager.Instance.GetData().UpdateDailyMissionGift(currentData.id, EMissionStatus.Collected);
                     ((RewardRecivePanel)UIManager.Instance.rewardRecivePanel).Init(type,
                                                                                     amountReward,
-                                                                                    type == ERewardType.Coins ? () => DataManager.Instance.AddCoins(amountReward) : null,
+                                                                                     null,
                                                                                     idItem);
 
                     break;

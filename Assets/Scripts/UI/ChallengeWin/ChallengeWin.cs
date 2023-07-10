@@ -18,6 +18,8 @@ namespace Assets.Scripts.UI.ChallengeWin
             continuesBtn.onClick.AddListener(() => ContinueButton());
             reward = DataManager.Instance.GetData().GetChallengeReward(GameManager.Instance.currentChallenge.id);
             rewardTxt.text = reward.ToString();
+            UIManager.Instance.currentcyPanel.Open();
+
         }
         public override void Open()
         {
@@ -28,13 +30,11 @@ namespace Assets.Scripts.UI.ChallengeWin
         {
             SoundManager.Instance.Play("Button Click");
 
-            UIManager.Instance.currentcyPanel.Open();
 
             ((ResourceRecivePanel)UIManager.Instance.resorceRecivePanel).CoinsRecive(transform.position,
                                    delegate
                                    {
                                        SoundManager.Instance.Play("GetCoins");
-                                       UIManager.Instance.currentcyPanel.Close();
                                        DataManager.Instance.AddCoins(reward);
                                        UIManager.Instance.challegentPanel.Open();
                                        GameManager.Instance.SetGameState(GameState.NormalMode);
@@ -46,7 +46,8 @@ namespace Assets.Scripts.UI.ChallengeWin
 
         public override void SaveData()
         {
-            
+            UIManager.Instance.currentcyPanel.Close();
+
             continuesBtn.onClick.RemoveAllListeners();
         }
     }

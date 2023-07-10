@@ -160,9 +160,11 @@ public class GameManager : SerializedMonoBehaviour
 
                 break;
             case GameState.NormalMode:
+                cinemachineTarget.DOKill();
                 CamrraShake(0);
                 if (currentChallenge != null)
                 {
+                    DataManager.Instance.GetData().SetChallengeStatusById(currentChallenge.id, EChalengeType.Failed);
                     Destroy(currentChallenge.gameObject);
                 }
 
@@ -175,7 +177,7 @@ public class GameManager : SerializedMonoBehaviour
             case GameState.Win:
                 victory1.SetActive(true);
                 victory2.SetActive(true);
-
+                SoundManager.Instance.Play("FireWork");
                 if (currentGameState == GameState.NormalMode)
                     StartCoroutine(IEDelay(delay, delegate
                     {

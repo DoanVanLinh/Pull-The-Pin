@@ -55,7 +55,7 @@ public class Pin : MonoBehaviour
     }
     protected virtual void Update()
     {
-        if (Input.GetMouseButtonDown(0) && !Helper.IsOverUI())
+        if (Input.GetMouseButtonDown(0) && !Helper.IsOverUI() && canTouch)
             if (GameManager.Instance.DetectPin() == this)
                 OnPlayerTouchOn();
     }
@@ -68,6 +68,7 @@ public class Pin : MonoBehaviour
     }
     protected virtual void OnPlayerTouchOn()
     {
+
         canTouch = false;
         SoundManager.Instance.Play("Pin");
         transform.DOLocalMove(targetLoc, timeMove)

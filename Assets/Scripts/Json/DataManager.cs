@@ -6,6 +6,7 @@ using Sirenix.OdinInspector;
 using Assets.Scripts.UI;
 using System;
 using Assets.Scripts.UI.Currency;
+using Assets.Scripts.UI.Play;
 
 public class DataManager : MonoBehaviour
 {
@@ -88,6 +89,7 @@ public class DataManager : MonoBehaviour
     public bool IsNoads { get; set; }
     public int GiftPercent { get; set; }
     public int CurrentStreak { get; set; }
+    public int CurrentGatcha { get; set; }
 
     void SetupKey()
     {
@@ -112,6 +114,13 @@ public class DataManager : MonoBehaviour
         IsNoads = CPlayerPrefs.GetBool(Helper.Is_No_Ads_Key, false);
         GiftPercent = CPlayerPrefs.GetInt(Helper.Gift_Percent_Key, 0);
         CurrentStreak = CPlayerPrefs.GetInt(Helper.Current_Streak_Key, 0);
+        CurrentGatcha = CPlayerPrefs.GetInt(Helper.Current_Gacha_Key, 0);
+    }
+
+    public void AddGatcha(int gatcha)
+    {
+        CurrentGatcha += gatcha;
+        CPlayerPrefs.SetInt(Helper.Current_Gacha_Key, CurrentGatcha);
     }
 
     public void SetStreak(int streak)
@@ -267,6 +276,8 @@ public class DataManager : MonoBehaviour
 
         CPlayerPrefs.SetInt(Helper.Current_Coins_Key, Coins);
         ((CurrencyPanel)UIManager.Instance.currentcyPanel).UpdateCoins();
+        ((PlayPanel)UIManager.Instance.gamePlayPanel).UpdateShopNoti();
+        ((PlayPanel)UIManager.Instance.gamePlayPanel).UpdateChallengeNoti();
     }
 
     public void AddKey(int key)

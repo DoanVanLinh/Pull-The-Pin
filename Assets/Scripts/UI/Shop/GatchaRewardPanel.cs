@@ -84,6 +84,9 @@ namespace Assets.Scripts.UI.Shop
         {
             closeBtn.onClick.RemoveAllListeners();
             ((ShopPanel)UIManager.Instance.shopPanel).bask.Init();
+            ((ShopPanel)UIManager.Instance.shopPanel).coinGatchaBtn.interactable = true;
+            ((ShopPanel)UIManager.Instance.shopPanel).adsGatchaBtn.interactable = true;
+
         }
 
 

@@ -52,15 +52,15 @@ namespace Assets.Scripts.UI.DailyMission
         public void LoadElement(DailyMissions currentDailyMission, DailyMissionPanel owner)
         {
             this.currentDailyMission = currentDailyMission;
-            data = GameManager.Instance.dailyMissionsData[currentDailyMission.id];
+            data = GameManager.Instance.dailyMissionsData[this.currentDailyMission.id];
 
-            if (currentDailyMission.currentStatus == EMissionStatus.Collected)
+            if (this.currentDailyMission.currentStatus == EMissionStatus.Collected)
                 owner.currentStar += data.amountStar;
 
-                if (currentDailyMission.currentStatus == EMissionStatus.Skip && currentDailyMission.currentValue >= data.value)
-                currentDailyMission.currentStatus = EMissionStatus.Collect;
+            if (this.currentDailyMission.currentStatus == EMissionStatus.Skip && this.currentDailyMission.currentValue >= data.value)
+                this.currentDailyMission.currentStatus = EMissionStatus.Collect;
 
-            data.level = currentDailyMission.currentLevel;
+            data.level = this.currentDailyMission.currentLevel;
             stars.text = data.amountStar.ToString();
             description.text = data.description;
             actionBtn.onClick.AddListener(delegate { ActionButton(); });

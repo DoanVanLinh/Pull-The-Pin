@@ -4,6 +4,7 @@ using UnityEngine.UI;
 using TMPro;
 using Sirenix.OdinInspector;
 using System.Collections.Generic;
+using Assets.Scripts.UI.Play;
 
 namespace Assets.Scripts.UI.Challenge
 {
@@ -26,7 +27,8 @@ namespace Assets.Scripts.UI.Challenge
         public override void LoadData()
         {
             Time.timeScale = 0;
-            closeBtn.onClick.AddListener(() => {
+            closeBtn.onClick.AddListener(() =>
+            {
                 Close();
                 SoundManager.Instance.Play("Button Click");
 
@@ -44,6 +46,7 @@ namespace Assets.Scripts.UI.Challenge
         public override void SaveData()
         {
             closeBtn.onClick.RemoveAllListeners();
+            ((PlayPanel)UIManager.Instance.gamePlayPanel).UpdateChallengeNoti();
             Time.timeScale = 1;
 
         }

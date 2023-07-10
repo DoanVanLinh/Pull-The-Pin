@@ -104,7 +104,10 @@ namespace Assets.Scripts.UI.RewardRecive
         }
         IEnumerator IEOpen(Action action)
         {
-            yield return new WaitForSecondsRealtime(1.5f);
+            yield return new WaitForSecondsRealtime(0.5f);
+            SoundManager.Instance.Play("OpenGift");
+            yield return new WaitForSecondsRealtime(1.0f);
+
             action?.Invoke();
 
         }

@@ -55,6 +55,7 @@ public static class Helper
     public static string Is_No_Ads_Key = "NoAds1";
     public static string Gift_Percent_Key = "GiftPercent1";
     public static string Current_Streak_Key = "CurrentStreak1";
+    public static string Current_Gacha_Key = "CurrentGacha1";
     public static string First_Gift_Key = "FristGift1";
 
     public static string Another_Puzzle_Placement = "AnotherPuzzle";
@@ -66,7 +67,7 @@ public static class Helper
     public static string Int_Capping_Placement = "CappingInt";
     public static string Fail_Challenge_Placement = "FailChallenge";
     public static string Play_Again_Challenge_Placement = "PlayAgainChallenge";
-    public static string Gatcha_Placement = "Gatcha";
+    public static string Gacha_Placement = "Gacha";
     #endregion
 
 

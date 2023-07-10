@@ -43,13 +43,12 @@ namespace Assets.Scripts.UI.DailyReward
             switch (type)
             {
                 case ERewardType.Coins:
-                    DataManager.Instance.AddCoins(amount);
                     ((ResourceRecivePanel)UIManager.Instance.resorceRecivePanel).CoinsRecive(transform.position,
                                    delegate
                                    {
                                        SoundManager.Instance.Play("GetCoins");
                                        ((DailyRewardPanel)UIManager.Instance.dailyRewardPanel).CloseButton();
-                                       UIManager.Instance.currentcyPanel.Close();
+                                       DataManager.Instance.AddCoins(amount);
                                    });
                     break;
                 case ERewardType.Item:
@@ -68,6 +67,8 @@ namespace Assets.Scripts.UI.DailyReward
 
         private void OnDisable()
         {
+            UIManager.Instance.currentcyPanel.Close();
+
             claimBtn.onClick.RemoveAllListeners();
         }
 

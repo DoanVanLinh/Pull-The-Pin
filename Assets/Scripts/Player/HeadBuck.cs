@@ -9,7 +9,7 @@ namespace Assets.Scripts.Player
         Dictionary<Ball, float> balls = new Dictionary<Ball, float>();
         private void OnTriggerStay(Collider other)
         {
-            if(other.CompareTag("Ball"))
+            if (other.CompareTag("Ball"))
             {
                 Ball ball = other.GetComponent<Ball>();
                 if (balls.ContainsKey(ball))
@@ -18,7 +18,7 @@ namespace Assets.Scripts.Player
                     if (balls[ball] >= 0.5f)
                     {
                         balls.Remove(ball);
-                        Destroy(ball.gameObject);
+                        ball.gameObject.SetActive(false);
                     }
                 }
                 else

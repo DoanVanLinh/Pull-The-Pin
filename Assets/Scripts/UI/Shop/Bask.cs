@@ -29,6 +29,7 @@ namespace Assets.Scripts.UI.Shop
         }
         private IEnumerator Break()
         {
+            SoundManager.Instance.Play("Gacha");
             ani.enabled = false;
             int length = unicornPieceVisual.Count;
             for (int i = 0; i < length; i++)
@@ -61,14 +62,6 @@ namespace Assets.Scripts.UI.Shop
             }
         }
 
-#if UNITY_EDITOR
-        private void OnDrawGizmos()
-        {
-            Gizmos.DrawSphere(unicornVisual.transform.position, 1);
-            Gizmos.DrawSphere(unicornPieceVisual[0].transform.position, 2);
-        }
-
-#endif
     }
 
 

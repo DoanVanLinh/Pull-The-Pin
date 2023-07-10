@@ -1,4 +1,5 @@
-﻿using Assets.Scripts.UI.ResourceRecive;
+﻿using Assets.Scripts.UI.Play;
+using Assets.Scripts.UI.ResourceRecive;
 using Sirenix.OdinInspector;
 using System;
 using System.Collections;
@@ -71,6 +72,8 @@ namespace Assets.Scripts.UI.Streak
                     break;
                 case ERewardType.Item:
                     UIManager.Instance.streakPanel.LoadData();
+                    ((PlayPanel)UIManager.Instance.gamePlayPanel).UpdateShopNoti();
+
                     panelAni.Play("Close");
 
                     break;

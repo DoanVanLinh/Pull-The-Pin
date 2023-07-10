@@ -45,6 +45,9 @@ namespace Assets.Scripts.UI.ChallengePlayPanel
 
         private void CloseButton()
         {
+            if (GameManager.Instance.currentGameState != GameState.ChallengeMode)
+                return;
+
             SoundManager.Instance.Play("Button Click");
 
             GameManager.Instance.SetGameState(GameState.NormalMode);

@@ -43,6 +43,18 @@ MonoBehaviour:
     loop: 0
     volume: 1
     typeSound: 1
+  - nameSound: FireWork
+    clip: {fileID: 8300000, guid: d057addf3ee9cd343bd860b9408d0ec6, type: 3}
+    playOnAwake: 1
+    loop: 0
+    volume: 1
+    typeSound: 1
+  - nameSound: Gacha
+    clip: {fileID: 8300000, guid: 683147a3632c11943af8dbf3885c09b9, type: 3}
+    playOnAwake: 1
+    loop: 0
+    volume: 1
+    typeSound: 1
   - nameSound: GetCoins
     clip: {fileID: 8300000, guid: f4074c1341d698440b30cd2974fdfcd5, type: 3}
     playOnAwake: 1
@@ -51,6 +63,12 @@ MonoBehaviour:
     typeSound: 1
   - nameSound: Lose
     clip: {fileID: 8300000, guid: 43e4f3dec15874d42b4b43f2297134e1, type: 3}
+    playOnAwake: 1
+    loop: 0
+    volume: 1
+    typeSound: 1
+  - nameSound: OpenGift
+    clip: {fileID: 8300000, guid: 844a2a3fc9256a3449ebde92f7ef40ce, type: 3}
     playOnAwake: 1
     loop: 0
     volume: 1

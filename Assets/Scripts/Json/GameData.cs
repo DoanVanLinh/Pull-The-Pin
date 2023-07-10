@@ -34,6 +34,12 @@ public class GameData
             AddItem("Pin1");
             AddItem("Trail1");
             AddItem("Wall1");
+
+            DataManager.Instance.SetInt("Ball1", 1);
+            DataManager.Instance.SetInt("Theme0", 1);
+            DataManager.Instance.SetInt("Pin1", 1);
+            DataManager.Instance.SetInt("Trail1", 1);
+            DataManager.Instance.SetInt("Wall1", 1);
         }
         void InitDailyMissionGift()
         {
@@ -43,7 +49,7 @@ public class GameData
         {
             for (int i = 0; i < 6; i++)
             {
-                challenges.Add(new ChallengeData((i+1).ToString(), 200 * (i + 1), (EChalengeType)(i % 4)));
+                challenges.Add(new ChallengeData((i + 1).ToString(), 200 * (i * 3 + 1), EChalengeType.Lock));
             }
         }
     }
@@ -65,6 +71,8 @@ public class GameData
         {
             if (dailyMissions[i].id == id)
             {
+                Debug.Log(dailyMissions[i].currentValue + dailyMissions[i].id.ToString() + value);
+
                 dailyMissions[i].currentValue += value;
                 if (CanCollected(dailyMissions[i]))
                     ((PlayPanel)UIManager.Instance.gamePlayPanel).dailyMissionNoti.SetActive(true);
@@ -140,6 +148,28 @@ public class GameData
                 return challenges[i].reward;
         }
         return 0;
+    }
+
+    public bool HasNewItemInShop()
+    {
+        int length = currentItems.Count;
+        for (int i = 0; i < length; i++)
+        {
+            if (!DataManager.Instance.HasKey(currentItems[i]))
+                return true;
+        }
+        return false;
+    }
+
+    public bool HasNewChallenge()
+    {
+        int length = challenges.Count;
+        for (int i = 0; i < length; i++)
+        {
+            if (challenges[i].type == EChalengeType.Lock && DataManager.Instance.Coins >= challenges[i].amountUnlock)
+                return true;
+        }
+        return false;
     }
 }
 

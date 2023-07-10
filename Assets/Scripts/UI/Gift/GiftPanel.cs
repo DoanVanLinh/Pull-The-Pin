@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using TMPro;
 using Assets.Scripts.UI.ResourceRecive;
 using Random = UnityEngine.Random;
+using Assets.Scripts.UI.Play;
 
 namespace Assets.Scripts.UI.Gift
 {
@@ -108,6 +109,8 @@ namespace Assets.Scripts.UI.Gift
                 {
                     itemObj.sprite = GameManager.Instance.itemsData[id].icon;
                     DataManager.Instance.GetData().AddItem(id);
+                    ((PlayPanel)UIManager.Instance.gamePlayPanel).UpdateShopNoti();
+
                 }
                 else
                 {
@@ -116,8 +119,9 @@ namespace Assets.Scripts.UI.Gift
                 }
             }
 
-            yield return new WaitForSeconds(1.5f);
-
+            yield return new WaitForSecondsRealtime(0.5f);
+            SoundManager.Instance.Play("OpenGift");
+            yield return new WaitForSecondsRealtime(1.0f);
 
             if (randomGift > 0)//coins
             {
@@ -147,7 +151,11 @@ namespace Assets.Scripts.UI.Gift
             itemObj.sprite = GameManager.Instance.themeData["Theme9"].icon;
             DataManager.Instance.GetData().AddItem("Theme9");
             DataManager.Instance.SetCurrentThemeVisual("Theme9");
-            yield return new WaitForSeconds(2.5f);
+            yield return new WaitForSecondsRealtime(0.5f);
+            SoundManager.Instance.Play("OpenGift");
+            yield return new WaitForSecondsRealtime(1.0f);
+
+            yield return new WaitForSeconds(1f);
             panelAni.Play("Close");
         }
 

@@ -120,6 +120,7 @@ public enum EDailyMissionID
     CompleteLevel,
     CompleteChallenge,
     EarnCoins,
+    Gacha
 }
 public enum EChalengeType
 {

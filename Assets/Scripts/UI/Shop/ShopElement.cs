@@ -25,6 +25,8 @@ namespace Assets.Scripts.UI.Shop
 
         [FoldoutGroup("Component")]
         public GameObject hightLight;
+        [FoldoutGroup("Component")]
+        public GameObject notification;
 
         public string itemId;
         private Item itemData;
@@ -50,6 +52,8 @@ namespace Assets.Scripts.UI.Shop
             isLock = !DataManager.Instance.GetData().HasItem(this.itemId);
             lockImg.gameObject.SetActive(isLock);
 
+            notification.SetActive(!isLock&&!DataManager.Instance.HasKey(itemId));
+
             if (itemId == DataManager.Instance.GetCurrentItemByType(itemData.itemType))
             {
                 ShopElement.id = gameObject.GetInstanceID();
@@ -64,6 +68,8 @@ namespace Assets.Scripts.UI.Shop
                 SoundManager.Instance.Play("Click");
                 id = gameObject.GetInstanceID();
                 DataManager.Instance.SetCurrentItemByType(itemData.itemType, itemId);
+                DataManager.Instance.SetInt(itemId, 1);
+                notification.SetActive(false);
                 OnSelected?.Invoke();
             }
         }
